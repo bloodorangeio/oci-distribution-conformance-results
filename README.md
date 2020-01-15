@@ -1,4 +1,5 @@
-# OCI Distribution Spec Conformance Results
+# oci-distribution-conformance-results
+
 Static HTML reports of [OCI Distribution Spec](https://github.com/opencontainers/distribution-spec) conformance tests run against various registries.
 
 Note: these should not be considered "official" results. This repo is just for test purposes. 
