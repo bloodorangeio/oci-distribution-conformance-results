@@ -6,15 +6,15 @@ DOCKER_DISTRIBUTION_VERSION="${DOCKER_DISTRIBUTION_VERSION:-master}"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd ${DIR}
 
-# Get the compliance.test binary
-if [[ ! -f testbin/compliance.test ]]; then
+# Get the conformance.test binary
+if [[ ! -f testbin/conformance.test ]]; then
   rm -rf distribution-spec/
   git clone https://github.com/bloodorangeio/distribution-spec.git
-  pushd distribution-spec/compliance/
+  pushd distribution-spec/conformance/
   go test -c
   popd
   mkdir -p testbin/
-  mv distribution-spec/compliance/compliance.test testbin/compliance.test
+  mv distribution-spec/conformance/conformance.test testbin/conformance.test
   rm -rf distribution-spec/
 fi
 
@@ -36,10 +36,10 @@ trap "pkill -9 registry" EXIT
 sleep 2
 
 export OCI_ROOT_URL="http://localhost:5000"
-export OCI_NAMESPACE="compliance/test"
+export OCI_NAMESPACE="conformance/test"
 
 set +e
-testbin/compliance.test
+testbin/conformance.test
 RC="$?"
 set -e
 

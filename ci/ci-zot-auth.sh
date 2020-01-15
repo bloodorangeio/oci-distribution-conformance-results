@@ -24,12 +24,12 @@ trap "pkill -9 zot" EXIT
 sleep 2
 
 export OCI_ROOT_URL="http://localhost:5001"
-export OCI_NAMESPACE="compliance/test"
+export OCI_NAMESPACE="conformance/test"
 export OCI_USERNAME="myusername"
 export OCI_PASSWORD="mypassword"
 
 set +e
-testbin/compliance.test
+testbin/conformance.test
 RC="$?"
 set -e
 
