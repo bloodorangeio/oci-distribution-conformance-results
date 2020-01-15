@@ -1,0 +1,3076 @@
+
+<html>
+	<head>
+		<title>OCI Distribution Conformance Tests</title>
+		<script>
+			function toggleOutput(id) {
+				var elem = document.getElementById(id);
+				var button = document.getElementById(id + "-button");
+				if (elem.style['display'] === 'block') {
+					button.innerHTML = "+";
+					elem.style['display'] = 'none';
+				} else {
+					button.innerHTML = "-";
+					elem.style['display'] = 'block';
+				}
+			}
+		</script>
+	</head>
+	<body style="padding: 30px;">
+		<h1>OCI Distribution Conformance Tests</h1>
+		<div>
+			
+				
+				
+					<h2>Base API Route</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-0-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-0')">+</div>
+								<h3 style="display: inline;">GET request to Base API Route MUST return 200 response</h3><br>
+								<div>
+										<div id="output-box-0" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:40.673422 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:40.673039425Z
+TIME DURATION: 97.778165ms
+HEADERS      :
+	Content-Length: 87
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: null
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:40.766201 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:40.765137092Z
+TIME DURATION: 91.607667ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:40.760670286Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:40.775585 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:40.775231188Z
+TIME DURATION: 8.936996ms
+HEADERS      :
+	Content-Length: 2
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Streamed</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-1-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-1')">+</div>
+								<h3 style="display: inline;">PATCH request with blob in body should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-1" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:40.784002 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:40.783394085Z
+TIME DURATION: 7.716997ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:40.827378 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:40.82646297Z
+TIME DURATION: 42.381785ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:40.823180158Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:40.897833 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:33:40.897163045Z
+TIME DURATION: 69.709575ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 188af911-8869-428a-ad03-b5723abb7c21
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/uploads/188af911-8869-428a-ad03-b5723abb7c21?_state=*****
+	Range: 0-0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:33:40.907060 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/188af911-8869-428a-ad03-b5723abb7c21?_state=*****  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:40.906626442Z
+TIME DURATION: 8.632397ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:40.952324 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:40.951383426Z
+TIME DURATION: 44.259385ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:40 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:40.946654201Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.143273 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/188af911-8869-428a-ad03-b5723abb7c21?_state=*****  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:33:41.142488257Z
+TIME DURATION: 190.024032ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 188af911-8869-428a-ad03-b5723abb7c21
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/uploads/188af911-8869-428a-ad03-b5723abb7c21?_state=*****
+	Range: 0-22
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-2-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-2')">+</div>
+								<h3 style="display: inline;">PUT request to Session URL with digest should yield 201 response</h3><br>
+								<div>
+										<div id="output-box-2" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:41.157938 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/188af911-8869-428a-ad03-b5723abb7c21?_state=*****&amp;digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:41.157309852Z
+TIME DURATION: 13.860995ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:push,pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.210575 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apush%2Cpull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:41.209663634Z
+TIME DURATION: 51.611582ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:41.202902123Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.611326 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/188af911-8869-428a-ad03-b5723abb7c21?_state=*****&amp;digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:33:41.610455491Z
+TIME DURATION: 399.731758ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Content-Digest: sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Monolithic</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-3-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-3')">+</div>
+								<h3 style="display: inline;">GET nonexistent Blob should result in 404 response</h3><br>
+								<div>
+										<div id="output-box-3" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:41.621187 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:41.620754887Z
+TIME DURATION: 9.309997ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.662954 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:41.661994072Z
+TIME DURATION: 40.727985ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:41.658233755Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.682652 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:33:41.682191965Z
+TIME DURATION: 19.116693ms
+HEADERS      :
+	Content-Length: 157
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;BLOB_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;blob unknown to registry&#34;,
+         &#34;detail&#34;: &#34;sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-4-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-4')">+</div>
+								<h3 style="display: inline;">POST request should yield a session ID</h3><br>
+								<div>
+										<div id="output-box-4" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:41.693571 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:41.693132861Z
+TIME DURATION: 10.382996ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:push,pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.740916 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apush%2Cpull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:41.739884245Z
+TIME DURATION: 46.204984ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:41.735491839Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.816104 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:33:41.815662718Z
+TIME DURATION: 74.622574ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 8fd1d5c5-3cdd-4118-a143-e5161c89b47b
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/uploads/8fd1d5c5-3cdd-4118-a143-e5161c89b47b?_state=*****
+	Range: 0-0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-5-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-5')">+</div>
+								<h3 style="display: inline;">PUT upload of a blob should yield a 201 Response</h3><br>
+								<div>
+										<div id="output-box-5" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:41.828274 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/8fd1d5c5-3cdd-4118-a143-e5161c89b47b?_state=*****&amp;digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:41.827822413Z
+TIME DURATION: 11.580096ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:41.876757 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:41.875843596Z
+TIME DURATION: 47.501183ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:41 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:41.872396972Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.244168 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/8fd1d5c5-3cdd-4118-a143-e5161c89b47b?_state=*****&amp;digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:33:42.243368465Z
+TIME DURATION: 366.479069ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-6-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-6')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/blobs/&lt;digest&gt; should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-6" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:42.252918 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:42.252455762Z
+TIME DURATION: 8.151797ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.300680 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:42.299651045Z
+TIME DURATION: 46.637183ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:42.294171857Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.419817 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:42.418800603Z
+TIME DURATION: 118.009958ms
+HEADERS      :
+	Accept-Ranges: bytes
+	Age: 3211
+	Cache-Control: public, max-age=14400
+	Cf-Cache-Status: HIT
+	Cf-Ray: 555b50180904ea30-IAD
+	Connection: keep-alive
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Etag: &#34;8a80554c91d9fca8acb82f023de02f11&#34;
+	Expect-Ct: max-age=604800, report-uri=&#34;https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct&#34;
+	Expires: Thu, 16 Jan 2020 02:33:42 GMT
+	Last-Modified: Wed, 15 Jan 2020 21:40:11 GMT
+	Server: cloudflare
+	Set-Cookie: __cfduid=d4c3133e94a583fd5862ab592fff80a4f1579127622; expires=Fri, 14-Feb-20 22:33:42 GMT; path=/; domain=.production.cloudflare.docker.com; HttpOnly; SameSite=Lax; Secure
+	Vary: Accept-Encoding
+	X-Amz-Id-2: &#43;47uB1bVKy1Q&#43;HNS3F8AI1RPMOlklwbsen8Lf8NEB70IULXa5xItF/4fi5E&#43;y0ixtSNwcmKGh64=
+	X-Amz-Request-Id: 653B573BFC578411
+	X-Amz-Version-Id: mwRQcfxXTf7VP_TTdSVVjDtjMrUQ2b6Q
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Chunked</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-7-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-7')">+</div>
+								<h3 style="display: inline;">PATCH request with first chunk should return 202</h3><br>
+								<div>
+										<div id="output-box-7" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:42.429673 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:42.429050899Z
+TIME DURATION: 9.125796ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:push,pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.476458 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apush%2Cpull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:42.475446383Z
+TIME DURATION: 45.688184ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:42.47096097Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.543068 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:33:42.542548859Z
+TIME DURATION: 65.980877ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 64122a45-a565-4cac-bc75-c09af1f220cb
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/uploads/64122a45-a565-4cac-bc75-c09af1f220cb?_state=*****
+	Range: 0-0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:33:42.553920 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/64122a45-a565-4cac-bc75-c09af1f220cb?_state=*****  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:42.553400255Z
+TIME DURATION: 10.243796ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.605239 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:42.604248037Z
+TIME DURATION: 50.194782ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:42.60000081Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.787367 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/64122a45-a565-4cac-bc75-c09af1f220cb?_state=*****  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:33:42.786470672Z
+TIME DURATION: 181.108035ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 64122a45-a565-4cac-bc75-c09af1f220cb
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/uploads/64122a45-a565-4cac-bc75-c09af1f220cb?_state=*****
+	Range: 0-2
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-8-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-8')">+</div>
+								<h3 style="display: inline;">PUT request with final chunk should return 201</h3><br>
+								<div>
+										<div id="output-box-8" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:42.796391 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/64122a45-a565-4cac-bc75-c09af1f220cb?_state=*****&amp;digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:42.795529469Z
+TIME DURATION: 7.997597ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:42.841838 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:42.840816553Z
+TIME DURATION: 44.324384ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:42 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:42.836349483Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:43.409723 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/blobs/uploads/64122a45-a565-4cac-bc75-c09af1f220cb?_state=*****&amp;digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:33:43.408996251Z
+TIME DURATION: 567.018998ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Content-Digest: sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/blobs/sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Upload</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-9-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-9')">+</div>
+								<h3 style="display: inline;">GET nonexistent manifest should return 404</h3><br>
+								<div>
+										<div id="output-box-9" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:43.419185 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:33:43.418833448Z
+TIME DURATION: 9.000397ms
+HEADERS      :
+	Content-Length: 19
+	Content-Type: text/plain; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	X-Content-Type-Options: nosniff
+BODY         :
+404 page not found
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-10-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-10')">+</div>
+								<h3 style="display: inline;">PUT should accept a manifest upload</h3><br>
+								<div>
+										<div id="output-box-10" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:43.429293 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:43.428718544Z
+TIME DURATION: 9.428597ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:43.471031 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:43.470053429Z
+TIME DURATION: 40.678585ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:43.465937273Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:43.549455 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:33:43.548676401Z
+TIME DURATION: 77.538572ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:33:43.558111 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test1  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:43.557565998Z
+TIME DURATION: 7.927597ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:43.610255 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:43.60922078Z
+TIME DURATION: 51.021782ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:43.604812789Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:43.700378 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test1  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:33:43.699717048Z
+TIME DURATION: 89.369668ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:33:43.710211 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test2  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:43.709680244Z
+TIME DURATION: 9.232496ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:43.754281 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:43.753215129Z
+TIME DURATION: 42.939185ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:43.746011316Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:43.991348 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test2  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:33:43.990414645Z
+TIME DURATION: 236.007317ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:33:44.000637 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test3  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:43.999846541Z
+TIME DURATION: 8.372197ms
+HEADERS      :
+	Content-Length: 270
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:43 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.045791 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull%2Cpush&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.044507625Z
+TIME DURATION: 43.785284ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.042543222Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.111495 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorangeio/oci-conformance-test/manifests/test3  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:33:44.110651502Z
+TIME DURATION: 64.728177ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: https://registry-1.docker.io/v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-11-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-11')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL(digest) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-11" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:44.119804 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.119378699Z
+TIME DURATION: 7.668597ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.158887 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.157850185Z
+TIME DURATION: 37.964886ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.153191567Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.192778 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.192266073Z
+TIME DURATION: 33.232988ms
+HEADERS      :
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Etag: &#34;sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c&#34;
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Tags List</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-12-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-12')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/tags/list should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-12" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:44.202655 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.20228537Z
+TIME DURATION: 9.402797ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.242285 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.241280456Z
+TIME DURATION: 38.546287ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.237627077Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.275161 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.274470944Z
+TIME DURATION: 32.059089ms
+HEADERS      :
+	Content-Length: 87
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-13-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-13')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL (tag) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-13" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:44.285029 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.28455744Z
+TIME DURATION: 9.020896ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.330003 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.328928825Z
+TIME DURATION: 43.763785ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.32544295Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.375576 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.375094408Z
+TIME DURATION: 45.000784ms
+HEADERS      :
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Etag: &#34;sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c&#34;
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-14-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-14')">+</div>
+								<h3 style="display: inline;">GET number of tags should be limitable by `n` query parameter</h3><br>
+								<div>
+										<div id="output-box-14" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:33:44.384482 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/tags/list?n=2  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.384135005Z
+TIME DURATION: 8.418597ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.428819 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.42749439Z
+TIME DURATION: 42.921185ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.42376141Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.457735 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/tags/list?n=2  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.457280479Z
+TIME DURATION: 28.36129ms
+HEADERS      :
+	Content-Length: 87
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 4
+to equal
+    &lt;int&gt;: 2</pre><br>
+								</div>
+							</div>
+							
+					
+							
+					
+				
+					<h2>Manifest Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-16-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-16')">+</div>
+								<h3 style="display: inline;">DELETE request to manifest URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-16" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:33:44.470845 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.470392975Z
+TIME DURATION: 10.409397ms
+HEADERS      :
+	Content-Length: 179
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:delete&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;delete&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.513682 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Adelete&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.51254706Z
+TIME DURATION: 41.616886ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.510584282Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.523358 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 405 Method Not Allowed
+RECEIVED AT  : 2020-01-15T22:33:44.522932856Z
+TIME DURATION: 9.132197ms
+HEADERS      :
+	Content-Length: 78
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNSUPPORTED&#34;,
+         &#34;message&#34;: &#34;The operation is unsupported.&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 405
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-17-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-17')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-17" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:33:44.532853 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.532424453Z
+TIME DURATION: 8.503297ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.578837 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.577955936Z
+TIME DURATION: 45.024484ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.56891309Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.713414 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:33:44.713034289Z
+TIME DURATION: 134.100553ms
+HEADERS      :
+	Content-Length: 122
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;MANIFEST_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;OCI manifest found, but accept header does not support OCI manifests&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-18-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-18')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-18" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:33:44.722223 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.721800985Z
+TIME DURATION: 8.260097ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.765161 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.76392227Z
+TIME DURATION: 41.613385ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.759324Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.790369 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.789798461Z
+TIME DURATION: 24.526291ms
+HEADERS      :
+	Content-Length: 87
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 4
+to be &lt;
+    &lt;int&gt;: 4</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Blob Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-19-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-19')">+</div>
+								<h3 style="display: inline;">DELETE request to blob URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-19" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:33:44.803504 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.803107757Z
+TIME DURATION: 10.356597ms
+HEADERS      :
+	Content-Length: 179
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:delete&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;delete&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.847865 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Adelete&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.846774241Z
+TIME DURATION: 43.192085ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.84209179Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.858546 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 405 Method Not Allowed
+RECEIVED AT  : 2020-01-15T22:33:44.858159037Z
+TIME DURATION: 10.154296ms
+HEADERS      :
+	Content-Length: 78
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNSUPPORTED&#34;,
+         &#34;message&#34;: &#34;The operation is unsupported.&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 405
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-20-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-20')">+</div>
+								<h3 style="display: inline;">GET request to deleted blob URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-20" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:33:44.883880 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:33:44.883344228Z
+TIME DURATION: 23.391992ms
+HEADERS      :
+	Content-Length: 177
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Strict-Transport-Security: max-age=31536000
+	Www-Authenticate: Bearer realm=&#34;https://auth.docker.io/token&#34;,service=&#34;registry.docker.io&#34;,scope=&#34;repository:bloodorangeio/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Class&#34;: &#34;&#34;,
+               &#34;Name&#34;: &#34;bloodorangeio/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.929931 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /token?scope=repository%3Abloodorangeio%2Foci-conformance-test%3Apull&amp;service=registry.docker.io  HTTP/1.1
+HOST   : auth.docker.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.928935312Z
+TIME DURATION: 44.956484ms
+HEADERS      :
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Strict-Transport-Security: max-age=31536000
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;,
+   &#34;access_token&#34;: &#34;*****&#34;,
+   &#34;expires_in&#34;: 300,
+   &#34;issued_at&#34;: &#34;2020-01-15T22:33:44.924179558Z&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:33:44.961550 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorangeio/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : registry-1.docker.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:33:44.961078301Z
+TIME DURATION: 31.034889ms
+HEADERS      :
+	Accept-Ranges: bytes
+	Age: 3213
+	Cache-Control: public, max-age=14400
+	Cf-Cache-Status: HIT
+	Cf-Ray: 555b5027e9d0ea30-IAD
+	Connection: keep-alive
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	Date: Wed, 15 Jan 2020 22:33:44 GMT
+	Etag: &#34;8a80554c91d9fca8acb82f023de02f11&#34;
+	Expect-Ct: max-age=604800, report-uri=&#34;https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct&#34;
+	Expires: Thu, 16 Jan 2020 02:33:44 GMT
+	Last-Modified: Wed, 15 Jan 2020 21:40:11 GMT
+	Server: cloudflare
+	Vary: Accept-Encoding
+	X-Amz-Id-2: &#43;47uB1bVKy1Q&#43;HNS3F8AI1RPMOlklwbsen8Lf8NEB70IULXa5xItF/4fi5E&#43;y0ixtSNwcmKGh64=
+	X-Amz-Request-Id: 653B573BFC578411
+	X-Amz-Version-Id: mwRQcfxXTf7VP_TTdSVVjDtjMrUQ2b6Q
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 200
+to equal
+    &lt;int&gt;: 404</pre><br>
+								</div>
+							</div>
+							
+					
+				
+			
+		</div>
+	</body>
+</html>
