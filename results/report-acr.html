@@ -1,0 +1,3350 @@
+
+<html>
+	<head>
+		<title>OCI Distribution Conformance Tests</title>
+		<script>
+			function toggleOutput(id) {
+				var elem = document.getElementById(id);
+				var button = document.getElementById(id + "-button");
+				if (elem.style['display'] === 'block') {
+					button.innerHTML = "+";
+					elem.style['display'] = 'none';
+				} else {
+					button.innerHTML = "-";
+					elem.style['display'] = 'block';
+				}
+			}
+		</script>
+	</head>
+	<body style="padding: 30px;">
+		<h1>OCI Distribution Conformance Tests</h1>
+		<div>
+			
+				
+				
+					<h2>Base API Route</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-0-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-0')">+</div>
+								<h3 style="display: inline;">GET request to Base API Route MUST return 200 response</h3><br>
+								<div>
+										<div id="output-box-0" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:10.375243 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:10.374709544Z
+TIME DURATION: 282.835631ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 87
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 05db6deb-446c-4c76-b4fc-990dda1b004e
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: null
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:10.412955 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:10.412548715Z
+TIME DURATION: 37.19457ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: da75e3f4-ec57-42d3-a3e5-2603e5d87f7a
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:10.446938 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:10.446379279Z
+TIME DURATION: 33.357363ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 2
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 4ab22af5-f462-4b4e-89e7-ad8cdcf626dc
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Streamed</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-1-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-1')">+</div>
+								<h3 style="display: inline;">PATCH request with blob in body should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-1" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:10.480982 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:10.480356142Z
+TIME DURATION: 33.326962ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: b9b04277-d716-4c76-9144-747fe451e4f2
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:10.516000 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:10.515660809Z
+TIME DURATION: 34.607965ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 36d9fa00-8f44-4c1e-9b78-7c293eb7d708
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:10.767654 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T21:53:10.767162481Z
+TIME DURATION: 251.117272ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 2e409bed-73b6-4614-89ac-235edde9464e
+	Location: /v2/bloodorange/oci-conformance-test/blobs/uploads/2e409bed-73b6-4614-89ac-235edde9464e?_nouploadcache=false&amp;_state=*****
+	Range: 0-0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 33c1ea25-0945-4660-8231-796180f14d68
+	X-Ms-Request-Id: 19577d63-8065-48a1-a5cd-4e1fdeec8434
+BODY         :
+
+==============================================================================
+
+2020/01/15 21:53:10.802065 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/2e409bed-73b6-4614-89ac-235edde9464e?_nouploadcache=false&amp;_state=*****  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:10.801490745Z
+TIME DURATION: 33.486863ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: d1d09719-c317-4c63-9de0-7dd03ebb5e3a
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:10.837154 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:10.836792412Z
+TIME DURATION: 34.569165ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 6c8fc719-6b96-4019-a94b-5b3610011e1e
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:10.899860 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/2e409bed-73b6-4614-89ac-235edde9464e?_nouploadcache=false&amp;_state=*****  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T21:53:10.899350229Z
+TIME DURATION: 62.126717ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 2e409bed-73b6-4614-89ac-235edde9464e
+	Location: /v2/bloodorange/oci-conformance-test/blobs/uploads/2e409bed-73b6-4614-89ac-235edde9464e?_nouploadcache=false&amp;_state=*****
+	Range: 0-22
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: befac7a7-e30c-4ec8-8431-cf492d66850c
+	X-Ms-Request-Id: 183c1711-0449-4071-9892-68d7ddbcad08
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-2-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-2')">+</div>
+								<h3 style="display: inline;">PUT request to Session URL with digest should yield 201 response</h3><br>
+								<div>
+										<div id="output-box-2" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:10.933757 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/2e409bed-73b6-4614-89ac-235edde9464e?_nouploadcache=false&amp;_state=*****&amp;digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:10.933172692Z
+TIME DURATION: 33.142362ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 86daa44a-8a6e-4270-bc80-09a7bd94b6d3
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:10.968982 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:10.968626859Z
+TIME DURATION: 34.746665ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:10 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 09fc36af-8c09-4abf-b2a7-60432a216614
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:11.245959 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/2e409bed-73b6-4614-89ac-235edde9464e?_nouploadcache=false&amp;_state=*****&amp;digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T21:53:11.245397477Z
+TIME DURATION: 276.342617ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Content-Digest: sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: /v2/bloodorange/oci-conformance-test/blobs/sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: db31a483-09f0-4f4d-9431-f2ae4813aa51
+	X-Ms-Request-Id: dbf1bdba-d726-407e-bb3c-9b0e587c9b52
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Monolithic</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-3-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-3')">+</div>
+								<h3 style="display: inline;">GET nonexistent Blob should result in 404 response</h3><br>
+								<div>
+										<div id="output-box-3" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:11.279729 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:11.279199741Z
+TIME DURATION: 33.128962ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 164
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 1d39147c-27dc-4907-9a30-1fb64620a1dd
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:11.315208 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:11.314855008Z
+TIME DURATION: 35.007366ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 3c190089-ea19-49cb-8f63-a9fe6dc7bdd5
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:11.424731 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T21:53:11.424195312Z
+TIME DURATION: 108.923804ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Cache-Control: no-cache
+	Connection: keep-alive
+	Content-Length: 157
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 161d5bfd-6e9a-4dda-8114-cb67b01cafca
+	X-Ms-Request-Id: 920c12e5-d5ec-41d8-a43e-917f023bd478
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;BLOB_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;blob unknown to registry&#34;,
+         &#34;detail&#34;: &#34;sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-4-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-4')">+</div>
+								<h3 style="display: inline;">POST request should yield a session ID</h3><br>
+								<div>
+										<div id="output-box-4" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:11.459104 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:11.458593977Z
+TIME DURATION: 33.739664ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 862ed760-0e14-49c5-9fe6-965a44d26245
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:11.495470 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:11.495006545Z
+TIME DURATION: 35.822067ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: d8b6a13d-bb01-4ac9-bebb-76b351a0db23
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:11.572659 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T21:53:11.572210889Z
+TIME DURATION: 76.656143ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: 67d2f0c3-d50e-4a5e-87e9-7de50695e5f4
+	Location: /v2/bloodorange/oci-conformance-test/blobs/uploads/67d2f0c3-d50e-4a5e-87e9-7de50695e5f4?_nouploadcache=false&amp;_state=*****
+	Range: 0-0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 21caf94c-526f-42fa-b6aa-489af294f278
+	X-Ms-Request-Id: 9ef2a0a7-4c86-4821-b9e0-484fd537cbcb
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-5-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-5')">+</div>
+								<h3 style="display: inline;">PUT upload of a blob should yield a 201 Response</h3><br>
+								<div>
+										<div id="output-box-5" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:11.606201 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/67d2f0c3-d50e-4a5e-87e9-7de50695e5f4?_nouploadcache=false&amp;_state=*****&amp;digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:11.605738652Z
+TIME DURATION: 32.947562ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: af5549bd-8438-4ffc-bdb3-f9e269ca12c8
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:11.643392 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:11.643071222Z
+TIME DURATION: 36.807069ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 7ef6d98a-65c2-4abc-882d-6adb1e22fc1f
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:11.758432 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/67d2f0c3-d50e-4a5e-87e9-7de50695e5f4?_nouploadcache=false&amp;_state=*****&amp;digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T21:53:11.757937537Z
+TIME DURATION: 114.415214ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: ed670d6d-199b-4ed7-8fd9-36a7ac367b89
+	X-Ms-Request-Id: 1c673c3b-1cc3-4885-9d57-a43070603862
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-6-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-6')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/blobs/&lt;digest&gt; should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-6" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:11.792625 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:11.792065701Z
+TIME DURATION: 33.481363ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 164
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 212fdfc5-7995-4a05-9957-8e57c53922c6
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:11.828551 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:11.828225069Z
+TIME DURATION: 35.518367ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 147935b7-7f4d-4145-a0c7-4f90e270a033
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:12.326893 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:12.3262891Z
+TIME DURATION: 497.673531ms
+HEADERS      :
+	Accept-Ranges: bytes
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	Date: Wed, 15 Jan 2020 21:53:11 GMT
+	Etag: &#34;0x8D79A0550C7946C&#34;
+	Last-Modified: Wed, 15 Jan 2020 21:53:11 GMT
+	Server: Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0
+	X-Ms-Blob-Committed-Block-Count: 1
+	X-Ms-Blob-Type: AppendBlob
+	X-Ms-Copy-Completion-Time: Fri, 10 Jan 2020 16:58:57 GMT
+	X-Ms-Copy-Id: 1b02dc4c-77e4-45b0-9f1f-28b7d4ad7000
+	X-Ms-Copy-Progress: 3/3
+	X-Ms-Copy-Source: https://cusmanaged183.blob.core.windows.net/d094bbda38054b338ea2213941e92fa1-dx3byw4jxi//docker/registry/v2/repositories/bloodorange/test/_uploads/cbc8215e-6f78-4876-b360-3691c632c512/data
+	X-Ms-Copy-Status: success
+	X-Ms-Lease-State: *****
+	X-Ms-Lease-Status: unlocked
+	X-Ms-Request-Id: a612bf7f-401e-000f-0aee-cb1ce0000000
+	X-Ms-Server-Encrypted: true
+	X-Ms-Version: 2016-05-31
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Chunked</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-7-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-7')">+</div>
+								<h3 style="display: inline;">PATCH request with first chunk should return 202</h3><br>
+								<div>
+										<div id="output-box-7" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:12.360360 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:12.359859362Z
+TIME DURATION: 32.838461ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: c1af84d6-44bc-4a43-9362-b1b159978d64
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:12.395824 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:12.395342529Z
+TIME DURATION: 34.823765ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 69029195-0f21-4d4a-9d2f-acd3120e2c1b
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:12.459874 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T21:53:12.459355548Z
+TIME DURATION: 63.462518ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: dfbddca0-05f5-4b50-9381-db51ae30caa2
+	Location: /v2/bloodorange/oci-conformance-test/blobs/uploads/dfbddca0-05f5-4b50-9381-db51ae30caa2?_nouploadcache=false&amp;_state=*****
+	Range: 0-0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 9e1faf07-dce5-43e4-93fa-522d60b732d0
+	X-Ms-Request-Id: 9decf0d0-58ee-447f-964e-af2e8efde796
+BODY         :
+
+==============================================================================
+
+2020/01/15 21:53:12.493804 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/dfbddca0-05f5-4b50-9381-db51ae30caa2?_nouploadcache=false&amp;_state=*****  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:12.493326512Z
+TIME DURATION: 33.375463ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 8e4c857c-3c6e-4e4a-bed9-59edef86ff64
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:12.528777 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:12.528413277Z
+TIME DURATION: 34.527264ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 589b4d89-548b-4c42-bf06-59b658f9bd18
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:12.592141 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/dfbddca0-05f5-4b50-9381-db51ae30caa2?_nouploadcache=false&amp;_state=*****  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T21:53:12.591684795Z
+TIME DURATION: 62.778917ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: dfbddca0-05f5-4b50-9381-db51ae30caa2
+	Location: /v2/bloodorange/oci-conformance-test/blobs/uploads/dfbddca0-05f5-4b50-9381-db51ae30caa2?_nouploadcache=false&amp;_state=*****
+	Range: 0-2
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 77880052-1267-4505-b843-65ce358bc66d
+	X-Ms-Request-Id: 6c76b9a5-7594-48a8-8254-78c65e61b011
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-8-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-8')">+</div>
+								<h3 style="display: inline;">PUT request with final chunk should return 201</h3><br>
+								<div>
+										<div id="output-box-8" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:12.625983 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/dfbddca0-05f5-4b50-9381-db51ae30caa2?_nouploadcache=false&amp;_state=*****&amp;digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:12.625451658Z
+TIME DURATION: 33.170462ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 3ae5ae6d-13a1-4002-b500-81090e4f9b96
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:12.661053 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:12.660692024Z
+TIME DURATION: 34.646064ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 2b5e0b22-6c1c-4d4a-9cac-a8c9237331b5
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:12.791312 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/dfbddca0-05f5-4b50-9381-db51ae30caa2?_nouploadcache=false&amp;_state=*****&amp;digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T21:53:12.790723367Z
+TIME DURATION: 129.330241ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Content-Digest: sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: /v2/bloodorange/oci-conformance-test/blobs/sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: f53b2bd6-256a-4189-a97f-5775d8f25914
+	X-Ms-Request-Id: 638b7dc2-2424-402a-bac4-fed738c821a9
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Upload</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-9-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-9')">+</div>
+								<h3 style="display: inline;">GET nonexistent manifest should return 404</h3><br>
+								<div>
+										<div id="output-box-9" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:12.824716 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T21:53:12.82437693Z
+TIME DURATION: 32.951762ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Length: 19
+	Content-Type: text/plain; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: cac00e7a-68cd-419b-93e1-9c1da5e08536
+BODY         :
+404 page not found
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-10-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-10')">+</div>
+								<h3 style="display: inline;">PUT should accept a manifest upload</h3><br>
+								<div>
+										<div id="output-box-10" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:12.858693 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:12.857917793Z
+TIME DURATION: 33.037562ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:push,pull&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 6288fe08-49f7-4518-9686-b4c13cf79b3e
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:12.893978 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apush%2Cpull&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:12.893691159Z
+TIME DURATION: 34.917565ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:12 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 7576ef22-eca7-40c3-bd47-e358bb2b2e52
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:13.208569 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T21:53:13.208078645Z
+TIME DURATION: 314.036985ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 6b972fe6-5faa-4df0-ba14-a3481ec85f58
+	X-Ms-Request-Id: 76cd2bb7-8adc-401b-9e9b-a0c4c89ab7a4
+BODY         :
+
+==============================================================================
+
+2020/01/15 21:53:13.242295 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test1  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:13.241643108Z
+TIME DURATION: 32.985862ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 09642746-2aef-4206-84b8-dc91e90826e2
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:13.279102 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:13.278709277Z
+TIME DURATION: 36.310568ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 5589c5e0-8a67-4bf6-8a89-d17e707ff246
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:13.519300 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test1  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T21:53:13.518750424Z
+TIME DURATION: 239.581046ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: a66bab20-a702-40e6-a46f-8072cdde2bb0
+	X-Ms-Request-Id: 045f76bb-e541-4eba-b2dd-364ac11b6ef4
+BODY         :
+
+==============================================================================
+
+2020/01/15 21:53:13.553180 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test2  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:13.552621987Z
+TIME DURATION: 33.262862ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 22cbcb76-9d8d-40e3-b675-04ad85f7fa8a
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:13.589086 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:13.588660454Z
+TIME DURATION: 35.409466ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 44cc3d9a-57c9-4fa2-aa74-aa6ee48e91aa
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:13.807164 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test2  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T21:53:13.80668686Z
+TIME DURATION: 217.520905ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 5e6bfab3-37ae-42a4-ae79-bc4bbdc9f1f4
+	X-Ms-Request-Id: 165639b7-ab97-4082-8cca-9110d2588f08
+BODY         :
+
+==============================================================================
+
+2020/01/15 21:53:13.841116 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test3  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:13.840517323Z
+TIME DURATION: 33.298762ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 244
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 28a8d3ef-04da-47ed-803f-5d580a65ed97
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            },
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;push&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:13.877164 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:13.876864691Z
+TIME DURATION: 35.666466ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:13 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 584df0ea-a971-4a36-8fca-5b9ce63d7cb4
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:14.104294 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test3  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T21:53:14.103739713Z
+TIME DURATION: 226.519921ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Location: /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: d3122e41-d6fc-4ece-a6a5-7d5cd7b66d8c
+	X-Ms-Request-Id: e99ed371-1b1e-451b-bc80-a8507ebb515c
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-11-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-11')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL(digest) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-11" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:14.138687 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:14.138090177Z
+TIME DURATION: 33.532862ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 164
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 889741a1-e7e0-49c9-9ca2-06f8fa1ab0cc
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:14.173761 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.173409543Z
+TIME DURATION: 34.643965ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: d52ad2c3-88c4-4f31-bc0c-eef6cf782c66
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:14.320875 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.320367516Z
+TIME DURATION: 146.492072ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Etag: &#34;sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c&#34;
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: a8b05b86-5004-443f-8202-f405926cea1a
+	X-Ms-Request-Id: 83fb8e78-f2cb-4d9a-81e0-e0a32b5f3234
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Tags List</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-12-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-12')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/tags/list should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-12" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:14.355175 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:14.35483418Z
+TIME DURATION: 33.877663ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 173
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:metadata_read&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 56db2a04-3383-4f99-9086-e1330d0429bc
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;metadata_read&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:14.390175 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Ametadata_read&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.389925845Z
+TIME DURATION: 34.685965ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 14476aa6-1647-44d4-9ef5-58bac37144b3
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:14.440112 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.439720337Z
+TIME DURATION: 49.497092ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 85
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 79cd9566-6667-43de-b1ef-cf6c084a078e
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-13-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-13')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL (tag) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-13" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:14.473694 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:14.4732153Z
+TIME DURATION: 32.994162ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 164
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 75479ae9-332f-49f1-8f19-078dc894813c
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:14.508763 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.508391965Z
+TIME DURATION: 34.626564ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 3f97793b-75af-42b5-8da7-42218b9f7098
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:14.551428 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.550821944Z
+TIME DURATION: 41.984378ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Docker-Distribution-Api-Version: registry/2.0
+	Etag: &#34;sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c&#34;
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 40fee52f-e774-4b51-85df-3039c39d1333
+	X-Ms-Request-Id: 790c04c9-b048-4e17-b087-c7e63e8cdf1f
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-14-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-14')">+</div>
+								<h3 style="display: inline;">GET number of tags should be limitable by `n` query parameter</h3><br>
+								<div>
+										<div id="output-box-14" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:14.586625 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list?n=2  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:14.586119709Z
+TIME DURATION: 34.559664ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 173
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:metadata_read&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 5db88e3e-4eed-478e-9ebd-b459761cd576
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;metadata_read&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:14.621940 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Ametadata_read&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.621610775Z
+TIME DURATION: 34.910365ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 90cc7bf1-a222-4026-8f25-8be8fecb9162
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:14.674030 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list?n=2  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.673633172Z
+TIME DURATION: 51.644196ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 69
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Link: &lt;/v2/bloodorange/oci-conformance-test/tags/list?last=test1&amp;n=2&amp;orderby=&gt;; rel=&#34;next&#34;
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: b33051bb-bd06-4f09-ad77-4ca0a10ba1d1
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-15-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-15')">+</div>
+								<h3 style="display: inline;">GET start of tag is set by `last` query parameter</h3><br>
+								<div>
+										<div id="output-box-15" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:14.707875 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list?last=test1&amp;n=2  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:14.707335934Z
+TIME DURATION: 33.216561ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 173
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:metadata_read&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: af139b4f-7b6d-4491-bf4a-afff32f3e792
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;metadata_read&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:14.742901 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Ametadata_read&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.7424356Z
+TIME DURATION: 34.459864ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: bfec2724-a288-4cc9-84a5-79b4021ea955
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:14.790042 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list?last=test1&amp;n=2  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.789472587Z
+TIME DURATION: 46.504086ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 69
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 1724db38-f3e4-4d01-adf3-a904b1ff0cfb
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+   &#34;tags&#34;: [
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-16-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-16')">+</div>
+								<h3 style="display: inline;">DELETE request to manifest URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-16" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:14.824053 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:14.82362455Z
+TIME DURATION: 33.436362ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 166
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:delete&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 6bf4ab6d-ece7-4f99-bb65-9e48e0f9d8b6
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;delete&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:14.863710 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Adelete&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:14.863330324Z
+TIME DURATION: 39.218273ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:14 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: b4110c5b-d275-4c93-87b4-88278c15c635
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:15.559926 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T21:53:15.559453315Z
+TIME DURATION: 695.68049ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 60fb82d5-e935-42cf-baf7-dc9f7387aee3
+	X-Ms-Request-Id: 05ff0cfb-442e-40f8-95e6-6590debe9aa7
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-17-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-17')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-17" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:15.593717 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:15.593260477Z
+TIME DURATION: 33.231661ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 164
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 083e9986-1d42-4900-a125-6141216a9b1c
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:15.628364 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:15.628019742Z
+TIME DURATION: 34.218164ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: 326519cd-14a4-47d0-b0c3-1f494462e58e
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:15.670136 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T21:53:15.669716719Z
+TIME DURATION: 41.231976ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 208
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: c09f74c3-b51e-44d5-91ef-32d2d0511eac
+	X-Ms-Request-Id: bd97aab8-cea3-4136-82a3-36bf303f23c6
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;MANIFEST_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;manifest unknown&#34;,
+         &#34;detail&#34;: {
+            &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+            &#34;Revision&#34;: &#34;sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c&#34;
+         }
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-18-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-18')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-18" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:15.705179 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:15.704710284Z
+TIME DURATION: 34.462964ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 173
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:metadata_read&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 9a2f4591-c069-4da5-9b94-a9d00a6d9c25
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;metadata_read&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:15.741821 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Ametadata_read&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:15.741426352Z
+TIME DURATION: 36.140767ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: f83d5efb-2542-45e1-9125-d5d67568901d
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:15.787358 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:15.786729736Z
+TIME DURATION: 44.838483ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 54
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 395bd1d9-95b1-4254-a584-47255ffba5e4
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+   &#34;tags&#34;: []
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-19-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-19')">+</div>
+								<h3 style="display: inline;">DELETE request to blob URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-19" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:15.821156 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:15.820741499Z
+TIME DURATION: 33.208062ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 166
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:delete&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: f90803b8-48b3-44a1-bb58-aac467ab0ca6
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;delete&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:15.856295 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Adelete&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:15.855760664Z
+TIME DURATION: 34.485564ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: d4648e91-16c2-4cee-bae4-fb3ed6f5e3f9
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:15.985235 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T21:53:15.984866103Z
+TIME DURATION: 128.407938ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: 2a190a1e-41cc-4131-abf1-d1cef78dccf6
+	X-Ms-Request-Id: 27bfc319-44fa-47d4-b293-bafb25a30106
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-20-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-20')">+</div>
+								<h3 style="display: inline;">GET request to deleted blob URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-20" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 21:53:16.018697 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T21:53:16.018184665Z
+TIME DURATION: 32.875161ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Connection: keep-alive
+	Content-Length: 164
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:15 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	Www-Authenticate: Bearer realm=&#34;https://bloodorange.azurecr.io/oauth2/token&#34;,service=&#34;bloodorange.azurecr.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+	X-Content-Type-Options: nosniff
+	X-Ms-Correlation-Request-Id: 945a36ae-9e22-4fc8-9ca0-498f61dfd26b
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;authentication required&#34;,
+         &#34;detail&#34;: [
+            {
+               &#34;Type&#34;: &#34;repository&#34;,
+               &#34;Name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+               &#34;Action&#34;: &#34;pull&#34;
+            }
+         ]
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 21:53:16.053906 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /oauth2/token?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=bloodorange.azurecr.io  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T21:53:16.05354353Z
+TIME DURATION: 34.727564ms
+HEADERS      :
+	Connection: keep-alive
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:16 GMT
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	X-Ms-Correlation-Request-Id: b14492f7-3c62-4e4d-9dbc-7ab456d26690
+BODY         :
+{
+   &#34;access_token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/15 21:53:16.098565 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : bloodorange.azurecr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T21:53:16.098021012Z
+TIME DURATION: 44.051081ms
+HEADERS      :
+	Access-Control-Expose-Headers: Docker-Content-Digest, WWW-Authenticate, Link, X-Ms-Correlation-Request-Id
+	Cache-Control: no-cache
+	Connection: keep-alive
+	Content-Length: 157
+	Content-Type: application/json; charset=utf-8
+	Date: Wed, 15 Jan 2020 21:53:16 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: openresty
+	Strict-Transport-Security: max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains
+	X-Content-Type-Options: nosniff
+	X-Ms-Client-Request-Id:
+	X-Ms-Correlation-Request-Id: e61978bb-43fb-4355-bfca-5738fc976f91
+	X-Ms-Request-Id: af04b74e-8abc-4531-a984-58698227f3b0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;BLOB_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;blob unknown to registry&#34;,
+         &#34;detail&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+			
+		</div>
+	</body>
+</html>
