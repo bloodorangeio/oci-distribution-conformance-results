@@ -55,4 +55,6 @@ if [[ -f report.html ]]; then
   mv report.html testresults/report-zot-auth.html
 fi
 
+cp testresults/*.html ${DIR}/../results/
+
 exit ${RC}

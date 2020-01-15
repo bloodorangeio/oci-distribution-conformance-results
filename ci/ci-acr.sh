@@ -34,4 +34,6 @@ if [[ -f report.html ]]; then
   mv report.html testresults/report-acr.html
 fi
 
+cp testresults/*.html ${DIR}/../results/
+
 exit ${RC}

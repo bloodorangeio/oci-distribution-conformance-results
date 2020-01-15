@@ -51,4 +51,6 @@ if [[ -f report.html ]]; then
   mv report.html testresults/report-docker-dist.html
 fi
 
+cp testresults/*.html ${DIR}/../results/
+
 exit ${RC}
