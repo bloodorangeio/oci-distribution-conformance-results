@@ -1,0 +1,2004 @@
+
+<html>
+	<head>
+		<title>OCI Distribution Conformance Tests</title>
+		<script>
+			function toggleOutput(id) {
+				var elem = document.getElementById(id);
+				var button = document.getElementById(id + "-button");
+				if (elem.style['display'] === 'block') {
+					button.innerHTML = "+";
+					elem.style['display'] = 'none';
+				} else {
+					button.innerHTML = "-";
+					elem.style['display'] = 'block';
+				}
+			}
+		</script>
+	</head>
+	<body style="padding: 30px;">
+		<h1>OCI Distribution Conformance Tests</h1>
+		<div>
+			
+				
+				
+					<h2>Base API Route</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-0-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-0')">+</div>
+								<h3 style="display: inline;">GET request to Base API Route MUST return 200 response</h3><br>
+								<div>
+										<div id="output-box-0" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.101539 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.101166166Z
+TIME DURATION: 1.273803ms
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.101572 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.104935 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.104710175Z
+TIME DURATION: 3.132108ms
+HEADERS      :
+	Content-Length: 0
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+BODY         :
+*** Error: Unable to format response body - &#34;unexpected end of JSON input&#34; ***
+
+Log Body as-is:
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Streamed</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-1-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-1')">+</div>
+								<h3 style="display: inline;">PATCH request with blob in body should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-1" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.105696 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.105467277Z
+TIME DURATION: 442.301µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.105725 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.109498 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:12:11.109253387Z
+TIME DURATION: 3.521909ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Location: /v2/conformance/test/blobs/uploads/5d9979cd-6ff7-4d60-bd1b-48eee76bb43e
+	Range: bytes=0-0
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:12:11.111496 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/conformance/test/blobs/uploads/5d9979cd-6ff7-4d60-bd1b-48eee76bb43e  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.110957291Z
+TIME DURATION: 1.349403ms
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.111565 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.115543 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/conformance/test/blobs/uploads/5d9979cd-6ff7-4d60-bd1b-48eee76bb43e  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:12:11.115264202Z
+TIME DURATION: 3.68481ms
+HEADERS      :
+	Blob-Upload-Uuid: 5d9979cd-6ff7-4d60-bd1b-48eee76bb43e
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Location: /v2/conformance/test/blobs/uploads/5d9979cd-6ff7-4d60-bd1b-48eee76bb43e
+	Range: bytes=0-22
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-2-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-2')">+</div>
+								<h3 style="display: inline;">PUT request to Session URL with digest should yield 201 response</h3><br>
+								<div>
+										<div id="output-box-2" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.116557 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/5d9979cd-6ff7-4d60-bd1b-48eee76bb43e?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.116114204Z
+TIME DURATION: 456.701µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.116601 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.120668 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/5d9979cd-6ff7-4d60-bd1b-48eee76bb43e?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:12:11.120391915Z
+TIME DURATION: 3.78311ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Location: /v2/conformance/test/blobs/sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Monolithic</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-3-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-3')">+</div>
+								<h3 style="display: inline;">GET nonexistent Blob should result in 404 response</h3><br>
+								<div>
+										<div id="output-box-3" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.121427 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.121007416Z
+TIME DURATION: 268.6µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.121520 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.125051 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:12:11.124713926Z
+TIME DURATION: 3.186908ms
+HEADERS      :
+	Content-Length: 381
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+{
+   &#34;code&#34;: 0,
+   &#34;message&#34;: &#34;blob unknown to registry&#34;,
+   &#34;description&#34;: &#34;blob unknown to registry \tThis error MAY be returned when a blob is unknown  to the registry in a specified repository. This can be returned with a standard get or if a manifest references an unknown layer during upload.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;digest&#34;: &#34;sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-4-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-4')">+</div>
+								<h3 style="display: inline;">POST request should yield a session ID</h3><br>
+								<div>
+										<div id="output-box-4" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.125757 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.125496528Z
+TIME DURATION: 331.201µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.125789 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.129263 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:12:11.128975736Z
+TIME DURATION: 3.180208ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Location: /v2/conformance/test/blobs/uploads/f3db6b43-2aba-4f99-8ca7-830a21e308aa
+	Range: bytes=0-0
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-5-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-5')">+</div>
+								<h3 style="display: inline;">PUT upload of a blob should yield a 201 Response</h3><br>
+								<div>
+										<div id="output-box-5" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.130015 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/f3db6b43-2aba-4f99-8ca7-830a21e308aa?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.129750038Z
+TIME DURATION: 393.701µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.130059 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.133678 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/f3db6b43-2aba-4f99-8ca7-830a21e308aa?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:12:11.133306947Z
+TIME DURATION: 3.186708ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Location: /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-6-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-6')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/blobs/&lt;digest&gt; should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-6" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.134551 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.13421635Z
+TIME DURATION: 424.101µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.134584 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.137937 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.137722759Z
+TIME DURATION: 3.133208ms
+HEADERS      :
+	Content-Length: 3
+	Content-Type:
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Chunked</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-7-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-7')">+</div>
+								<h3 style="display: inline;">PATCH request with first chunk should return 202</h3><br>
+								<div>
+										<div id="output-box-7" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.138613 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.13831986Z
+TIME DURATION: 324.901µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.138668 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.141878 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:12:11.141656868Z
+TIME DURATION: 2.981707ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Location: /v2/conformance/test/blobs/uploads/8d6a45da-4c63-4f34-8190-1526141ddbb0
+	Range: bytes=0-0
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:12:11.142782 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/conformance/test/blobs/uploads/8d6a45da-4c63-4f34-8190-1526141ddbb0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.14240967Z
+TIME DURATION: 473.901µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.142827 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.146009 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/conformance/test/blobs/uploads/8d6a45da-4c63-4f34-8190-1526141ddbb0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:12:11.145807879Z
+TIME DURATION: 2.967408ms
+HEADERS      :
+	Blob-Upload-Uuid: 8d6a45da-4c63-4f34-8190-1526141ddbb0
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Location: /v2/conformance/test/blobs/uploads/8d6a45da-4c63-4f34-8190-1526141ddbb0
+	Range: bytes=0-2
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-8-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-8')">+</div>
+								<h3 style="display: inline;">PUT request with final chunk should return 201</h3><br>
+								<div>
+										<div id="output-box-8" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.146837 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/8d6a45da-4c63-4f34-8190-1526141ddbb0?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.146535081Z
+TIME DURATION: 388.701µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.146882 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.150831 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/8d6a45da-4c63-4f34-8190-1526141ddbb0?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:12:11.150433291Z
+TIME DURATION: 3.538209ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Location: /v2/conformance/test/blobs/sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Upload</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-9-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-9')">+</div>
+								<h3 style="display: inline;">GET nonexistent manifest should return 404</h3><br>
+								<div>
+										<div id="output-box-9" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.151615 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.151255693Z
+TIME DURATION: 332.601µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.151674 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.154961 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:12:11.154679501Z
+TIME DURATION: 2.998807ms
+HEADERS      :
+	Content-Length: 211
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+{
+   &#34;code&#34;: 6,
+   &#34;message&#34;: &#34;manifest unknown&#34;,
+   &#34;description&#34;: &#34;This error is returned when the manifest, identified by name\n\t\t\tand tag is unknown to the repository.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;reference&#34;: &#34;.INVALID_MANIFEST_NAME&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-10-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-10')">+</div>
+								<h3 style="display: inline;">PUT should accept a manifest upload</h3><br>
+								<div>
+										<div id="output-box-10" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.155884 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.155407103Z
+TIME DURATION: 275.3µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.155922 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.159922 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Basic *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:12:11.159432313Z
+TIME DURATION: 3.476508ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:12:11.160763 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test1  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.160349016Z
+TIME DURATION: 343.301µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.160797 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.164319 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test1  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Basic *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:12:11.163895025Z
+TIME DURATION: 3.081608ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:12:11.165125 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.164653227Z
+TIME DURATION: 272.701µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.165168 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.169147 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Basic *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:12:11.168236736Z
+TIME DURATION: 3.048308ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:12:11.169775 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test3  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.169479439Z
+TIME DURATION: 269.601µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.169805 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.173771 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test3  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Basic *****
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:12:11.173306548Z
+TIME DURATION: 3.487808ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-11-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-11')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL(digest) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-11" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.174506 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.174171151Z
+TIME DURATION: 315.501µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.174558 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.178727 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.178286361Z
+TIME DURATION: 3.721309ms
+HEADERS      :
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Tags List</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-12-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-12')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/tags/list should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-12" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.179396 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.179044963Z
+TIME DURATION: 259.801µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.179489 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.183485 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.183221673Z
+TIME DURATION: 3.726709ms
+HEADERS      :
+	Content-Length: 68
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-13-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-13')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL (tag) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-13" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.184954 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/test0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.183851375Z
+TIME DURATION: 243.101µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.184991 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.188538 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/test0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.188205386Z
+TIME DURATION: 3.202208ms
+HEADERS      :
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-14-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-14')">+</div>
+								<h3 style="display: inline;">GET number of tags should be limitable by `n` query parameter</h3><br>
+								<div>
+										<div id="output-box-14" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.189146 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list?n=2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.188840088Z
+TIME DURATION: 223.001µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.189186 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.192562 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list?n=2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.192223396Z
+TIME DURATION: 3.028707ms
+HEADERS      :
+	Content-Length: 52
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Link: /v2/conformance/test/tags/list?n=2&amp;last=test1; rel=&#34;next&#34;
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-15-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-15')">+</div>
+								<h3 style="display: inline;">GET start of tag is set by `last` query parameter</h3><br>
+								<div>
+										<div id="output-box-15" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.193403 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list?last=test1&amp;n=2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.193034698Z
+TIME DURATION: 269.4µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.193445 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.197570 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list?last=test1&amp;n=2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.197261609Z
+TIME DURATION: 3.80911ms
+HEADERS      :
+	Content-Length: 52
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Link: /v2/conformance/test/tags/list?n=2&amp;last=test3; rel=&#34;next&#34;
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-16-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-16')">+</div>
+								<h3 style="display: inline;">DELETE request to manifest URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-16" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.198225 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.19788011Z
+TIME DURATION: 235.9µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.198268 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.202276 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:12:11.201915421Z
+TIME DURATION: 3.636309ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-17-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-17')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-17" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.202979 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.202689423Z
+TIME DURATION: 334.401µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.203014 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.206165 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:12:11.205865831Z
+TIME DURATION: 2.845208ms
+HEADERS      :
+	Content-Length: 260
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+{
+   &#34;code&#34;: 6,
+   &#34;message&#34;: &#34;manifest unknown&#34;,
+   &#34;description&#34;: &#34;This error is returned when the manifest, identified by name\n\t\t\tand tag is unknown to the repository.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;reference&#34;: &#34;sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-18-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-18')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-18" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.206870 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.206578632Z
+TIME DURATION: 314.2µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.206903 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.210170 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:12:11.209883641Z
+TIME DURATION: 2.974008ms
+HEADERS      :
+	Content-Length: 60
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test3&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-19-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-19')">+</div>
+								<h3 style="display: inline;">DELETE request to blob URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-19" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.210795 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.210541842Z
+TIME DURATION: 285µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.210827 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.214486 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:12:11.214227952Z
+TIME DURATION: 3.394909ms
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-20-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-20')">+</div>
+								<h3 style="display: inline;">GET request to deleted blob URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-20" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:12:11.215549 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-15T22:12:11.215179354Z
+TIME DURATION: 624.301µs
+HEADERS      :
+	Content-Length: 258
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+	Www-Authenticate: Basic realm=&#34;Authorization Required&#34;
+BODY         :
+{
+   &#34;code&#34;: 12,
+   &#34;message&#34;: &#34;authentication required&#34;,
+   &#34;description&#34;: &#34;The access controller was unable to authenticate the client.\n\t\t\tOften this will be accompanied by a Www-Authenticate HTTP response header\n\t\t\tindicating how to authenticate.&#34;,
+   &#34;detail&#34;: null
+}
+==============================================================================
+
+2020/01/15 22:12:11.215584 WARN Using Basic Auth in HTTP mode is not secure, use HTTPS
+
+2020/01/15 22:12:11.219307 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:12:11.218815463Z
+TIME DURATION: 3.225608ms
+HEADERS      :
+	Content-Length: 381
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:12:11 GMT
+BODY         :
+{
+   &#34;code&#34;: 0,
+   &#34;message&#34;: &#34;blob unknown to registry&#34;,
+   &#34;description&#34;: &#34;blob unknown to registry \tThis error MAY be returned when a blob is unknown  to the registry in a specified repository. This can be returned with a standard get or if a manifest references an unknown layer during upload.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+			
+		</div>
+	</body>
+</html>
