@@ -17,6 +17,8 @@ jobs:
           go-version: '1.13.5'
       - name: run tests against docker/distribution
         run: ci/ci-docker-dist.sh
+      - name: git pull
+        run: git pull
       - name: commit HTML report back to git
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:

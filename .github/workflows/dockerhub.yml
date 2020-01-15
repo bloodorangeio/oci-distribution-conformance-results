@@ -20,6 +20,8 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: git pull
+        run: git pull
       - name: commit HTML report back to git
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:
