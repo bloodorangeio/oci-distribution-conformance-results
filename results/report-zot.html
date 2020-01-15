@@ -1,0 +1,1176 @@
+
+<html>
+	<head>
+		<title>OCI Distribution Conformance Tests</title>
+		<script>
+			function toggleOutput(id) {
+				var elem = document.getElementById(id);
+				var button = document.getElementById(id + "-button");
+				if (elem.style['display'] === 'block') {
+					button.innerHTML = "+";
+					elem.style['display'] = 'none';
+				} else {
+					button.innerHTML = "-";
+					elem.style['display'] = 'block';
+				}
+			}
+		</script>
+	</head>
+	<body style="padding: 30px;">
+		<h1>OCI Distribution Conformance Tests</h1>
+		<div>
+			
+				
+				
+					<h2>Base API Route</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-0-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-0')">+</div>
+								<h3 style="display: inline;">GET request to Base API Route MUST return 200 response</h3><br>
+								<div>
+										<div id="output-box-0" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:03.996899 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:03.996570829Z
+TIME DURATION: 1.939204ms
+HEADERS      :
+	Content-Length: 0
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:03 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+BODY         :
+*** Error: Unable to format response body - &#34;unexpected end of JSON input&#34; ***
+
+Log Body as-is:
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Streamed</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-1-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-1')">+</div>
+								<h3 style="display: inline;">PATCH request with blob in body should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-1" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:03.998174 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:10:03.997946932Z
+TIME DURATION: 961.502µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:03 GMT
+	Location: /v2/conformance/test/blobs/uploads/e4b1e8c5-b63a-4cc3-9d7d-09e6806b953f
+	Range: bytes=0-0
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:10:03.999181 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/conformance/test/blobs/uploads/e4b1e8c5-b63a-4cc3-9d7d-09e6806b953f  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:10:03.998898834Z
+TIME DURATION: 653.502µs
+HEADERS      :
+	Blob-Upload-Uuid: e4b1e8c5-b63a-4cc3-9d7d-09e6806b953f
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:03 GMT
+	Location: /v2/conformance/test/blobs/uploads/e4b1e8c5-b63a-4cc3-9d7d-09e6806b953f
+	Range: bytes=0-22
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-2-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-2')">+</div>
+								<h3 style="display: inline;">PUT request to Session URL with digest should yield 201 response</h3><br>
+								<div>
+										<div id="output-box-2" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.000254 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/e4b1e8c5-b63a-4cc3-9d7d-09e6806b953f?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:10:03.999989336Z
+TIME DURATION: 701.302µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:03 GMT
+	Docker-Content-Digest: sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Location: /v2/conformance/test/blobs/sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Monolithic</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-3-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-3')">+</div>
+								<h3 style="display: inline;">GET nonexistent Blob should result in 404 response</h3><br>
+								<div>
+										<div id="output-box-3" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.002551 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:10:04.00216054Z
+TIME DURATION: 1.819003ms
+HEADERS      :
+	Content-Length: 381
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+{
+   &#34;code&#34;: 0,
+   &#34;message&#34;: &#34;blob unknown to registry&#34;,
+   &#34;description&#34;: &#34;blob unknown to registry \tThis error MAY be returned when a blob is unknown  to the registry in a specified repository. This can be returned with a standard get or if a manifest references an unknown layer during upload.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;digest&#34;: &#34;sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-4-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-4')">+</div>
+								<h3 style="display: inline;">POST request should yield a session ID</h3><br>
+								<div>
+										<div id="output-box-4" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.003229 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:10:04.003027442Z
+TIME DURATION: 380.301µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Location: /v2/conformance/test/blobs/uploads/57cbaa09-60c4-4de9-b097-fc81202c2258
+	Range: bytes=0-0
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-5-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-5')">+</div>
+								<h3 style="display: inline;">PUT upload of a blob should yield a 201 Response</h3><br>
+								<div>
+										<div id="output-box-5" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.004193 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/57cbaa09-60c4-4de9-b097-fc81202c2258?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:10:04.003942444Z
+TIME DURATION: 599.002µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Location: /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-6-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-6')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/blobs/&lt;digest&gt; should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-6" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.004967 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:04.004672245Z
+TIME DURATION: 407.501µs
+HEADERS      :
+	Content-Length: 3
+	Content-Type:
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Chunked</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-7-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-7')">+</div>
+								<h3 style="display: inline;">PATCH request with first chunk should return 202</h3><br>
+								<div>
+										<div id="output-box-7" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.005732 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:10:04.005475747Z
+TIME DURATION: 426.301µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Location: /v2/conformance/test/blobs/uploads/f2913182-6308-474a-875f-f5d11ade58cb
+	Range: bytes=0-0
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:10:04.006517 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/conformance/test/blobs/uploads/f2913182-6308-474a-875f-f5d11ade58cb  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:10:04.006261348Z
+TIME DURATION: 464.001µs
+HEADERS      :
+	Blob-Upload-Uuid: f2913182-6308-474a-875f-f5d11ade58cb
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Location: /v2/conformance/test/blobs/uploads/f2913182-6308-474a-875f-f5d11ade58cb
+	Range: bytes=0-2
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-8-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-8')">+</div>
+								<h3 style="display: inline;">PUT request with final chunk should return 201</h3><br>
+								<div>
+										<div id="output-box-8" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.007496 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/blobs/uploads/f2913182-6308-474a-875f-f5d11ade58cb?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:10:04.00721225Z
+TIME DURATION: 598.701µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Location: /v2/conformance/test/blobs/sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Upload</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-9-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-9')">+</div>
+								<h3 style="display: inline;">GET nonexistent manifest should return 404</h3><br>
+								<div>
+										<div id="output-box-9" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.008198 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:10:04.007895751Z
+TIME DURATION: 325.2µs
+HEADERS      :
+	Content-Length: 211
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+{
+   &#34;code&#34;: 6,
+   &#34;message&#34;: &#34;manifest unknown&#34;,
+   &#34;description&#34;: &#34;This error is returned when the manifest, identified by name\n\t\t\tand tag is unknown to the repository.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;reference&#34;: &#34;.INVALID_MANIFEST_NAME&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-10-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-10')">+</div>
+								<h3 style="display: inline;">PUT should accept a manifest upload</h3><br>
+								<div>
+										<div id="output-box-10" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.009252 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:10:04.008858253Z
+TIME DURATION: 567.501µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:10:04.010372 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test1  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:10:04.009989355Z
+TIME DURATION: 666.101µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:10:04.011387 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:10:04.010931857Z
+TIME DURATION: 498.401µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:10:04.012456 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/conformance/test/manifests/test3  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 Created
+RECEIVED AT  : 2020-01-15T22:10:04.01207526Z
+TIME DURATION: 618.402µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-11-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-11')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL(digest) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-11" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.013413 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:04.012915561Z
+TIME DURATION: 380.701µs
+HEADERS      :
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Tags List</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-12-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-12')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/tags/list should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-12" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.014126 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:04.013889463Z
+TIME DURATION: 385.001µs
+HEADERS      :
+	Content-Length: 68
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-13-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-13')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL (tag) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-13" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.014911 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/test0  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:04.014624865Z
+TIME DURATION: 378.601µs
+HEADERS      :
+	Content-Length: 263
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
+BODY         :
+{
+   &#34;mediaType&#34;: &#34;application/vnd.oci.image.manifest.v1&#43;json&#34;,
+   &#34;config&#34;: {
+      &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;,
+      &#34;mediaType&#34;: &#34;application/vnd.oci.image.config.v1&#43;json&#34;,
+      &#34;size&#34;: 3
+   },
+   &#34;layers&#34;: [],
+   &#34;schemaVersion&#34;: 2
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-14-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-14')">+</div>
+								<h3 style="display: inline;">GET number of tags should be limitable by `n` query parameter</h3><br>
+								<div>
+										<div id="output-box-14" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.015527 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list?n=2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:04.015292566Z
+TIME DURATION: 284.901µs
+HEADERS      :
+	Content-Length: 52
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Link: /v2/conformance/test/tags/list?n=2&amp;last=test1; rel=&#34;next&#34;
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test0&#34;,
+      &#34;test1&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-15-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-15')">+</div>
+								<h3 style="display: inline;">GET start of tag is set by `last` query parameter</h3><br>
+								<div>
+										<div id="output-box-15" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.016149 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list?last=test1&amp;n=2  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:04.015911467Z
+TIME DURATION: 306.701µs
+HEADERS      :
+	Content-Length: 52
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+	Link: /v2/conformance/test/tags/list?n=2&amp;last=test3; rel=&#34;next&#34;
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test2&#34;,
+      &#34;test3&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-16-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-16')">+</div>
+								<h3 style="display: inline;">DELETE request to manifest URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-16" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.016903 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:10:04.016666869Z
+TIME DURATION: 434.601µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-17-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-17')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-17" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.017633 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:10:04.01735657Z
+TIME DURATION: 379.401µs
+HEADERS      :
+	Content-Length: 260
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+{
+   &#34;code&#34;: 6,
+   &#34;message&#34;: &#34;manifest unknown&#34;,
+   &#34;description&#34;: &#34;This error is returned when the manifest, identified by name\n\t\t\tand tag is unknown to the repository.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;reference&#34;: &#34;sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-18-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-18')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-18" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.018256 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/tags/list  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:10:04.018015371Z
+TIME DURATION: 309.2µs
+HEADERS      :
+	Content-Length: 60
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+{
+   &#34;name&#34;: &#34;conformance/test&#34;,
+   &#34;tags&#34;: [
+      &#34;test3&#34;,
+      &#34;test1&#34;,
+      &#34;test2&#34;
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-19-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-19')">+</div>
+								<h3 style="display: inline;">DELETE request to blob URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-19" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.019089 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-15T22:10:04.018803273Z
+TIME DURATION: 444.201µs
+HEADERS      :
+	Content-Length: 0
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-20-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-20')">+</div>
+								<h3 style="display: inline;">GET request to deleted blob URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-20" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:10:04.019909 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : localhost:5001
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-15T22:10:04.019541174Z
+TIME DURATION: 363.101µs
+HEADERS      :
+	Content-Length: 381
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:10:04 GMT
+BODY         :
+{
+   &#34;code&#34;: 0,
+   &#34;message&#34;: &#34;blob unknown to registry&#34;,
+   &#34;description&#34;: &#34;blob unknown to registry \tThis error MAY be returned when a blob is unknown  to the registry in a specified repository. This can be returned with a standard get or if a manifest references an unknown layer during upload.&#34;,
+   &#34;detail&#34;: [
+      {
+         &#34;digest&#34;: &#34;sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+			
+		</div>
+	</body>
+</html>
