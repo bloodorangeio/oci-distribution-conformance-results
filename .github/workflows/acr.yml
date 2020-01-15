@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-go@v1
         with:
           go-version: '1.13.5'
-      - name: run tests against quay.io
+      - name: run tests against ACR
         run: ci/ci-acr.sh
         env:
           ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
