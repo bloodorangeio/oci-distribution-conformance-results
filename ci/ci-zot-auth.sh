@@ -7,6 +7,18 @@ ZOT_VERSION="${ZOT_VERSION:-compl}"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd ${DIR}
 
+# Get the conformance.test binary
+if [[ ! -f testbin/conformance.test ]]; then
+  rm -rf distribution-spec/
+  git clone https://github.com/bloodorangeio/distribution-spec.git
+  pushd distribution-spec/conformance/
+  go test -c
+  popd
+  mkdir -p testbin/
+  mv distribution-spec/conformance/conformance.test testbin/conformance.test
+  rm -rf distribution-spec/
+fi
+
 if [[ ! -f testbin/zot ]]; then
   rm -rf zot/
   # TODO: revert to anuvu, this is Rams fork
