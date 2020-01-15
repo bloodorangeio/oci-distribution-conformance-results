@@ -1,0 +1,2155 @@
+
+<html>
+	<head>
+		<title>OCI Distribution Conformance Tests</title>
+		<script>
+			function toggleOutput(id) {
+				var elem = document.getElementById(id);
+				var button = document.getElementById(id + "-button");
+				if (elem.style['display'] === 'block') {
+					button.innerHTML = "+";
+					elem.style['display'] = 'none';
+				} else {
+					button.innerHTML = "-";
+					elem.style['display'] = 'block';
+				}
+			}
+		</script>
+	</head>
+	<body style="padding: 30px;">
+		<h1>OCI Distribution Conformance Tests</h1>
+		<div>
+			
+				
+				
+					<h2>Base API Route</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-0-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-0')">+</div>
+								<h3 style="display: inline;">GET request to Base API Route MUST return 200 response</h3><br>
+								<div>
+										<div id="output-box-0" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:26.943044 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:26.942635541Z
+TIME DURATION: 119.440261ms
+HEADERS      :
+	Content-Length: 4
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:26 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;
+BODY         :
+true
+==============================================================================
+
+2020/01/15 22:35:26.990569 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:26.990132066Z
+TIME DURATION: 47.011325ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 899
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:26 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.026540 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:27.022781682Z
+TIME DURATION: 32.124516ms
+HEADERS      :
+	Content-Length: 4
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;
+	X-Frame-Options: DENY
+BODY         :
+true
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Streamed</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-1-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-1')">+</div>
+								<h3 style="display: inline;">PATCH request with blob in body should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-1" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:35:27.057375 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:27.0568367Z
+TIME DURATION: 30.158216ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.127852 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:27.127369236Z
+TIME DURATION: 69.910136ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.183643 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 ACCEPTED
+RECEIVED AT  : 2020-01-15T22:35:27.183313365Z
+TIME DURATION: 55.393429ms
+HEADERS      :
+	Content-Length: 0
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Upload-Uuid: deaff46b-fb61-4dc8-ac69-11569e969193
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/uploads/deaff46b-fb61-4dc8-ac69-11569e969193
+	Range: bytes=0--1
+	Server: nginx/1.12.1
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:35:27.214693 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/deaff46b-fb61-4dc8-ac69-11569e969193  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:27.214322581Z
+TIME DURATION: 30.596016ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.280718 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:27.280350815Z
+TIME DURATION: 65.579134ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.632839 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/deaff46b-fb61-4dc8-ac69-11569e969193  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 204 NO CONTENT
+RECEIVED AT  : 2020-01-15T22:35:27.632437095Z
+TIME DURATION: 351.62468ms
+HEADERS      :
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Upload-Uuid: deaff46b-fb61-4dc8-ac69-11569e969193
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/uploads/deaff46b-fb61-4dc8-ac69-11569e969193
+	Range: 0-22
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 204
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-2-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-2')">+</div>
+								<h3 style="display: inline;">PUT request to Session URL with digest should yield 201 response</h3><br>
+								<div>
+										<div id="output-box-2" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:27.665971 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/deaff46b-fb61-4dc8-ac69-11569e969193?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:27.665566612Z
+TIME DURATION: 32.135616ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.733786 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:27.733378547Z
+TIME DURATION: 67.335035ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.893169 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/deaff46b-fb61-4dc8-ac69-11569e969193?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 CREATED
+RECEIVED AT  : 2020-01-15T22:35:27.892769329Z
+TIME DURATION: 158.906182ms
+HEADERS      :
+	Content-Length: 0
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Content-Digest: sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Monolithic</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-3-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-3')">+</div>
+								<h3 style="display: inline;">GET nonexistent Blob should result in 404 response</h3><br>
+								<div>
+										<div id="output-box-3" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:27.930205 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:27.929818048Z
+TIME DURATION: 36.516019ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:27.990990 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:27.990574379Z
+TIME DURATION: 60.289131ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1070
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:27 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:28.036482 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 NOT FOUND
+RECEIVED AT  : 2020-01-15T22:35:28.036137502Z
+TIME DURATION: 45.070123ms
+HEADERS      :
+	Content-Length: 86
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:28 GMT
+	Server: nginx/1.12.1
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;BLOB_UNKNOWN&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;blob unknown to registry&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-4-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-4')">+</div>
+								<h3 style="display: inline;">POST request should yield a session ID</h3><br>
+								<div>
+										<div id="output-box-4" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:28.070399 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:28.07005302Z
+TIME DURATION: 33.478217ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:28 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:28.142380 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:28.142005256Z
+TIME DURATION: 71.528936ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:28 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:28.205216 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 ACCEPTED
+RECEIVED AT  : 2020-01-15T22:35:28.204874789Z
+TIME DURATION: 62.388932ms
+HEADERS      :
+	Content-Length: 0
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:28 GMT
+	Docker-Upload-Uuid: 9a32adb9-55a2-4d70-a740-1424082e3bef
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/uploads/9a32adb9-55a2-4d70-a740-1424082e3bef
+	Range: bytes=0--1
+	Server: nginx/1.12.1
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-5-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-5')">+</div>
+								<h3 style="display: inline;">PUT upload of a blob should yield a 201 Response</h3><br>
+								<div>
+										<div id="output-box-5" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:28.237713 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/9a32adb9-55a2-4d70-a740-1424082e3bef?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:28.237310905Z
+TIME DURATION: 31.924616ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:28 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:28.294282 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:28.293883534Z
+TIME DURATION: 56.089029ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:28 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:29.981543 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/9a32adb9-55a2-4d70-a740-1424082e3bef?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 CREATED
+RECEIVED AT  : 2020-01-15T22:35:29.981091196Z
+TIME DURATION: 1.686716262s
+HEADERS      :
+	Content-Length: 0
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:29 GMT
+	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-6-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-6')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/blobs/&lt;digest&gt; should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-6" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:30.019338 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:30.018960815Z
+TIME DURATION: 37.282719ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:30 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:30.086423 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:30.086033349Z
+TIME DURATION: 66.624434ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1070
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:30 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:30.307479 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:30.307070961Z
+TIME DURATION: 220.586612ms
+HEADERS      :
+	Accept-Ranges: bytes
+	Connection: keep-alive
+	Content-Length: 3
+	Content-Type: binary/octet-stream
+	Date: Wed, 15 Jan 2020 22:35:31 GMT
+	Etag: &#34;e980b84473b5f9e4910fa2b24366bb35-1&#34;
+	Last-Modified: Fri, 03 Jan 2020 19:22:39 GMT
+	Server: AmazonS3
+	Via: 1.1 086617c9385713660fb060f989a2a627.cloudfront.net (CloudFront)
+	X-Amz-Cf-Id: OSL7EW5X9ubSh0R-2Lu9Ir8bAy9fbF6mqeQjsHgQ1FBrfxYtZSUEaA==
+	X-Amz-Cf-Pop: JFK51-C1
+	X-Amz-Server-Side-Encryption: AES256
+	X-Amz-Version-Id: null
+	X-Cache: Miss from cloudfront
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Blob Upload Chunked</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-7-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-7')">+</div>
+								<h3 style="display: inline;">PATCH request with first chunk should return 202</h3><br>
+								<div>
+										<div id="output-box-7" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:35:30.338534 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:30.338142277Z
+TIME DURATION: 30.525915ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:30 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:30.408869 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:30.408453913Z
+TIME DURATION: 69.804536ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:30 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:30.464461 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/bloodorange/oci-conformance-test/blobs/uploads/  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 ACCEPTED
+RECEIVED AT  : 2020-01-15T22:35:30.464109241Z
+TIME DURATION: 55.160528ms
+HEADERS      :
+	Content-Length: 0
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:30 GMT
+	Docker-Upload-Uuid: 6e3f57e4-58d1-4ee6-8599-828d182162b9
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/uploads/6e3f57e4-58d1-4ee6-8599-828d182162b9
+	Range: bytes=0--1
+	Server: nginx/1.12.1
+BODY         :
+
+==============================================================================
+
+2020/01/15 22:35:30.495587 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/6e3f57e4-58d1-4ee6-8599-828d182162b9  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:30.495188657Z
+TIME DURATION: 30.614716ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:30 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:30.559459 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:30.559101589Z
+TIME DURATION: 63.414632ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:30 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:32.747105 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/bloodorange/oci-conformance-test/blobs/uploads/6e3f57e4-58d1-4ee6-8599-828d182162b9  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 204 NO CONTENT
+RECEIVED AT  : 2020-01-15T22:35:32.746686897Z
+TIME DURATION: 2.187146007s
+HEADERS      :
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:32 GMT
+	Docker-Upload-Uuid: 6e3f57e4-58d1-4ee6-8599-828d182162b9
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/uploads/6e3f57e4-58d1-4ee6-8599-828d182162b9
+	Range: 0-2
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 204
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-8-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-8')">+</div>
+								<h3 style="display: inline;">PUT request with final chunk should return 201</h3><br>
+								<div>
+										<div id="output-box-8" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:32.784403 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/6e3f57e4-58d1-4ee6-8599-828d182162b9?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:32.784025316Z
+TIME DURATION: 36.237918ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:32 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:32.849400 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:32.849010049Z
+TIME DURATION: 64.531432ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:32 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:33.891641 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/blobs/uploads/6e3f57e4-58d1-4ee6-8599-828d182162b9?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 201 CREATED
+RECEIVED AT  : 2020-01-15T22:35:33.890845774Z
+TIME DURATION: 1.041352125s
+HEADERS      :
+	Content-Length: 0
+	Content-Type: text/html; charset=utf-8
+	Date: Wed, 15 Jan 2020 22:35:33 GMT
+	Docker-Content-Digest: sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Location: https://quay.io/v2/bloodorange/oci-conformance-test/blobs/sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+					<h2>Manifest Upload</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-9-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-9')">+</div>
+								<h3 style="display: inline;">GET nonexistent manifest should return 404</h3><br>
+								<div>
+										<div id="output-box-9" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:33.921720 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 NOT FOUND
+RECEIVED AT  : 2020-01-15T22:35:33.921412789Z
+TIME DURATION: 29.620414ms
+HEADERS      :
+	Content-Length: 232
+	Content-Type: text/html
+	Date: Wed, 15 Jan 2020 22:35:33 GMT
+	Server: nginx/1.12.1
+BODY         :
+&lt;!DOCTYPE HTML PUBLIC &#34;-//W3C//DTD HTML 3.2 Final//EN&#34;&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&lt;/p&gt;
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-10-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-10')">+</div>
+								<h3 style="display: inline;">PUT should accept a manifest upload</h3><br>
+								<div>
+										<div id="output-box-10" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:35:33.953268 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/bloodorange/oci-conformance-test/manifests/test0  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 415 UNSUPPORTED MEDIA TYPE
+RECEIVED AT  : 2020-01-15T22:35:33.952834805Z
+TIME DURATION: 31.003715ms
+HEADERS      :
+	Content-Length: 131
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:33 GMT
+	Server: nginx/1.12.1
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;MANIFEST_INVALID&#34;,
+         &#34;detail&#34;: {
+            &#34;message&#34;: &#34;manifest schema version not supported&#34;
+         },
+         &#34;message&#34;: &#34;manifest invalid&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 415
+to equal
+    &lt;int&gt;: 201</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-11-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-11')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL(digest) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-11" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;*errors.errorString | 0xc0003de860&gt;: {
+        s: &#34;request is invalid&#34;,
+    }
+to be nil</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Tags List</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-12-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-12')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/tags/list should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-12" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:33.991176 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:33.990821724Z
+TIME DURATION: 36.678518ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:33 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.056699 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.056347757Z
+TIME DURATION: 65.103532ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1070
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.097631 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.097311578Z
+TIME DURATION: 40.54722ms
+HEADERS      :
+	Content-Length: 54
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+   &#34;tags&#34;: []
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-13-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-13')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL (tag) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-13" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;[]string | len:0, cap:0&gt;: []
+not to be empty</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-14-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-14')">+</div>
+								<h3 style="display: inline;">GET number of tags should be limitable by `n` query parameter</h3><br>
+								<div>
+										<div id="output-box-14" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/15 22:35:34.136085 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list?n=0  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:34.135731697Z
+TIME DURATION: 37.589819ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.196071 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.195670927Z
+TIME DURATION: 59.50253ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1070
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.238676 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list?n=0  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.238351649Z
+TIME DURATION: 42.226022ms
+HEADERS      :
+	Content-Length: 54
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+   &#34;tags&#34;: []
+}
+
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+					
+				
+					<h2>Manifest Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-16-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-16')">+</div>
+								<h3 style="display: inline;">DELETE request to manifest URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-16" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;*errors.errorString | 0xc000397850&gt;: {
+        s: &#34;request is invalid&#34;,
+    }
+to be nil</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-17-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-17')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-17" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;*errors.errorString | 0xc0003b20b0&gt;: {
+        s: &#34;request is invalid&#34;,
+    }
+to be nil</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-18-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-18')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-18" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:35:34.280695 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:34.28035887Z
+TIME DURATION: 39.41372ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.347068 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.346699103Z
+TIME DURATION: 65.904633ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1070
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.388092 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/tags/list  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.387765624Z
+TIME DURATION: 40.636521ms
+HEADERS      :
+	Content-Length: 54
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;name&#34;: &#34;bloodorange/oci-conformance-test&#34;,
+   &#34;tags&#34;: []
+}
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 0
+to be &lt;
+    &lt;int&gt;: 0</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Blob Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-19-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-19')">+</div>
+								<h3 style="display: inline;">DELETE request to blob URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-19" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:35:34.419366 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:34.419005739Z
+TIME DURATION: 30.353615ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull,push&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.485903 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull%2Cpush&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.485474473Z
+TIME DURATION: 66.033633ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1079
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.517914 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 405 METHOD NOT ALLOWED
+RECEIVED AT  : 2020-01-15T22:35:34.517531589Z
+TIME DURATION: 31.562616ms
+HEADERS      :
+	Content-Length: 90
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNSUPPORTED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;The operation is unsupported.&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 405
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-20-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-20')">+</div>
+								<h3 style="display: inline;">GET request to deleted blob URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-20" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/15 22:35:34.555911 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 UNAUTHORIZED
+RECEIVED AT  : 2020-01-15T22:35:34.555517308Z
+TIME DURATION: 36.441718ms
+HEADERS      :
+	Content-Length: 112
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: nginx/1.12.1
+	Www-Authenticate: Bearer realm=&#34;https://quay.io/v2/auth&#34;,service=&#34;quay.io&#34;,scope=&#34;repository:bloodorange/oci-conformance-test:pull&#34;
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;detail&#34;: {},
+         &#34;message&#34;: &#34;access to the requested resource is not authorized&#34;
+      }
+   ]
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.631558 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/auth?scope=repository%3Abloodorange%2Foci-conformance-test%3Apull&amp;service=quay.io  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.631201246Z
+TIME DURATION: 75.222838ms
+HEADERS      :
+	Cache-Control: no-cache, no-store, must-revalidate
+	Content-Length: 1070
+	Content-Type: application/json
+	Date: Wed, 15 Jan 2020 22:35:34 GMT
+	Server: nginx/1.12.1
+	Strict-Transport-Security: max-age=63072000; preload
+	X-Frame-Options: DENY
+BODY         :
+{
+   &#34;token&#34;: &#34;*****&#34;
+}
+
+==============================================================================
+
+2020/01/15 22:35:34.695493 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/bloodorange/oci-conformance-test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : quay.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-15T22:35:34.695064078Z
+TIME DURATION: 63.443432ms
+HEADERS      :
+	Accept-Ranges: bytes
+	Age: 4
+	Connection: keep-alive
+	Content-Length: 3
+	Content-Type: binary/octet-stream
+	Date: Wed, 15 Jan 2020 22:35:31 GMT
+	Etag: &#34;e980b84473b5f9e4910fa2b24366bb35-1&#34;
+	Last-Modified: Fri, 03 Jan 2020 19:22:39 GMT
+	Server: AmazonS3
+	Via: 1.1 086617c9385713660fb060f989a2a627.cloudfront.net (CloudFront)
+	X-Amz-Cf-Id: iVZUFGE8gabNdAGSMzBJ0JIXcISMsEFSMEntit2wtVa6OMkcTGfIqA==
+	X-Amz-Cf-Pop: JFK51-C1
+	X-Amz-Server-Side-Encryption: AES256
+	X-Amz-Version-Id: null
+	X-Cache: Hit from cloudfront
+BODY         :
+{}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 200
+to equal
+    &lt;int&gt;: 404</pre><br>
+								</div>
+							</div>
+							
+					
+				
+			
+		</div>
+	</body>
+</html>
