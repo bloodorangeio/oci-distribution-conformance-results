@@ -1,0 +1,6 @@
+.idea/
+ci/testbin/
+ci/testresults/
+ci/*.log
+ci/*.xml
+ci/*.html

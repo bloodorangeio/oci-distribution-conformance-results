@@ -1,0 +1,22 @@
+name: acr
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@master
+      - name: setup go environment
+        uses: actions/setup-go@v1
+        with:
+          go-version: '1.13.5'
+      - name: run tests against quay.io
+        run: ci/ci-acr.sh
+        env:
+          ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+          ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
