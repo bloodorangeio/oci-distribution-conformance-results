@@ -17,3 +17,11 @@ jobs:
           go-version: '1.13.5'
       - name: run tests against docker/distribution
         run: ci/ci-docker-dist.sh
+      - name: commit HTML report back to git
+        uses: stefanzweifel/git-auto-commit-action@v2.5.0
+        with:
+          commit_message: Upload docker/distribution report
+          branch: master
+          file_pattern: results/report-docker-dist.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
