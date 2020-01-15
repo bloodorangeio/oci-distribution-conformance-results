@@ -25,6 +25,6 @@ jobs:
         with:
           commit_message: Upload ACR report
           branch: master
-          file_pattern: results/\*.html
+          file_pattern: results/report-acr.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
