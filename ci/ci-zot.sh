@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ZOT_VERSION="${ZOT_VERSION:-master}"
+# TODO: revert to master, this is for Rams fork
+ZOT_VERSION="${ZOT_VERSION:-compl}"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd ${DIR}
@@ -20,7 +21,8 @@ fi
 
 if [[ ! -f testbin/zot ]]; then
   rm -rf zot/
-  git clone https://github.com/anuvu/zot.git
+  # TODO: revert to anuvu, this is Rams fork
+  git clone https://github.com/rchincha/zot.git
   pushd zot/
   git checkout ${ZOT_VERSION}
   make binary
