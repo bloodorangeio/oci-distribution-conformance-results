@@ -3,7 +3,7 @@
 Static HTML reports of [OCI Distribution Spec](https://github.com/opencontainers/distribution-spec) conformance tests run against various registries.
 
 Note: these should not be considered "official" results. This repo is just for test purposes. 
-Registry providers should submit their own conformance results to https://github.com/opencontainers/oci-conformance.
+Registry providers should submit their own conformance results to [opencontainers/oci-conformance](https://github.com/opencontainers/oci-conformance).
 ## Registry Conformance Summary
 
 | Registry | Status | Report Link |
