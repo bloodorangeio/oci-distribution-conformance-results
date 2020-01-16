@@ -26,8 +26,8 @@
 					
 						
 							
-							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
-									background: #ffc8c8; margin-top: 10px;">
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
 								<div id="output-box-0-button" style="border: 2px solid #3e3e3e; width: 1em;
 									text-align: center; font-weight: bold; display: inline; font-family: monospace;
 									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
@@ -37,8 +37,8 @@
 								<div>
 										<div id="output-box-0" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
-												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:47.661012 DEBUG 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:05:47.577381 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/  HTTP/1.1
@@ -50,14 +50,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:47.660323258Z
-TIME DURATION: 87.539268ms
+RECEIVED AT  : 2020-01-16T20:05:47.576911727Z
+TIME DURATION: 107.597896ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:47 GMT
+	Date: Thu, 16 Jan 2020 20:05:47 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -75,10 +75,10 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:47.678710 DEBUG 
+2020/01/16 20:05:47.615401 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-GET  /v2/token?scope=&amp;service=gcr.io  HTTP/1.1
+GET  /v2/token?service=gcr.io  HTTP/1.1
 HOST   : gcr.io
 HEADERS:
 	Accept: application/json
@@ -88,83 +88,62 @@ BODY   :
 ***** NO CONTENT *****
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
-STATUS       : 400 Bad Request
-RECEIVED AT  : 2020-01-16T19:43:47.678311497Z
-TIME DURATION: 17.221199ms
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T20:05:47.61495719Z
+TIME DURATION: 37.494864ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:47 GMT
+	Date: Thu, 16 Jan 2020 20:05:47 GMT
+	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
 	X-Frame-Options: SAMEORIGIN
 	X-Xss-Protection: 0
 BODY         :
 {
-   &#34;errors&#34;: [
-      {
-         &#34;code&#34;: &#34;UNKNOWN&#34;,
-         &#34;message&#34;: &#34;Malformed scope: \&#34;\&#34;.&#34;
-      }
-   ]
+   &#34;expires_in&#34;: 43200,
+   &#34;issued_at&#34;: &#34;2020-01-16T12:05:47.604718931-08:00&#34;,
+   &#34;token&#34;: &#34;*****&#34;
 }
 ==============================================================================
 
-2020/01/16 19:43:47.696366 DEBUG 
+2020/01/16 20:05:47.643434 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/  HTTP/1.1
 HOST   : gcr.io
 HEADERS:
+	Authorization: Bearer *****
 	User-Agent: distribution-spec-conformance-tests
 BODY   :
 ***** NO CONTENT *****
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
-STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:47.695967119Z
-TIME DURATION: 17.195298ms
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T20:05:47.643047863Z
+TIME DURATION: 27.574473ms
 HEADERS      :
-	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
-	Cache-Control: private
-	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:47 GMT
+	Content-Length: 0
+	Content-Type: text/html
+	Date: Thu, 16 Jan 2020 20:05:47 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
-	Vary: Accept-Encoding
-	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;
 	X-Frame-Options: SAMEORIGIN
 	X-Xss-Protection: 0
 BODY         :
-{
-   &#34;errors&#34;: [
-      {
-         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
-         &#34;message&#34;: &#34;Unauthorized access.&#34;
-      }
-   ]
-}
+
 ==============================================================================
 
 </pre>
 										</div>
-								</div>
-								<pre style="
-									background: #f9a5a5;
-									padding: 20px;
-									display: inline-block;
-									border-radius: 4px;
-									font-size: 1.25em;
-									">Expected
-    &lt;int&gt;: 401
-to equal
-    &lt;int&gt;: 200</pre><br>
+									</div>
 								</div>
 							</div>
-							
+						
 					
 				
 					<h2>Blob Upload Streamed</h2>
@@ -183,7 +162,7 @@ to equal
 										<div id="output-box-1" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:47.730499 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:47.685077 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
@@ -195,14 +174,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:47.729949692Z
-TIME DURATION: 33.116628ms
+RECEIVED AT  : 2020-01-16T20:05:47.684566423Z
+TIME DURATION: 41.023161ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:47 GMT
+	Date: Thu, 16 Jan 2020 20:05:47 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -220,7 +199,7 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:47.789968 DEBUG 
+2020/01/16 20:05:47.730253 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
@@ -234,14 +213,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:47.789384394Z
-TIME DURATION: 58.796569ms
+RECEIVED AT  : 2020-01-16T20:05:47.728159781Z
+TIME DURATION: 42.985359ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:47 GMT
+	Date: Thu, 16 Jan 2020 20:05:47 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -250,12 +229,12 @@ HEADERS      :
 BODY         :
 {
    &#34;expires_in&#34;: 43200,
-   &#34;issued_at&#34;: &#34;2020-01-16T11:43:47.798431698-08:00&#34;,
+   &#34;issued_at&#34;: &#34;2020-01-16T12:05:47.718075282-08:00&#34;,
    &#34;token&#34;: &#34;*****&#34;
 }
 ==============================================================================
 
-2020/01/16 19:43:47.871693 DEBUG 
+2020/01/16 20:05:47.754468 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
@@ -268,17 +247,17 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:43:47.871231966Z
-TIME DURATION: 81.180937ms
+RECEIVED AT  : 2020-01-16T20:05:47.753994155Z
+TIME DURATION: 23.599977ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:47 GMT
+	Date: Thu, 16 Jan 2020 20:05:47 GMT
 	Docker-Distribution-Api-Version: registry/2.0
-	Docker-Upload-Uuid: ABTmro6EbXai2e0qe5INpjodNXzDz8fcM3W8GInmm-nJLN44_wP0Mssa6OVINwosxTLF7Jk0E81Y43XyO2vYVng
-	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro6EbXai2e0qe5INpjodNXzDz8fcM3W8GInmm-nJLN44_wP0Mssa6OVINwosxTLF7Jk0E81Y43XyO2vYVng
+	Docker-Upload-Uuid: ABTmro7qiEtDqiY5FpwkW4seDxEEdDtbj-PjV-z3xG8xxrnCXGdiVEy6mekFfEEE8b2AUAEie83DyGVKia0qvMo
+	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro7qiEtDqiY5FpwkW4seDxEEdDtbj-PjV-z3xG8xxrnCXGdiVEy6mekFfEEE8b2AUAEie83DyGVKia0qvMo
 	Server: Docker Registry
 	Vary: Accept-Encoding
 	X-Frame-Options: SAMEORIGIN
@@ -289,10 +268,10 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:48.251798 DEBUG 
+2020/01/16 20:05:48.157787 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PATCH  /v2/helmsummit/myrepo/blobs/uploads/ABTmro6EbXai2e0qe5INpjodNXzDz8fcM3W8GInmm-nJLN44_wP0Mssa6OVINwosxTLF7Jk0E81Y43XyO2vYVng  HTTP/1.1
+PATCH  /v2/helmsummit/myrepo/blobs/uploads/ABTmro7qiEtDqiY5FpwkW4seDxEEdDtbj-PjV-z3xG8xxrnCXGdiVEy6mekFfEEE8b2AUAEie83DyGVKia0qvMo  HTTP/1.1
 HOST   : gcr.io
 HEADERS:
 	Content-Type: application/octet-stream
@@ -302,14 +281,14 @@ TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:48.251282888Z
-TIME DURATION: 379.506594ms
+RECEIVED AT  : 2020-01-16T20:05:48.157301965Z
+TIME DURATION: 402.75591ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:48 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -356,10 +335,10 @@ to equal
 										<div id="output-box-2" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:48.583279 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:48.467196 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro6EbXai2e0qe5INpjodNXzDz8fcM3W8GInmm-nJLN44_wP0Mssa6OVINwosxTLF7Jk0E81Y43XyO2vYVng?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro7qiEtDqiY5FpwkW4seDxEEdDtbj-PjV-z3xG8xxrnCXGdiVEy6mekFfEEE8b2AUAEie83DyGVKia0qvMo?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
 HOST   : gcr.io
 HEADERS:
 	Content-Length: 23
@@ -370,14 +349,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:48.582629062Z
-TIME DURATION: 330.097809ms
+RECEIVED AT  : 2020-01-16T20:05:48.466689767Z
+TIME DURATION: 308.124803ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:48 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -428,7 +407,7 @@ to equal
 										<div id="output-box-3" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:43:48.715344 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:05:48.586317 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
@@ -440,14 +419,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:48.714695346Z
-TIME DURATION: 129.441148ms
+RECEIVED AT  : 2020-01-16T20:05:48.585618052Z
+TIME DURATION: 117.932586ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:48 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -465,7 +444,7 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:48.813027 DEBUG 
+2020/01/16 20:05:48.627938 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
@@ -479,14 +458,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:48.812472544Z
-TIME DURATION: 97.043859ms
+RECEIVED AT  : 2020-01-16T20:05:48.627217212Z
+TIME DURATION: 40.789061ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:48 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -495,12 +474,12 @@ HEADERS      :
 BODY         :
 {
    &#34;expires_in&#34;: 43200,
-   &#34;issued_at&#34;: &#34;2020-01-16T11:43:48.821186389-08:00&#34;,
+   &#34;issued_at&#34;: &#34;2020-01-16T12:05:48.617147982-08:00&#34;,
    &#34;token&#34;: &#34;*****&#34;
 }
 ==============================================================================
 
-2020/01/16 19:43:48.899761 DEBUG 
+2020/01/16 20:05:48.727360 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
@@ -513,17 +492,17 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:48.899328272Z
-TIME DURATION: 86.219895ms
+RECEIVED AT  : 2020-01-16T20:05:48.726909515Z
+TIME DURATION: 98.898004ms
 HEADERS      :
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private, max-age=0
 	Content-Length: 133
 	Content-Type: application/xml; charset=UTF-8
-	Date: Thu, 16 Jan 2020 19:43:48 GMT
-	Expires: Thu, 16 Jan 2020 19:43:48 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
+	Expires: Thu, 16 Jan 2020 20:05:48 GMT
 	Server: UploadServer
-	X-Guploader-Uploadid: AEnB2UoRg4OCHoCeFVyVTPHCHxFVfnpoqFrPqKY0Gg0uMYLKceGqxNVMa60QQfrnaPHCZ24c2de0LPRaUT7A54CSI91sB8Jp2A
+	X-Guploader-Uploadid: AEnB2Up8ASnAEEOh7uRC1YbuNT6KlSbC_HggUTm3wKPkIyjnkN5fUo4cAG6uEOZXRgK_hfnx-OYu_nVJT5HVRxk31UVz58UIaQ
 BODY         :
 &lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;&lt;Error&gt;&lt;Code&gt;NoSuchBucket&lt;/Code&gt;&lt;Message&gt;The specified bucket does not exist.&lt;/Message&gt;&lt;/Error&gt;
 ==============================================================================
@@ -548,7 +527,7 @@ BODY         :
 										<div id="output-box-4" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:43:48.932425 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:05:48.762795 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
@@ -560,14 +539,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:48.931936771Z
-TIME DURATION: 32.066971ms
+RECEIVED AT  : 2020-01-16T20:05:48.762338181Z
+TIME DURATION: 34.879266ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:48 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -585,7 +564,7 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:48.973075 DEBUG 
+2020/01/16 20:05:48.805537 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
@@ -599,14 +578,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:48.972509187Z
-TIME DURATION: 39.996286ms
+RECEIVED AT  : 2020-01-16T20:05:48.80489264Z
+TIME DURATION: 42.004559ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:48 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -615,12 +594,12 @@ HEADERS      :
 BODY         :
 {
    &#34;expires_in&#34;: 43200,
-   &#34;issued_at&#34;: &#34;2020-01-16T11:43:48.981339348-08:00&#34;,
+   &#34;issued_at&#34;: &#34;2020-01-16T12:05:48.794815089-08:00&#34;,
    &#34;token&#34;: &#34;*****&#34;
 }
 ==============================================================================
 
-2020/01/16 19:43:48.994135 DEBUG 
+2020/01/16 20:05:48.829322 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
@@ -633,17 +612,17 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:43:48.993340473Z
-TIME DURATION: 20.190153ms
+RECEIVED AT  : 2020-01-16T20:05:48.828900117Z
+TIME DURATION: 23.287978ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:48 GMT
 	Docker-Distribution-Api-Version: registry/2.0
-	Docker-Upload-Uuid: ABTmro5WAavzBlhxJ__zswiYW0I42c5ZBmYCITunGhpdTPEz5bysVyP2SYSBlb4H_OlZfUPxSnKBcxLhwT19AYw
-	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro5WAavzBlhxJ__zswiYW0I42c5ZBmYCITunGhpdTPEz5bysVyP2SYSBlb4H_OlZfUPxSnKBcxLhwT19AYw
+	Docker-Upload-Uuid: ABTmro7gtSO45YfclFtUj0TDW2AUN5pGNSh_Ao_Z9Fj08WmC2qgJaLEb1j55FQj0MM8JEi06yzw9T6n7WcZZDiE
+	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro7gtSO45YfclFtUj0TDW2AUN5pGNSh_Ao_Z9Fj08WmC2qgJaLEb1j55FQj0MM8JEi06yzw9T6n7WcZZDiE
 	Server: Docker Registry
 	Vary: Accept-Encoding
 	X-Frame-Options: SAMEORIGIN
@@ -674,10 +653,10 @@ BODY         :
 										<div id="output-box-5" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:49.371248 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:49.201358 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro5WAavzBlhxJ__zswiYW0I42c5ZBmYCITunGhpdTPEz5bysVyP2SYSBlb4H_OlZfUPxSnKBcxLhwT19AYw?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro7gtSO45YfclFtUj0TDW2AUN5pGNSh_Ao_Z9Fj08WmC2qgJaLEb1j55FQj0MM8JEi06yzw9T6n7WcZZDiE?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
 HOST   : gcr.io
 HEADERS:
 	Content-Length: 3
@@ -688,14 +667,14 @@ e30K
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:49.370739826Z
-TIME DURATION: 376.414202ms
+RECEIVED AT  : 2020-01-16T20:05:49.200914558Z
+TIME DURATION: 371.454142ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -742,7 +721,7 @@ to equal
 										<div id="output-box-6" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:49.482844 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:49.315278 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -754,14 +733,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:49.482350037Z
-TIME DURATION: 110.517755ms
+RECEIVED AT  : 2020-01-16T20:05:49.314784848Z
+TIME DURATION: 112.943591ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -779,7 +758,7 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:49.538742 DEBUG 
+2020/01/16 20:05:49.372534 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
@@ -793,14 +772,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:49.538252948Z
-TIME DURATION: 55.31358ms
+RECEIVED AT  : 2020-01-16T20:05:49.371998793Z
+TIME DURATION: 56.642145ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -809,12 +788,12 @@ HEADERS      :
 BODY         :
 {
    &#34;expires_in&#34;: 43200,
-   &#34;issued_at&#34;: &#34;2020-01-16T11:43:49.547233175-08:00&#34;,
+   &#34;issued_at&#34;: &#34;2020-01-16T12:05:49.361843492-08:00&#34;,
    &#34;token&#34;: &#34;*****&#34;
 }
 ==============================================================================
 
-2020/01/16 19:43:49.597612 DEBUG 
+2020/01/16 20:05:49.440192 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -827,17 +806,17 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:49.596948505Z
-TIME DURATION: 58.130327ms
+RECEIVED AT  : 2020-01-16T20:05:49.439716228Z
+TIME DURATION: 67.113335ms
 HEADERS      :
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private, max-age=0
 	Content-Length: 133
 	Content-Type: application/xml; charset=UTF-8
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
-	Expires: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
+	Expires: Thu, 16 Jan 2020 20:05:49 GMT
 	Server: UploadServer
-	X-Guploader-Uploadid: AEnB2Uppk1Bc7YVlFyuPSXcufAnGBpabUhN0fYQzQpzkPFrmCNI4yfnJeamyKuN88LlB4e0Cm3OZQeSdy1reUGSfZaMUgYgM-A
+	X-Guploader-Uploadid: AEnB2Upb6ma4PXFoo_HKzJaTv41D15m048-5a-ymWTkg6mcaJJ87W8amiK6QHBsTzgGRNb1h53LQzGJAsehayFlb1gweLFsJMQ
 BODY         :
 &lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;&lt;Error&gt;&lt;Code&gt;NoSuchBucket&lt;/Code&gt;&lt;Message&gt;The specified bucket does not exist.&lt;/Message&gt;&lt;/Error&gt;
 ==============================================================================
@@ -876,7 +855,7 @@ to equal
 										<div id="output-box-7" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:49.630821 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:49.480727 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
@@ -889,14 +868,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:49.630308742Z
-TIME DURATION: 32.093471ms
+RECEIVED AT  : 2020-01-16T20:05:49.480224589Z
+TIME DURATION: 39.561562ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -914,7 +893,7 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:49.669075 DEBUG 
+2020/01/16 20:05:49.523491 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
@@ -928,14 +907,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:49.668532032Z
-TIME DURATION: 37.627359ms
+RECEIVED AT  : 2020-01-16T20:05:49.522738048Z
+TIME DURATION: 41.92826ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -944,12 +923,12 @@ HEADERS      :
 BODY         :
 {
    &#34;expires_in&#34;: 43200,
-   &#34;issued_at&#34;: &#34;2020-01-16T11:43:49.677395999-08:00&#34;,
+   &#34;issued_at&#34;: &#34;2020-01-16T12:05:49.512700147-08:00&#34;,
    &#34;token&#34;: &#34;*****&#34;
 }
 ==============================================================================
 
-2020/01/16 19:43:49.689785 DEBUG 
+2020/01/16 20:05:49.547584 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
@@ -963,17 +942,17 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:43:49.688962096Z
-TIME DURATION: 19.811631ms
+RECEIVED AT  : 2020-01-16T20:05:49.547094524Z
+TIME DURATION: 23.520777ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:49 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
 	Docker-Distribution-Api-Version: registry/2.0
-	Docker-Upload-Uuid: ABTmro6c8MMs9WyP9UkGqxcrMwNYZaJunJOR83NO_jX4PpR6RcZZFtp9GoOqCWkEsL5ZTgUw1uLktOlSun9rlu4
-	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro6c8MMs9WyP9UkGqxcrMwNYZaJunJOR83NO_jX4PpR6RcZZFtp9GoOqCWkEsL5ZTgUw1uLktOlSun9rlu4
+	Docker-Upload-Uuid: ABTmro66uuHJouhC_s1JssqKRfcJasfF2BuSKh9RgDk8XB0ZHlzgHqnFC4JmWfS0Xtj8pv9Z_rbW69lEcEn426A
+	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro66uuHJouhC_s1JssqKRfcJasfF2BuSKh9RgDk8XB0ZHlzgHqnFC4JmWfS0Xtj8pv9Z_rbW69lEcEn426A
 	Server: Docker Registry
 	Vary: Accept-Encoding
 	X-Frame-Options: SAMEORIGIN
@@ -984,10 +963,10 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:50.078583 DEBUG 
+2020/01/16 20:05:49.923708 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PATCH  /v2/helmsummit/myrepo/blobs/uploads/ABTmro6c8MMs9WyP9UkGqxcrMwNYZaJunJOR83NO_jX4PpR6RcZZFtp9GoOqCWkEsL5ZTgUw1uLktOlSun9rlu4  HTTP/1.1
+PATCH  /v2/helmsummit/myrepo/blobs/uploads/ABTmro66uuHJouhC_s1JssqKRfcJasfF2BuSKh9RgDk8XB0ZHlzgHqnFC4JmWfS0Xtj8pv9Z_rbW69lEcEn426A  HTTP/1.1
 HOST   : gcr.io
 HEADERS:
 	Content-Length: 3
@@ -999,14 +978,14 @@ SGVs
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:50.078118157Z
-TIME DURATION: 388.244413ms
+RECEIVED AT  : 2020-01-16T20:05:49.923276862Z
+TIME DURATION: 375.592538ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:49 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1053,10 +1032,10 @@ to equal
 										<div id="output-box-8" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:50.472411 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:50.289416 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro6c8MMs9WyP9UkGqxcrMwNYZaJunJOR83NO_jX4PpR6RcZZFtp9GoOqCWkEsL5ZTgUw1uLktOlSun9rlu4?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro66uuHJouhC_s1JssqKRfcJasfF2BuSKh9RgDk8XB0ZHlzgHqnFC4JmWfS0Xtj8pv9Z_rbW69lEcEn426A?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
 HOST   : gcr.io
 HEADERS:
 	Content-Length: 22
@@ -1068,14 +1047,14 @@ bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:50.471618125Z
-TIME DURATION: 392.37751ms
+RECEIVED AT  : 2020-01-16T20:05:50.28895781Z
+TIME DURATION: 364.566749ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1126,7 +1105,7 @@ to equal
 										<div id="output-box-9" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:43:50.535071 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:05:50.331732 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
@@ -1138,14 +1117,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:50.534554598Z
-TIME DURATION: 61.574602ms
+RECEIVED AT  : 2020-01-16T20:05:50.331345469Z
+TIME DURATION: 41.47686ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1182,7 +1161,7 @@ BODY         :
 										<div id="output-box-10" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:50.569829 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:50.367871 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 PUT  /v2/helmsummit/myrepo/manifests/test0  HTTP/1.1
@@ -1196,14 +1175,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 400 Bad Request
-RECEIVED AT  : 2020-01-16T19:43:50.569031692Z
-TIME DURATION: 33.83486ms
+RECEIVED AT  : 2020-01-16T20:05:50.367392335Z
+TIME DURATION: 35.551266ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1260,7 +1239,7 @@ to equal
 									border-radius: 4px;
 									font-size: 1.25em;
 									">Expected
-    &lt;*errors.errorString | 0xc000303820&gt;: {
+    &lt;*errors.errorString | 0xc000317fb0&gt;: {
         s: &#34;request is invalid&#34;,
     }
 to be nil</pre><br>
@@ -1285,7 +1264,7 @@ to be nil</pre><br>
 										<div id="output-box-12" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:43:50.626882 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:05:50.435934 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/tags/list  HTTP/1.1
@@ -1297,14 +1276,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:50.626439378Z
-TIME DURATION: 55.673296ms
+RECEIVED AT  : 2020-01-16T20:05:50.435363969Z
+TIME DURATION: 66.392136ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1368,7 +1347,7 @@ not to be empty</pre><br>
 										<div id="output-box-14" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:43:50.717052 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:05:50.502164 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/tags/list?n=0  HTTP/1.1
@@ -1380,14 +1359,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:50.716309552Z
-TIME DURATION: 88.82822ms
+RECEIVED AT  : 2020-01-16T20:05:50.501754306Z
+TIME DURATION: 65.286438ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1438,7 +1417,7 @@ BODY         :
 									border-radius: 4px;
 									font-size: 1.25em;
 									">Expected
-    &lt;*errors.errorString | 0xc0002ed2e0&gt;: {
+    &lt;*errors.errorString | 0xc000345c90&gt;: {
         s: &#34;request is invalid&#34;,
     }
 to be nil</pre><br>
@@ -1469,7 +1448,7 @@ to be nil</pre><br>
 									border-radius: 4px;
 									font-size: 1.25em;
 									">Expected
-    &lt;*errors.errorString | 0xc0002edb30&gt;: {
+    &lt;*errors.errorString | 0xc00035c5d0&gt;: {
         s: &#34;request is invalid&#34;,
     }
 to be nil</pre><br>
@@ -1490,7 +1469,7 @@ to be nil</pre><br>
 										<div id="output-box-18" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:50.789632 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:50.568367 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/tags/list  HTTP/1.1
@@ -1502,14 +1481,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:50.789246646Z
-TIME DURATION: 70.035243ms
+RECEIVED AT  : 2020-01-16T20:05:50.567939142Z
+TIME DURATION: 63.879139ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1558,7 +1537,7 @@ to be &lt;
 										<div id="output-box-19" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
-												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:43:50.821204 DEBUG 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 20:05:50.604067 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 DELETE  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -1570,14 +1549,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 405 Method Not Allowed
-RECEIVED AT  : 2020-01-16T19:43:50.820791087Z
-TIME DURATION: 30.695997ms
+RECEIVED AT  : 2020-01-16T20:05:50.603648808Z
+TIME DURATION: 34.804967ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1624,7 +1603,7 @@ to equal
 										<div id="output-box-20" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:43:50.938000 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:05:50.722415 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -1636,14 +1615,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 401 Unauthorized
-RECEIVED AT  : 2020-01-16T19:43:50.937467555Z
-TIME DURATION: 115.821324ms
+RECEIVED AT  : 2020-01-16T20:05:50.721940294Z
+TIME DURATION: 117.435187ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:50 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1661,7 +1640,7 @@ BODY         :
 }
 ==============================================================================
 
-2020/01/16 19:43:50.996609 DEBUG 
+2020/01/16 20:05:50.763643 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
@@ -1675,14 +1654,14 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:43:50.996042702Z
-TIME DURATION: 57.946714ms
+RECEIVED AT  : 2020-01-16T20:05:50.763104954Z
+TIME DURATION: 40.597061ms
 HEADERS      :
 	Accept-Ranges: none
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:43:51 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 	Server: Docker Registry
 	Vary: Accept-Encoding
@@ -1691,12 +1670,12 @@ HEADERS      :
 BODY         :
 {
    &#34;expires_in&#34;: 43200,
-   &#34;issued_at&#34;: &#34;2020-01-16T11:43:51.005097578-08:00&#34;,
+   &#34;issued_at&#34;: &#34;2020-01-16T12:05:50.753041138-08:00&#34;,
    &#34;token&#34;: &#34;*****&#34;
 }
 ==============================================================================
 
-2020/01/16 19:43:51.058242 DEBUG 
+2020/01/16 20:05:50.830381 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -1709,17 +1688,17 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:43:51.057761409Z
-TIME DURATION: 61.069373ms
+RECEIVED AT  : 2020-01-16T20:05:50.82991699Z
+TIME DURATION: 66.204436ms
 HEADERS      :
 	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
 	Cache-Control: private, max-age=0
 	Content-Length: 133
 	Content-Type: application/xml; charset=UTF-8
-	Date: Thu, 16 Jan 2020 19:43:51 GMT
-	Expires: Thu, 16 Jan 2020 19:43:51 GMT
+	Date: Thu, 16 Jan 2020 20:05:50 GMT
+	Expires: Thu, 16 Jan 2020 20:05:50 GMT
 	Server: UploadServer
-	X-Guploader-Uploadid: AEnB2Uo5bTa6KMk2lIo-WOFW5juohPgjKBCsuCyJkueMgKcZG1_ncwf1SAmszxsZfHfthbHuw301ZT_rBsxxMI58_pXbDXlxqQ
+	X-Guploader-Uploadid: AEnB2Up1TOqt5YCGZ1Om2XzM2fjGAAUR09Yoh-EgbK_dJ_KbBKD3aZhExF1G2jq3ZeYxK8EGiai6RWJ9aLaJ-9DiGKFGQLBnQQ
 BODY         :
 &lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;&lt;Error&gt;&lt;Code&gt;NoSuchBucket&lt;/Code&gt;&lt;Message&gt;The specified bucket does not exist.&lt;/Message&gt;&lt;/Error&gt;
 ==============================================================================
