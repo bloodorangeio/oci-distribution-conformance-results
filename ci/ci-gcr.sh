@@ -33,10 +33,10 @@ set -e
 
 mkdir -p testresults/
 if [[ -f junit.xml ]]; then
-  mv junit.xml testresults/junit-quay.xml
+  mv junit.xml testresults/junit-gcr.xml
 fi
 if [[ -f report.html ]]; then
-  mv report.html testresults/report-quay.html
+  mv report.html testresults/report-gcr.html
 fi
 
 cp testresults/*.html ${DIR}/../results/
