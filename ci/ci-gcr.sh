@@ -16,9 +16,9 @@ if [[ ! -f testbin/conformance.test ]]; then
   rm -rf distribution-spec/
 fi
 
-echo ${GCLOUD_SERVICE_KEY} | base64 -d > credentials.json
-gcloud auth activate-service-account ociaccessb@helmsummit.iam.gserviceaccount.com --key-file="${GCLOUD_KEYFILE_NAME}" --project=helmsummit
-rm credentials.json
+echo ${GCLOUD_SERVICE_KEY} | base64 -d > ./credentials.json
+gcloud auth activate-service-account ociaccessb@helmsummit.iam.gserviceaccount.com --key-file="./credentials.json" --project=helmsummit
+rm ./credentials.json
 
 export OCI_ROOT_URL="https://gcr.io"
 export OCI_NAMESPACE="helmsummit/myrepo"
