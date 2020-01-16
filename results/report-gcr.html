@@ -1,0 +1,1738 @@
+
+<html>
+	<head>
+		<title>OCI Distribution Conformance Tests</title>
+		<script>
+			function toggleOutput(id) {
+				var elem = document.getElementById(id);
+				var button = document.getElementById(id + "-button");
+				if (elem.style['display'] === 'block') {
+					button.innerHTML = "+";
+					elem.style['display'] = 'none';
+				} else {
+					button.innerHTML = "-";
+					elem.style['display'] = 'block';
+				}
+			}
+		</script>
+	</head>
+	<body style="padding: 30px;">
+		<h1>OCI Distribution Conformance Tests</h1>
+		<div>
+			
+				
+				
+					<h2>Base API Route</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-0-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-0')">+</div>
+								<h3 style="display: inline;">GET request to Base API Route MUST return 200 response</h3><br>
+								<div>
+										<div id="output-box-0" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:07.861512 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:07.861000701Z
+TIME DURATION: 116.42065ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:07 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:07.902389 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/token?scope=&amp;service=gcr.io  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 400 Bad Request
+RECEIVED AT  : 2020-01-16T19:40:07.902006418Z
+TIME DURATION: 40.418217ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:07 GMT
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNKNOWN&#34;,
+         &#34;message&#34;: &#34;Malformed scope: \&#34;\&#34;.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:07.942590 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:07.941984136Z
+TIME DURATION: 39.523617ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:07 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 401
+to equal
+    &lt;int&gt;: 200</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Blob Upload Streamed</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-1-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-1')">+</div>
+								<h3 style="display: inline;">PATCH request with blob in body should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-1" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:08.004215 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:08.003773062Z
+TIME DURATION: 60.354626ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:07 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;, Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:08.073451 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:08.072700392Z
+TIME DURATION: 68.39583ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:08 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;expires_in&#34;: 43200,
+   &#34;issued_at&#34;: &#34;2020-01-16T11:40:08.062466829-08:00&#34;,
+   &#34;token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/16 19:40:08.118780 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-16T19:40:08.117884211Z
+TIME DURATION: 44.356519ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:08 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: ABTmro5D0MC0fNPJnKXANPdGjiZcebXJ4PH3HSmdv3R5UN5IkQEXf_jMXS3FlJRQdFVw1npMSgUFJmBnSkyBbX4
+	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro5D0MC0fNPJnKXANPdGjiZcebXJ4PH3HSmdv3R5UN5IkQEXf_jMXS3FlJRQdFVw1npMSgUFJmBnSkyBbX4
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: []
+}
+==============================================================================
+
+2020/01/16 19:40:08.535058 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/helmsummit/myrepo/blobs/uploads/ABTmro5D0MC0fNPJnKXANPdGjiZcebXJ4PH3HSmdv3R5UN5IkQEXf_jMXS3FlJRQdFVw1npMSgUFJmBnSkyBbX4  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:08.534615789Z
+TIME DURATION: 415.720478ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:08 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;NAME_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;Not found.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 404
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-2-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-2')">+</div>
+								<h3 style="display: inline;">PUT request to Session URL with digest should yield 201 response</h3><br>
+								<div>
+										<div id="output-box-2" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:08.848264 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro5D0MC0fNPJnKXANPdGjiZcebXJ4PH3HSmdv3R5UN5IkQEXf_jMXS3FlJRQdFVw1npMSgUFJmBnSkyBbX4?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Content-Length: 23
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:08.847737724Z
+TIME DURATION: 311.195334ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:08 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;BLOB_UPLOAD_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;Upload record had no digest data.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 404
+to equal
+    &lt;int&gt;: 201</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Blob Upload Monolithic</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-3-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-3')">+</div>
+								<h3 style="display: inline;">GET nonexistent Blob should result in 404 response</h3><br>
+								<div>
+										<div id="output-box-3" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:40:08.967269 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:08.963090173Z
+TIME DURATION: 114.305249ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:08 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;, Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:09.029231 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:09.028660001Z
+TIME DURATION: 61.298826ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;expires_in&#34;: 43200,
+   &#34;issued_at&#34;: &#34;2020-01-16T11:40:09.018499088-08:00&#34;,
+   &#34;token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/16 19:40:09.133369 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:09.132904846Z
+TIME DURATION: 103.552545ms
+HEADERS      :
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private, max-age=0
+	Content-Length: 133
+	Content-Type: application/xml; charset=UTF-8
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Expires: Thu, 16 Jan 2020 19:40:09 GMT
+	Server: UploadServer
+	X-Guploader-Uploadid: AEnB2Uoxvc-PRPO--h21tMCxpeNRn1dh8ZOJyPno86UWG1se6B818Z6mEKK9bsKcV2tyO-JSutIAtXbFGbysukQPDmsLEnub1w
+BODY         :
+&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;&lt;Error&gt;&lt;Code&gt;NoSuchBucket&lt;/Code&gt;&lt;Message&gt;The specified bucket does not exist.&lt;/Message&gt;&lt;/Error&gt;
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-4-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-4')">+</div>
+								<h3 style="display: inline;">POST request should yield a session ID</h3><br>
+								<div>
+										<div id="output-box-4" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:40:09.188126 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:09.187676969Z
+TIME DURATION: 54.201223ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;, Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:09.253951 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:09.253154997Z
+TIME DURATION: 64.947328ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;expires_in&#34;: 43200,
+   &#34;issued_at&#34;: &#34;2020-01-16T11:40:09.243059374-08:00&#34;,
+   &#34;token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/16 19:40:09.297293 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-16T19:40:09.296815016Z
+TIME DURATION: 42.787918ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: ABTmro5jHFK9rNx-w33VEsamr8DVfFPylqFYbSh8pJHqv_8sJSFbIQNvrFUJB-_VAzHtJoclsXDa1IB43PLRoGw
+	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro5jHFK9rNx-w33VEsamr8DVfFPylqFYbSh8pJHqv_8sJSFbIQNvrFUJB-_VAzHtJoclsXDa1IB43PLRoGw
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: []
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-5-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-5')">+</div>
+								<h3 style="display: inline;">PUT upload of a blob should yield a 201 Response</h3><br>
+								<div>
+										<div id="output-box-5" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:09.692368 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro5jHFK9rNx-w33VEsamr8DVfFPylqFYbSh8pJHqv_8sJSFbIQNvrFUJB-_VAzHtJoclsXDa1IB43PLRoGw?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Content-Length: 3
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+e30K
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:09.691936085Z
+TIME DURATION: 394.489869ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;NAME_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;Not found.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 404
+to equal
+    &lt;int&gt;: 201</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-6-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-6')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/blobs/&lt;digest&gt; should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-6" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:09.810650 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:09.810186936Z
+TIME DURATION: 117.29855ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;, Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:09.876245 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:09.875717464Z
+TIME DURATION: 64.981028ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;expires_in&#34;: 43200,
+   &#34;issued_at&#34;: &#34;2020-01-16T11:40:09.865510349-08:00&#34;,
+   &#34;token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/16 19:40:09.951066 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:09.950425296Z
+TIME DURATION: 74.101932ms
+HEADERS      :
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private, max-age=0
+	Content-Length: 133
+	Content-Type: application/xml; charset=UTF-8
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Expires: Thu, 16 Jan 2020 19:40:09 GMT
+	Server: UploadServer
+	X-Guploader-Uploadid: AEnB2UrxrrCEVM-z-_fsZJcXuzaxKF_6xkrIhSg6euS6PRAtyyC3omMi2i2ujBLrD3i8xUxR42cE4jh3J2CoKKHpxJtu49W7gw
+BODY         :
+&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;&lt;Error&gt;&lt;Code&gt;NoSuchBucket&lt;/Code&gt;&lt;Message&gt;The specified bucket does not exist.&lt;/Message&gt;&lt;/Error&gt;
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 404
+to equal
+    &lt;int&gt;: 200</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Blob Upload Chunked</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-7-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-7')">+</div>
+								<h3 style="display: inline;">PATCH request with first chunk should return 202</h3><br>
+								<div>
+										<div id="output-box-7" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:09.995619 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:09.995185815Z
+TIME DURATION: 43.468119ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:09 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;, Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:10.058671 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:10.058133842Z
+TIME DURATION: 62.440227ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;expires_in&#34;: 43200,
+   &#34;issued_at&#34;: &#34;2020-01-16T11:40:10.047855261-08:00&#34;,
+   &#34;token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/16 19:40:10.111736 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+POST  /v2/helmsummit/myrepo/blobs/uploads/  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Authorization: Bearer *****
+	Content-Length: 0
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 202 Accepted
+RECEIVED AT  : 2020-01-16T19:40:10.111245565Z
+TIME DURATION: 52.497523ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Docker-Upload-Uuid: ABTmro6pjrHikzvRYi8MrFeedM9szRtByubG_wh5zGr8X7lysJKEpx5Ap5-hiQIuyKKTJEg9AVcnP_HC3koX6Sc
+	Location: https://gcr.io/v2/helmsummit/myrepo/blobs/uploads/ABTmro6pjrHikzvRYi8MrFeedM9szRtByubG_wh5zGr8X7lysJKEpx5Ap5-hiQIuyKKTJEg9AVcnP_HC3koX6Sc
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: []
+}
+==============================================================================
+
+2020/01/16 19:40:10.499563 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PATCH  /v2/helmsummit/myrepo/blobs/uploads/ABTmro6pjrHikzvRYi8MrFeedM9szRtByubG_wh5zGr8X7lysJKEpx5Ap5-hiQIuyKKTJEg9AVcnP_HC3koX6Sc  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Content-Length: 3
+	Content-Range: 0-2
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+SGVs
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:10.499138331Z
+TIME DURATION: 387.309066ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;NAME_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;Not found.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 404
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-8-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-8')">+</div>
+								<h3 style="display: inline;">PUT request with final chunk should return 201</h3><br>
+								<div>
+										<div id="output-box-8" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:10.887485 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/helmsummit/myrepo/blobs/uploads/ABTmro6pjrHikzvRYi8MrFeedM9szRtByubG_wh5zGr8X7lysJKEpx5Ap5-hiQIuyKKTJEg9AVcnP_HC3koX6Sc?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Content-Length: 22
+	Content-Range: 3-24
+	Content-Type: application/octet-stream
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:10.887037097Z
+TIME DURATION: 386.950366ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;NAME_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;Not found.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 404
+to equal
+    &lt;int&gt;: 201</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Manifest Upload</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-9-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-9')">+</div>
+								<h3 style="display: inline;">GET nonexistent manifest should return 404</h3><br>
+								<div>
+										<div id="output-box-9" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:40:10.926124 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:10.925706214Z
+TIME DURATION: 37.722717ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;MANIFEST_UNKNOWN&#34;,
+         &#34;message&#34;: &#34;Invalid manifest reference \&#34;.INVALID_MANIFEST_NAME\&#34;.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-10-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-10')">+</div>
+								<h3 style="display: inline;">PUT should accept a manifest upload</h3><br>
+								<div>
+										<div id="output-box-10" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:10.983156 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+PUT  /v2/helmsummit/myrepo/manifests/test0  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/vnd.oci.image.manifest.v1&#43;json
+	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+&#34;eyAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsICJjb25maWciOiAgeyAiZGlnZXN0IjogInNoYTI1NjpjYTNkMTYzYmFiMDU1MzgxODI3MjI2MTQwNTY4ZjNiZWY3ZWFhYzE4N2NlYmQ3Njg3OGUwYjYzZTllNDQyMzU2IiwgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwgInNpemUiOiAzIH0sICJsYXllcnMiOiBbXSwgInNjaGVtYVZlcnNpb24iOiAyIH0=&#34;
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 400 Bad Request
+RECEIVED AT  : 2020-01-16T19:40:10.982659838Z
+TIME DURATION: 56.417124ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:10 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;MANIFEST_INVALID&#34;,
+         &#34;message&#34;: &#34;Failed to parse manifest for request \&#34;/v2/helmsummit/myrepo/manifests/test0\&#34;: Manifest is missing required field \&#34;layers\&#34;.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 400
+to equal
+    &lt;int&gt;: 201</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-11-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-11')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL(digest) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-11" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;*errors.errorString | 0xc0003611f0&gt;: {
+        s: &#34;request is invalid&#34;,
+    }
+to be nil</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Tags List</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-12-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-12')">+</div>
+								<h3 style="display: inline;">GET request to /v2/&lt;name&gt;/tags/list should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-12" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:40:11.057999 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/tags/list  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:11.05733597Z
+TIME DURATION: 73.311531ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;child&#34;: [],
+   &#34;manifest&#34;: {},
+   &#34;name&#34;: &#34;helmsummit/myrepo&#34;,
+   &#34;tags&#34;: []
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-13-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-13')">+</div>
+								<h3 style="display: inline;">GET request to manifest URL (tag) should yield 200 response</h3><br>
+								<div>
+										<div id="output-box-13" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;[]string | len:0, cap:0&gt;: []
+not to be empty</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-14-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-14')">+</div>
+								<h3 style="display: inline;">GET number of tags should be limitable by `n` query parameter</h3><br>
+								<div>
+										<div id="output-box-14" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:40:11.135788 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/tags/list?n=0  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:11.135432303Z
+TIME DURATION: 76.800132ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;child&#34;: [],
+   &#34;manifest&#34;: {},
+   &#34;name&#34;: &#34;helmsummit/myrepo&#34;,
+   &#34;tags&#34;: []
+}
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+							
+					
+				
+					<h2>Manifest Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-16-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-16')">+</div>
+								<h3 style="display: inline;">DELETE request to manifest URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-16" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;*errors.errorString | 0xc000374f70&gt;: {
+        s: &#34;request is invalid&#34;,
+    }
+to be nil</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-17-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-17')">+</div>
+								<h3 style="display: inline;">GET request to deleted manifest URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-17" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;"></pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;*errors.errorString | 0xc0003757d0&gt;: {
+        s: &#34;request is invalid&#34;,
+    }
+to be nil</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-18-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-18')">+</div>
+								<h3 style="display: inline;">GET request to tags list should reflect manifest deletion</h3><br>
+								<div>
+										<div id="output-box-18" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:11.216302 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/tags/list  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:11.215365338Z
+TIME DURATION: 78.138734ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;child&#34;: [],
+   &#34;manifest&#34;: {},
+   &#34;name&#34;: &#34;helmsummit/myrepo&#34;,
+   &#34;tags&#34;: []
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 0
+to be &lt;
+    &lt;int&gt;: 0</pre><br>
+								</div>
+							</div>
+							
+					
+				
+					<h2>Blob Delete</h2>
+					
+						
+							
+							<div style="padding: 1.25em 0 .25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #ffc8c8; margin-top: 10px;">
+								<div id="output-box-19-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-19')">+</div>
+								<h3 style="display: inline;">DELETE request to blob URL should yield 202 response</h3><br>
+								<div>
+										<div id="output-box-19" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; font-size: 1.25em; 
+												overflow-x: auto; max-height: 60em; overflow-y: auto;">2020/01/16 19:40:11.273048 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+DELETE  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 405 Method Not Allowed
+RECEIVED AT  : 2020-01-16T19:40:11.272631062Z
+TIME DURATION: 55.865124ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNSUPPORTED&#34;,
+         &#34;message&#34;: &#34;Manually deleting blobs is not supported.&#34;
+      }
+   ]
+}
+==============================================================================
+
+</pre>
+										</div>
+								</div>
+								<pre style="
+									background: #f9a5a5;
+									padding: 20px;
+									display: inline-block;
+									border-radius: 4px;
+									font-size: 1.25em;
+									">Expected
+    &lt;int&gt;: 405
+to equal
+    &lt;int&gt;: 202</pre><br>
+								</div>
+							</div>
+							
+					
+							
+							<div style="padding: 1.25em 0 1.25em 2em; border: 2px solid #e2e2e2; border-radius: 5px; 
+									background: #c8ffc8; margin-top: 10px;">
+								<div id="output-box-20-button" style="border: 2px solid #3e3e3e; width: 1em;
+									text-align: center; font-weight: bold; display: inline; font-family: monospace;
+									padding: 0 .25em 0 .25em; margin: 1em 1em 1em 0; font-size: 12pt; color: #3e3e3e;
+									border-radius: 3px;" 
+									onclick="javascript:toggleOutput('output-box-20')">+</div>
+								<h3 style="display: inline;">GET request to deleted blob URL should yield 404 response</h3><br>
+								<div>
+										<div id="output-box-20" style="display: none;">
+											<pre style="background: white; padding: 10px; border: 1px solid gray; 
+												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:40:11.395610 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 401 Unauthorized
+RECEIVED AT  : 2020-01-16T19:40:11.395140815Z
+TIME DURATION: 121.635052ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	Www-Authenticate: Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;, Bearer realm=&#34;https://gcr.io/v2/token&#34;,service=&#34;gcr.io&#34;,scope=&#34;repository:helmsummit/myrepo:pull&#34;
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;errors&#34;: [
+      {
+         &#34;code&#34;: &#34;UNAUTHORIZED&#34;,
+         &#34;message&#34;: &#34;Unauthorized access.&#34;
+      }
+   ]
+}
+==============================================================================
+
+2020/01/16 19:40:11.439850 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/token?scope=repository%3Ahelmsummit%2Fmyrepo%3Apull&amp;service=gcr.io  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Accept: application/json
+	Authorization: Basic *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 200 OK
+RECEIVED AT  : 2020-01-16T19:40:11.438909233Z
+TIME DURATION: 43.215418ms
+HEADERS      :
+	Accept-Ranges: none
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private
+	Content-Type: application/json
+	Date: Thu, 16 Jan 2020 19:40:11 GMT
+	Docker-Distribution-Api-Version: registry/2.0
+	Server: Docker Registry
+	Vary: Accept-Encoding
+	X-Frame-Options: SAMEORIGIN
+	X-Xss-Protection: 0
+BODY         :
+{
+   &#34;expires_in&#34;: 43200,
+   &#34;issued_at&#34;: &#34;2020-01-16T11:40:11.428686769-08:00&#34;,
+   &#34;token&#34;: &#34;*****&#34;
+}
+==============================================================================
+
+2020/01/16 19:40:11.511239 DEBUG 
+==============================================================================
+~~~ REQUEST ~~~
+GET  /v2/helmsummit/myrepo/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+HOST   : gcr.io
+HEADERS:
+	Authorization: Bearer *****
+	User-Agent: distribution-spec-conformance-tests
+BODY   :
+***** NO CONTENT *****
+------------------------------------------------------------------------------
+~~~ RESPONSE ~~~
+STATUS       : 404 Not Found
+RECEIVED AT  : 2020-01-16T19:40:11.510756964Z
+TIME DURATION: 70.83613ms
+HEADERS      :
+	Alt-Svc: quic=&#34;:443&#34;; ma=2592000; v=&#34;46,43&#34;,h3-Q050=&#34;:443&#34;; ma=2592000,h3-Q049=&#34;:443&#34;; ma=2592000,h3-Q048=&#34;:443&#34;; ma=2592000,h3-Q046=&#34;:443&#34;; ma=2592000,h3-Q043=&#34;:443&#34;; ma=2592000
+	Cache-Control: private, max-age=0
+	Content-Length: 133
+	Content-Type: application/xml; charset=UTF-8
+	Date: Thu, 16 Jan 2020 19:40:11 GMT
+	Expires: Thu, 16 Jan 2020 19:40:11 GMT
+	Server: UploadServer
+	X-Guploader-Uploadid: AEnB2UphriYWmDubc-tg7u-KNKbXI44oIp_c3kuq4sEFrl6GAi-6lObVHGOgEeCTDgk31PsanOskS_Oex2XexqJbILj1IN-xAg
+BODY         :
+&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;&lt;Error&gt;&lt;Code&gt;NoSuchBucket&lt;/Code&gt;&lt;Message&gt;The specified bucket does not exist.&lt;/Message&gt;&lt;/Error&gt;
+==============================================================================
+
+</pre>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+					
+				
+			
+		</div>
+	</body>
+</html>
