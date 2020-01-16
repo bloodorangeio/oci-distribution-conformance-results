@@ -38,7 +38,7 @@
 										<div id="output-box-0" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.464771 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.804545 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/  HTTP/1.1
@@ -50,12 +50,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.464404875Z
-TIME DURATION: 1.393999ms
+RECEIVED AT  : 2020-01-16T20:10:06.804201781Z
+TIME DURATION: 928.493µs
 HEADERS      :
 	Content-Length: 0
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Distribution-Api-Version: registry/2.0
 BODY         :
 *** Error: Unable to format response body - &#34;unexpected end of JSON input&#34; ***
@@ -88,7 +88,7 @@ Log Body as-is:
 										<div id="output-box-1" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.466482 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.805598 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
@@ -100,21 +100,21 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:44:10.466237873Z
-TIME DURATION: 1.386398ms
+RECEIVED AT  : 2020-01-16T20:10:06.805393672Z
+TIME DURATION: 786.994µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
-	Location: /v2/conformance/test/blobs/uploads/c7725dde-3269-469b-845f-7fc540c0cd5d
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
+	Location: /v2/conformance/test/blobs/uploads/1e3a43cb-74d6-4205-9755-98afa94009a3
 	Range: bytes=0-0
 BODY         :
 
 ==============================================================================
 
-2020/01/16 19:44:10.467434 DEBUG 
+2020/01/16 20:10:06.806388 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PATCH  /v2/conformance/test/blobs/uploads/c7725dde-3269-469b-845f-7fc540c0cd5d  HTTP/1.1
+PATCH  /v2/conformance/test/blobs/uploads/1e3a43cb-74d6-4205-9755-98afa94009a3  HTTP/1.1
 HOST   : localhost:5001
 HEADERS:
 	Content-Type: application/octet-stream
@@ -124,13 +124,13 @@ TkJBIEphbSBvbiBteSBOQkEgdG9hc3Q=
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:44:10.467114473Z
-TIME DURATION: 568.5µs
+RECEIVED AT  : 2020-01-16T20:10:06.806132567Z
+TIME DURATION: 478.597µs
 HEADERS      :
-	Blob-Upload-Uuid: c7725dde-3269-469b-845f-7fc540c0cd5d
+	Blob-Upload-Uuid: 1e3a43cb-74d6-4205-9755-98afa94009a3
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
-	Location: /v2/conformance/test/blobs/uploads/c7725dde-3269-469b-845f-7fc540c0cd5d
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
+	Location: /v2/conformance/test/blobs/uploads/1e3a43cb-74d6-4205-9755-98afa94009a3
 	Range: bytes=0-22
 BODY         :
 
@@ -156,10 +156,10 @@ BODY         :
 										<div id="output-box-2" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.468473 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.807390 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PUT  /v2/conformance/test/blobs/uploads/c7725dde-3269-469b-845f-7fc540c0cd5d?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
+PUT  /v2/conformance/test/blobs/uploads/1e3a43cb-74d6-4205-9755-98afa94009a3?digest=sha256%3A852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75  HTTP/1.1
 HOST   : localhost:5001
 HEADERS:
 	Content-Length: 23
@@ -170,11 +170,11 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 201 Created
-RECEIVED AT  : 2020-01-16T19:44:10.468184972Z
-TIME DURATION: 646.7µs
+RECEIVED AT  : 2020-01-16T20:10:06.807110259Z
+TIME DURATION: 605.795µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
 	Location: /v2/conformance/test/blobs/sha256:852411eaf653ebebfa34b688ad1736c9da4decadb8f55b839b550d64eaad3f75
 BODY         :
@@ -205,7 +205,7 @@ BODY         :
 										<div id="output-box-3" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.469536 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.808194 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/blobs/sha256:a948904f2f0f479b8f8197694b30184b0d2ed1c1cd2a1ec0fb85d299a192a447  HTTP/1.1
@@ -217,12 +217,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:44:10.469191271Z
-TIME DURATION: 551.8µs
+RECEIVED AT  : 2020-01-16T20:10:06.807854953Z
+TIME DURATION: 372.897µs
 HEADERS      :
 	Content-Length: 381
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 {
    &#34;code&#34;: 0,
@@ -256,7 +256,7 @@ BODY         :
 										<div id="output-box-4" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.470233 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.808723 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
@@ -268,12 +268,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:44:10.47001357Z
-TIME DURATION: 341.5µs
+RECEIVED AT  : 2020-01-16T20:10:06.808557248Z
+TIME DURATION: 299.698µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
-	Location: /v2/conformance/test/blobs/uploads/6f9e6b52-04e4-4556-83db-c280ed3e1754
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
+	Location: /v2/conformance/test/blobs/uploads/a145f450-4b3e-4616-a4ac-889608b78c38
 	Range: bytes=0-0
 BODY         :
 
@@ -299,10 +299,10 @@ BODY         :
 										<div id="output-box-5" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.471281 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.809593 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PUT  /v2/conformance/test/blobs/uploads/6f9e6b52-04e4-4556-83db-c280ed3e1754?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
+PUT  /v2/conformance/test/blobs/uploads/a145f450-4b3e-4616-a4ac-889608b78c38?digest=sha256%3Aca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
 HOST   : localhost:5001
 HEADERS:
 	Content-Length: 3
@@ -313,11 +313,11 @@ e30K
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 201 Created
-RECEIVED AT  : 2020-01-16T19:44:10.470957469Z
-TIME DURATION: 632.799µs
+RECEIVED AT  : 2020-01-16T20:10:06.809356042Z
+TIME DURATION: 523.696µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
 	Location: /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
 BODY         :
@@ -344,7 +344,7 @@ BODY         :
 										<div id="output-box-6" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.471977 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.810125 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -356,12 +356,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.471701568Z
-TIME DURATION: 354.899µs
+RECEIVED AT  : 2020-01-16T20:10:06.809870738Z
+TIME DURATION: 226.698µs
 HEADERS      :
 	Content-Length: 3
 	Content-Type:
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356
 BODY         :
 {}
@@ -391,7 +391,7 @@ BODY         :
 										<div id="output-box-7" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.472627 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.810997 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 POST  /v2/conformance/test/blobs/uploads/  HTTP/1.1
@@ -404,21 +404,21 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:44:10.472352368Z
-TIME DURATION: 306.6µs
+RECEIVED AT  : 2020-01-16T20:10:06.810547733Z
+TIME DURATION: 294.898µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
-	Location: /v2/conformance/test/blobs/uploads/92dcfdb5-3281-46f9-85c4-080a4c1ec000
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
+	Location: /v2/conformance/test/blobs/uploads/bb5a1504-f274-47ca-b672-8e099faa22e9
 	Range: bytes=0-0
 BODY         :
 
 ==============================================================================
 
-2020/01/16 19:44:10.473456 DEBUG 
+2020/01/16 20:10:06.812007 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PATCH  /v2/conformance/test/blobs/uploads/92dcfdb5-3281-46f9-85c4-080a4c1ec000  HTTP/1.1
+PATCH  /v2/conformance/test/blobs/uploads/bb5a1504-f274-47ca-b672-8e099faa22e9  HTTP/1.1
 HOST   : localhost:5001
 HEADERS:
 	Content-Length: 3
@@ -430,13 +430,13 @@ SGVs
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:44:10.473208067Z
-TIME DURATION: 516.199µs
+RECEIVED AT  : 2020-01-16T20:10:06.811623825Z
+TIME DURATION: 509.497µs
 HEADERS      :
-	Blob-Upload-Uuid: 92dcfdb5-3281-46f9-85c4-080a4c1ec000
+	Blob-Upload-Uuid: bb5a1504-f274-47ca-b672-8e099faa22e9
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
-	Location: /v2/conformance/test/blobs/uploads/92dcfdb5-3281-46f9-85c4-080a4c1ec000
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
+	Location: /v2/conformance/test/blobs/uploads/bb5a1504-f274-47ca-b672-8e099faa22e9
 	Range: bytes=0-2
 BODY         :
 
@@ -462,10 +462,10 @@ BODY         :
 										<div id="output-box-8" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.474488 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.813379 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
-PUT  /v2/conformance/test/blobs/uploads/92dcfdb5-3281-46f9-85c4-080a4c1ec000?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
+PUT  /v2/conformance/test/blobs/uploads/bb5a1504-f274-47ca-b672-8e099faa22e9?digest=sha256%3A6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48  HTTP/1.1
 HOST   : localhost:5001
 HEADERS:
 	Content-Length: 22
@@ -477,11 +477,11 @@ bG8sIGhvdyBhcmUgeW91IHRvZGF5Pw==
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 201 Created
-RECEIVED AT  : 2020-01-16T19:44:10.474189466Z
-TIME DURATION: 575.299µs
+RECEIVED AT  : 2020-01-16T20:10:06.812830315Z
+TIME DURATION: 690.394µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
 	Location: /v2/conformance/test/blobs/sha256:6e766a49e512e0ba0bc935e2aacd3e5a4a34add17f83afc4c9e669c70241cd48
 BODY         :
@@ -512,7 +512,7 @@ BODY         :
 										<div id="output-box-9" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.475227 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.814254 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/manifests/.INVALID_MANIFEST_NAME  HTTP/1.1
@@ -524,12 +524,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:44:10.474907366Z
-TIME DURATION: 350.4µs
+RECEIVED AT  : 2020-01-16T20:10:06.813881407Z
+TIME DURATION: 385.097µs
 HEADERS      :
 	Content-Length: 211
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 {
    &#34;code&#34;: 6,
@@ -563,7 +563,7 @@ BODY         :
 										<div id="output-box-10" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.476499 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.815390 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 PUT  /v2/conformance/test/manifests/test0  HTTP/1.1
@@ -577,18 +577,18 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 201 Created
-RECEIVED AT  : 2020-01-16T19:44:10.475904665Z
-TIME DURATION: 583.3µs
+RECEIVED AT  : 2020-01-16T20:10:06.814916599Z
+TIME DURATION: 564.895µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 BODY         :
 
 ==============================================================================
 
-2020/01/16 19:44:10.477482 DEBUG 
+2020/01/16 20:10:06.816398 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 PUT  /v2/conformance/test/manifests/test1  HTTP/1.1
@@ -602,18 +602,18 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 201 Created
-RECEIVED AT  : 2020-01-16T19:44:10.477129264Z
-TIME DURATION: 564.7µs
+RECEIVED AT  : 2020-01-16T20:10:06.815937492Z
+TIME DURATION: 459.397µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 BODY         :
 
 ==============================================================================
 
-2020/01/16 19:44:10.478426 DEBUG 
+2020/01/16 20:10:06.817367 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 PUT  /v2/conformance/test/manifests/test2  HTTP/1.1
@@ -627,18 +627,18 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 201 Created
-RECEIVED AT  : 2020-01-16T19:44:10.478091363Z
-TIME DURATION: 537.6µs
+RECEIVED AT  : 2020-01-16T20:10:06.816933684Z
+TIME DURATION: 417.397µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 BODY         :
 
 ==============================================================================
 
-2020/01/16 19:44:10.479464 DEBUG 
+2020/01/16 20:10:06.818341 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 PUT  /v2/conformance/test/manifests/test3  HTTP/1.1
@@ -652,11 +652,11 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 201 Created
-RECEIVED AT  : 2020-01-16T19:44:10.479023262Z
-TIME DURATION: 517.9µs
+RECEIVED AT  : 2020-01-16T20:10:06.817886277Z
+TIME DURATION: 460.297µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 	Location: /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 BODY         :
@@ -683,7 +683,7 @@ BODY         :
 										<div id="output-box-11" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.480405 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.819226 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
@@ -696,12 +696,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.480035561Z
-TIME DURATION: 427.1µs
+RECEIVED AT  : 2020-01-16T20:10:06.81878577Z
+TIME DURATION: 352.298µs
 HEADERS      :
 	Content-Length: 263
 	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 BODY         :
 {
@@ -740,7 +740,7 @@ BODY         :
 										<div id="output-box-12" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.481209 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.819862 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/tags/list  HTTP/1.1
@@ -752,12 +752,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.48097126Z
-TIME DURATION: 502.999µs
+RECEIVED AT  : 2020-01-16T20:10:06.819650563Z
+TIME DURATION: 351.197µs
 HEADERS      :
 	Content-Length: 68
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 {
    &#34;name&#34;: &#34;conformance/test&#34;,
@@ -790,7 +790,7 @@ BODY         :
 										<div id="output-box-13" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.482069 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.820616 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/manifests/test0  HTTP/1.1
@@ -803,12 +803,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.481703859Z
-TIME DURATION: 394.699µs
+RECEIVED AT  : 2020-01-16T20:10:06.820309858Z
+TIME DURATION: 357.297µs
 HEADERS      :
 	Content-Length: 263
 	Content-Type: application/vnd.oci.image.manifest.v1&#43;json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Docker-Content-Digest: sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c
 BODY         :
 {
@@ -843,7 +843,7 @@ BODY         :
 										<div id="output-box-14" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.482824 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.821207 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/tags/list?n=2  HTTP/1.1
@@ -855,12 +855,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.482478659Z
-TIME DURATION: 319.7µs
+RECEIVED AT  : 2020-01-16T20:10:06.820946253Z
+TIME DURATION: 276.098µs
 HEADERS      :
 	Content-Length: 52
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Link: /v2/conformance/test/tags/list?n=2&amp;last=test1; rel=&#34;next&#34;
 BODY         :
 {
@@ -892,7 +892,7 @@ BODY         :
 										<div id="output-box-15" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.483446 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.821995 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/tags/list?last=test1&amp;n=2  HTTP/1.1
@@ -904,12 +904,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.483185558Z
-TIME DURATION: 280.7µs
+RECEIVED AT  : 2020-01-16T20:10:06.821759747Z
+TIME DURATION: 476.696µs
 HEADERS      :
 	Content-Length: 52
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 	Link: /v2/conformance/test/tags/list?n=2&amp;last=test3; rel=&#34;next&#34;
 BODY         :
 {
@@ -945,7 +945,7 @@ BODY         :
 										<div id="output-box-16" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.484290 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.822997 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 DELETE  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
@@ -957,11 +957,11 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:44:10.484070657Z
-TIME DURATION: 544.999µs
+RECEIVED AT  : 2020-01-16T20:10:06.82271944Z
+TIME DURATION: 567.096µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 
 ==============================================================================
@@ -986,7 +986,7 @@ BODY         :
 										<div id="output-box-17" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.485107 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.823741 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/manifests/sha256:c587b678cb253a746ae98c80371288772b7f5bf796fe6f42c2548207578cb05c  HTTP/1.1
@@ -998,12 +998,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:44:10.484804157Z
-TIME DURATION: 427µs
+RECEIVED AT  : 2020-01-16T20:10:06.823481234Z
+TIME DURATION: 388.997µs
 HEADERS      :
 	Content-Length: 260
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 {
    &#34;code&#34;: 6,
@@ -1037,7 +1037,7 @@ BODY         :
 										<div id="output-box-18" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.485735 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.824300 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/tags/list  HTTP/1.1
@@ -1049,12 +1049,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 200 OK
-RECEIVED AT  : 2020-01-16T19:44:10.485459356Z
-TIME DURATION: 258.3µs
+RECEIVED AT  : 2020-01-16T20:10:06.82402043Z
+TIME DURATION: 220.999µs
 HEADERS      :
 	Content-Length: 60
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 {
    &#34;name&#34;: &#34;conformance/test&#34;,
@@ -1090,7 +1090,7 @@ BODY         :
 										<div id="output-box-19" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.486892 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.824983 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 DELETE  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -1102,11 +1102,11 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 202 Accepted
-RECEIVED AT  : 2020-01-16T19:44:10.486678455Z
-TIME DURATION: 858.699µs
+RECEIVED AT  : 2020-01-16T20:10:06.824697324Z
+TIME DURATION: 319.697µs
 HEADERS      :
 	Content-Length: 0
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 
 ==============================================================================
@@ -1131,7 +1131,7 @@ BODY         :
 										<div id="output-box-20" style="display: none;">
 											<pre style="background: white; padding: 10px; border: 1px solid gray; 
 												display: inline-block; border-radius: 4px; width: 97%; overflow-x: auto; 
-												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 19:44:10.487771 DEBUG 
+												max-height: 60em; overflow-y: auto; font-size: 1.25em;">2020/01/16 20:10:06.825862 DEBUG 
 ==============================================================================
 ~~~ REQUEST ~~~
 GET  /v2/conformance/test/blobs/sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356  HTTP/1.1
@@ -1143,12 +1143,12 @@ BODY   :
 ------------------------------------------------------------------------------
 ~~~ RESPONSE ~~~
 STATUS       : 404 Not Found
-RECEIVED AT  : 2020-01-16T19:44:10.487347354Z
-TIME DURATION: 322.499µs
+RECEIVED AT  : 2020-01-16T20:10:06.825566618Z
+TIME DURATION: 451.697µs
 HEADERS      :
 	Content-Length: 381
 	Content-Type: application/json
-	Date: Thu, 16 Jan 2020 19:44:10 GMT
+	Date: Thu, 16 Jan 2020 20:10:06 GMT
 BODY         :
 {
    &#34;code&#34;: 0,
