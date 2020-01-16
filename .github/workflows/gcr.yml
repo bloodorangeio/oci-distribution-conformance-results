@@ -1,0 +1,33 @@
+name: gcr
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@master
+      - name: setup go environment
+        uses: actions/setup-go@v1
+        with:
+          go-version: '1.13.5'
+      - name: run tests against gcr.io
+        run: ci/ci-gcr.sh
+        env:
+          GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+      - name: git pull
+        run: git pull -f
+        if: always()
+      - name: commit HTML report back to git
+        uses: stefanzweifel/git-auto-commit-action@v2.5.0
+        with:
+          commit_message: Upload GCR report
+          branch: master
+          file_pattern: results/report-gcr.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: always()
