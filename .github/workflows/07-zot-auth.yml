@@ -1,0 +1,27 @@
+name: zot-auth
+
+on:
+  push:
+    branches:
+      - trigger-job-07
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@master
+      - name: setup go environment
+        uses: actions/setup-go@v1
+        with:
+          go-version: '1.13.5'
+      - name: run tests against zot-auth
+        run: ci/ci-zot-auth.sh
+      - name: Deploy GitHub Pages site
+        uses: stefanzweifel/git-auto-commit-action@v2.5.0
+        with:
+          commit_message: Deploy GitHub Pages site
+          branch: deploy-github-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: always()

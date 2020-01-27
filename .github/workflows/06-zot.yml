@@ -1,9 +1,9 @@
-name: gcr
+name: zot
 
 on:
   push:
     branches:
-      - master
+      - trigger-job-06
 
 jobs:
   run:
@@ -15,19 +15,14 @@ jobs:
         uses: actions/setup-go@v1
         with:
           go-version: '1.13.5'
-      - name: run tests against gcr.io
-        run: ci/ci-gcr.sh
-        env:
-          GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
-      - name: git pull
-        run: git pull -f
-        if: always()
-      - name: commit HTML report back to git
+      - name: run tests against zot
+        run: ci/ci-zot.sh
+      - name: Trigger job 07
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:
-          commit_message: Upload GCR report
-          branch: master
-          file_pattern: results/report-gcr.html
+          commit_message: Trigger job 07
+          branch: trigger-job-07
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()
+

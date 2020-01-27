@@ -7,7 +7,7 @@ cd ${DIR}
 # Get the conformance.test binary
 if [[ ! -f testbin/conformance.test ]]; then
   rm -rf distribution-spec/
-  git clone https://github.com/bloodorangeio/distribution-spec.git
+  git clone https://github.com/opencontainers/distribution-spec.git
   pushd distribution-spec/conformance/
   go test -c
   popd

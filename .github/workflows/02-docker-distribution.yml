@@ -3,7 +3,7 @@ name: docker-distribution
 on:
   push:
     branches:
-      - master
+      - trigger-job-02
 
 jobs:
   run:
@@ -17,15 +17,11 @@ jobs:
           go-version: '1.13.5'
       - name: run tests against docker/distribution
         run: ci/ci-docker-dist.sh
-      - name: git pull
-        run: git pull -f
-        if: always()
-      - name: commit HTML report back to git
+      - name: Trigger job 03
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:
-          commit_message: Upload docker/distribution report
-          branch: master
-          file_pattern: results/report-docker-dist.html
+          commit_message: Trigger job 03
+          branch: trigger-job-03
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()

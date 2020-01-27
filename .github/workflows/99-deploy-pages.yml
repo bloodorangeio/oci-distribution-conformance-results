@@ -1,0 +1,25 @@
+name: zot-auth
+
+on:
+  push:
+    branches:
+      - deploy-github-pages
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@master
+      - name: Build CI_LAST_RUN.txt
+        run: echo -e "$(sed '$ d' README.md )\n$(cat LAST_RUN.txt)" > README.md
+        if: always()
+      - name: Deploy GitHub Pages site
+        uses: stefanzweifel/git-auto-commit-action@v2.5.0
+        with:
+          commit_message: Deploy GitHub Pages site
+          branch: master
+          file_pattern: README.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: always()
