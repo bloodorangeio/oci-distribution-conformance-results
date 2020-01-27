@@ -11,13 +11,14 @@ jobs:
     steps:
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.1
+        working-directory: /results
         env:
           OCI_ROOT_URL: https://quay.io
           OCI_NAMESPACE: bloodorange/oci-conformance-test
           OCI_USERNAME: ${{ secrets.QUAY_USERNAME }}
           OCI_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
       - name: Upload test results zip as build artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v1
         with:
           name: results
           path: /results
