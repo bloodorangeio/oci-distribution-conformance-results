@@ -13,8 +13,8 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@master
-      - name: Build CI_LAST_RUN.txt
-        run: echo "$(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > CI_LAST_RUN.txt
+      - name: Ensure branch
+        run: git checkout -b trigger-job-01 || true
         if: always()
       - name: Trigger job 01
         uses: stefanzweifel/git-auto-commit-action@v2.5.0

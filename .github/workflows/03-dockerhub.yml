@@ -20,6 +20,9 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Ensure branch
+        run: git checkout -b trigger-job-04 || true
+        if: always()
       - name: Trigger job 04
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:

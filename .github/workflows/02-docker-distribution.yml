@@ -17,6 +17,9 @@ jobs:
           go-version: '1.13.5'
       - name: run tests against docker/distribution
         run: ci/ci-docker-dist.sh
+      - name: Ensure branch
+        run: git checkout -b trigger-job-03 || true
+        if: always()
       - name: Trigger job 03
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:

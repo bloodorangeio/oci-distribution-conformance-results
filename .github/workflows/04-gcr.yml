@@ -19,6 +19,9 @@ jobs:
         run: ci/ci-gcr.sh
         env:
           GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+      - name: Ensure branch
+        run: git checkout -b trigger-job-05 || true
+        if: always()
       - name: Trigger job 05
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:

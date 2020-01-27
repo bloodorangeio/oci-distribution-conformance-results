@@ -17,6 +17,9 @@ jobs:
           go-version: '1.13.5'
       - name: run tests against zot-auth
         run: ci/ci-zot-auth.sh
+      - name: Ensure branch
+        run: git checkout -b deploy-github-pages || true
+        if: always()
       - name: Deploy GitHub Pages site
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:
