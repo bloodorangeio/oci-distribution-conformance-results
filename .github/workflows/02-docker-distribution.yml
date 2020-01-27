@@ -3,7 +3,7 @@ name: docker-distribution
 on:
   push:
     branches:
-      - trigger-job-02
+      - nada
 
 jobs:
   run:

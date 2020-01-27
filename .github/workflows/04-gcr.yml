@@ -3,7 +3,7 @@ name: gcr
 on:
   push:
     branches:
-      - trigger-job-04
+      - nada
 
 jobs:
   run:

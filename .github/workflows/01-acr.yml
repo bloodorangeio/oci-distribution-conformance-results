@@ -3,7 +3,7 @@ name: acr
 on:
   push:
     branches:
-      - trigger-job-01
+      - nada
 
 jobs:
   run:

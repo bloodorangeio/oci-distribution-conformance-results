@@ -3,7 +3,7 @@ name: zot-auth
 on:
   push:
     branches:
-      - trigger-job-07
+      - nada
 
 jobs:
   run:

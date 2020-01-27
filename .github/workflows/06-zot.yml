@@ -3,7 +3,7 @@ name: zot
 on:
   push:
     branches:
-      - trigger-job-06
+      - nada
 
 jobs:
   run:
