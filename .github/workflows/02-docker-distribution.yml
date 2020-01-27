@@ -18,7 +18,7 @@ jobs:
       - name: run tests against docker/distribution
         run: ci/ci-docker-dist.sh
       - name: Ensure branch
-        run: (git checkout -b trigger-job-03  || true ) && git pull --allow-unrelated-histories -f origin trigger-job-03 && git pull --allow-unrelated-histories -f origin trigger-job-02
+        run: git config --global user.name "$GITHUB_ACTOR" && git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com" && (git checkout -b trigger-job-03  || true ) && git pull --allow-unrelated-histories -f origin trigger-job-03 && git pull --allow-unrelated-histories -f origin trigger-job-02
         if: always()
       - name: Regen readme
         run: echo -e "$(sed '$ d' README.md )\n02 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md

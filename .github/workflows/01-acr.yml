@@ -21,7 +21,7 @@ jobs:
           ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
           ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
       - name: Ensure branch
-        run: (git checkout -b trigger-job-02  || true ) && git pull --allow-unrelated-histories -f origin trigger-job-02 && git pull --allow-unrelated-histories -f origin trigger-job-01
+        run: git config --global user.name "$GITHUB_ACTOR" && git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com" && (git checkout -b trigger-job-02  || true ) && git pull --allow-unrelated-histories -f origin trigger-job-02 && git pull --allow-unrelated-histories -f origin trigger-job-01
         if: always()
       - name: Regen readme
         run: echo -e "$(sed '$ d' README.md )\n01 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md

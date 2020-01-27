@@ -18,7 +18,7 @@ jobs:
       - name: run tests against zot-auth
         run: ci/ci-zot-auth.sh
       - name: Ensure branch
-        run: (git checkout -b deploy-github-pages || true ) && git pull --allow-unrelated-histories -f origin deploy-github-pages && git pull --allow-unrelated-histories -f origin trigger-job-07
+        run: git config --global user.name "$GITHUB_ACTOR" && git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com" && (git checkout -b deploy-github-pages || true ) && git pull --allow-unrelated-histories -f origin deploy-github-pages && git pull --allow-unrelated-histories -f origin trigger-job-07
         if: always()
       - name: Regen readme
         run: echo -e "$(sed '$ d' README.md )\n07 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
