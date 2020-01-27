@@ -11,15 +11,15 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@master
-      - name: Build CI_LAST_RUN.txt
-        run: echo -e "$(sed '$ d' README.md )\n$(cat LAST_RUN.txt)" > README.md
+      - name: Regen readme
+        run: echo -e "$(sed '$ d' README.md )\n99-deploy-ages $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
         if: always()
       - name: Deploy GitHub Pages site
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
         with:
           commit_message: Deploy GitHub Pages site
           branch: master
-          file_pattern: README.txt
+          file_pattern: README.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()
