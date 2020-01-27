@@ -11,7 +11,6 @@ jobs:
     steps:
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.1
-        working-directory: /results
         env:
           OCI_ROOT_URL: https://quay.io
           OCI_NAMESPACE: bloodorange/oci-conformance-test
@@ -21,5 +20,5 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: results
-          path: /results
+          path: '*.{html,xml}'
         if: always()
