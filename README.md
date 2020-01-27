@@ -4,6 +4,7 @@ Static HTML reports of [OCI Distribution Spec](https://github.com/opencontainers
 
 Note: these should not be considered "official" results. This repo is just for test purposes. 
 Registry providers should submit their own conformance results to [opencontainers/oci-conformance](https://github.com/opencontainers/oci-conformance).
+
 ## Registry Conformance Summary
 
 | Registry | Status | Report Link |
@@ -16,3 +17,6 @@ Registry providers should submit their own conformance results to [opencontainer
 | [ACR](https://azure.microsoft.com/en-us/services/container-registry/) | [![GitHub Actions status](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/acr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Aacr) | [report-acr.html](./results/report-acr.html) |
 | [GCR](https://cloud.google.com/container-registry/) | [![GitHub Actions status](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/gcr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Agcr) | [report-gcr.html](./results/report-gcr.html) |
 
+---
+
+This is a GitHub Pages site built from [this repo](https://github.com/bloodorangeio/oci-distribution-conformance-results).
