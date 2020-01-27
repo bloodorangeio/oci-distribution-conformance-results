@@ -14,7 +14,7 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@master
       - name: Ensure branch
-        run: (git checkout -b trigger-job-01  || true ) && git pull -f origin trigger-job-01 && git pull -f origin master
+        run: (git checkout -b trigger-job-01  || true ) && git pull --allow-unrelated-histories -f origin trigger-job-01 && git pull --allow-unrelated-histories -f origin master
         if: always()
       - name: Regen readme
         run: echo -e "$(sed '$ d' README.md )\n00 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
