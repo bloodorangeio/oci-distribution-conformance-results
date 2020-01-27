@@ -16,9 +16,11 @@ jobs:
           OCI_NAMESPACE: bloodorange/oci-conformance-test
           OCI_USERNAME: ${{ secrets.QUAY_USERNAME }}
           OCI_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+      - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
+        if: always()
       - name: Upload test results zip as build artifact
         uses: actions/upload-artifact@v1
         with:
           name: results
-          path: '*.{html,xml}'
+          path: .out/
         if: always()
