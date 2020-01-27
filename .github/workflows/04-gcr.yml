@@ -20,7 +20,7 @@ jobs:
         env:
           GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
       - name: Ensure branch
-        run: (git checkout -b trigger-job-05  && git pull -f origin trigger-job-04 ) || true
+        run: (git checkout -b trigger-job-05 || true ) && git pull -f origin trigger-job-05 && git pull -f origin trigger-job-04
         if: always()
       - name: Regen readme
         run: echo -e "$(sed '$ d' README.md )\n04 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
