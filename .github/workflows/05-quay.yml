@@ -3,9 +3,9 @@ name: quay
 on:
   push:
     branches:
-      - nada
+      - master
 
-  jobs:
+jobs:
   run:
     runs-on: ubuntu-latest
     steps:
