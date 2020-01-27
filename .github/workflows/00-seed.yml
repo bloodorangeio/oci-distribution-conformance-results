@@ -13,11 +13,11 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@master
-      - name: Regen readme
-        run: echo -e "$(sed '$ d' README.md )\n01-acr $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
-        if: always()
       - name: Ensure branch
-        run: git checkout -b trigger-job-01 || true
+        run: (git checkout -b trigger-job-01  && git pull -f origin master ) || true
+        if: always()
+      - name: Regen readme
+        run: echo -e "$(sed '$ d' README.md )\n00 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
         if: always()
       - name: Trigger job 01
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
@@ -28,3 +28,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()
+

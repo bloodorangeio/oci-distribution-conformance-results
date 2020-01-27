@@ -20,11 +20,11 @@ jobs:
         env:
           ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
           ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
-      - name: Regen readme
-        run: echo -e "$(sed '$ d' README.md )\n01-acr $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
-        if: always()
       - name: Ensure branch
-        run: git checkout -b trigger-job-02 || true
+        run: (git checkout -b trigger-job-02  && git pull -f origin trigger-job-01 ) || true
+        if: always()
+      - name: Regen readme
+        run: echo -e "$(sed '$ d' README.md )\n01 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
         if: always()
       - name: Trigger job 02
         uses: stefanzweifel/git-auto-commit-action@v2.5.0
