@@ -13,7 +13,7 @@ jobs:
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
         env:
-          OCI_ROOT_URL: http://localhost:5000
+          OCI_ROOT_URL: http://localhost:8080
           OCI_NAMESPACE: bloodorange/oci-conformance-test
       - run: pkill -9 zot
         if: always()
