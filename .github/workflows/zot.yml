@@ -1,6 +1,11 @@
 name: zot
 on: push
 jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
   run:
     services:
       zot:
@@ -8,7 +13,7 @@ jobs:
         ports:
           - 5001:5001
         volumes:
-          - ci/zot-test-config.json:/etc/zot/config.yml
+          - ./ci/zot-test-config.json:/etc/zot/config.yml
     runs-on: ubuntu-latest
     steps:
       - name: checkout source code
