@@ -5,11 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Start zot
-        run: |-
-          rm -rf zot/ && git clone https://github.com/anuvu/zot.git
-          pushd zot/ && make binary && popd
-          mkdir -p testbin/ && mv zot/bin/zot testbin/zot
-          rm -rf zot/ && testbin/zot serve &
+        run: docker run -d --name zot -p 5000:5000 quay.io/bloodorange/zot:b5b5a69
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
         env:
