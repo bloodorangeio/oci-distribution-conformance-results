@@ -14,8 +14,7 @@ jobs:
         image: quay.io/bloodorange/zot:b5b5a69
         ports:
           - 5001:5001
-        options:
-          - '-v /home/runner/work/oci-distribution-conformance-results/oci-distribution-conformance-results/ci/zot-test-config.yml:/etc/zot/config.yml'
+        options: '-v /home/runner/work/oci-distribution-conformance-results/oci-distribution-conformance-results/ci/zot-test-config.yml:/etc/zot/config.yml'
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
