@@ -6,20 +6,18 @@ jobs:
       zot:
         image: quay.io/bloodorange/zot:b5b5a69
         ports:
-          - 5000:5000
+          - 5001:5001
+        volumes:
+          - ci/zot-test-config.json:/etc/zot/config.yml
     runs-on: ubuntu-latest
     steps:
-      #- name: Start zot
-      #  run: |-
-      #    export OCI_ROOT_URL="http://$(docker inspect $(docker ps | grep registry | awk '{print $1}') | jq -r .[0].NetworkSettings.IPAddress):5000"
-      #    echo "OCI_ROOT_URL: ${OCI_ROOT_URL}"
+      - name: checkout source code
+        uses: actions/checkout@v2
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
         env:
-          OCI_ROOT_URL: http://zot:5000
+          OCI_ROOT_URL: http://zot:5001
           OCI_NAMESPACE: bloodorange/oci-conformance-test
-      - run: pkill -9 zot
-        if: always()
       - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
         if: always()
       - name: Upload test results zip as build artifact

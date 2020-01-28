@@ -16,8 +16,7 @@ Registry providers should submit their own conformance results to [opencontainer
 | [Quay.io](https://quay.io/repository/) | [![GitHub Actions status](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/quay/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Aquay) | [report-quay.html](./results/report-quay.html) |
 | [anuvu/zot](https://github.com/anuvu/zot) | [![GitHub Actions status](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/zot/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Azot) | [report-zot.html](./results/report-zot.html) |
 | [anuvu/zot](https://github.com/anuvu/zot) (w/ auth)| [![GitHub Actions status](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/zot-auth/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Azot-auth) | [report-zot-auth.html](./results/report-zot-auth.html) |
+
 ---
 
 This is a GitHub Pages site built from [this repo](https://github.com/bloodorangeio/oci-distribution-conformance-results).
-
-2020-01-27T16:29:46Z 9863c80bc3be7ad2aa7f3b4a9e03cb6179ea0f3a
