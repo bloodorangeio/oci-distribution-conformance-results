@@ -7,16 +7,16 @@ jobs:
       - run: docker volume rm -f src-mount && docker volume create src-mount
       - name: Checkout source code
         uses: actions/checkout@v2
-    container:
-      volumes:
-        - src-mount:/home/runner/work/oci-distribution-conformance-results/oci-distribution-conformance-results
+    #container:
+    #  volumes:
+    #    - src-mount:/home/runner/work/oci-distribution-conformance-results/oci-distribution-conformance-results
   run:
     needs: checkout
     services:
       zot:
         image: quay.io/bloodorange/zot:b5b5a69
         ports:
-          - 5001:5001
+          - 5000:5000
         #volumes:
         #  - src-mount/ci/zot-test-config.yml:/etc/zot/config.yml
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
         env:
-          OCI_ROOT_URL: http://zot:5001
+          OCI_ROOT_URL: http://zot:5000
           OCI_NAMESPACE: bloodorange/oci-conformance-test
       - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
         if: always()
