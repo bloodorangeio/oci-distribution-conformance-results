@@ -14,7 +14,7 @@ Registry providers should submit their own conformance results to [opencontainer
 | [Docker Hub](https://hub.docker.com/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/dockerhub/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Adockerhub) | [report-dockerhub.html](./results/report-dockerhub.html) |
 | [GCR](https://cloud.google.com/container-registry/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/gcr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Agcr) | [report-gcr.html](./results/report-gcr.html) |
 | [Quay.io](https://quay.io/repository/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/quay/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Aquay) | [report-quay.html](./results/report-quay.html) |
-| [anuvu/zot](https://github.com/anuvu/zot) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/zot/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Azot) | [report-zot.html](./results/report-zot.html) |
+| [anuvu/zot](https://github.com/anuvu/zot) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/zot/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Azot) | [report-zot.html](https://oci-distribution-conformance-results.s3-website-us-east-1.amazonaws.com/zot.html) |
 
 ---
 
