@@ -5,8 +5,6 @@ jobs:
     services:
       distribution:
         image: docker.io/registry:2.7.1
-        ports:
-          - 5000:5000
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests

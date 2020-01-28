@@ -5,8 +5,6 @@ jobs:
     services:
       zot:
         image: quay.io/bloodorange/zot:b5b5a69
-        ports:
-          - 5000:5000
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
