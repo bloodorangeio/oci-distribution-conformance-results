@@ -14,7 +14,8 @@ jobs:
         env:
           OCI_ROOT_URL: http://zot:5000
           OCI_NAMESPACE: bloodorange/oci-conformance-test
-      - run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/zot.html
+      - name: Upload test report to S3
+        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/zot.html
         if: always()
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
