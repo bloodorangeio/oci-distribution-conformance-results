@@ -6,15 +6,10 @@ jobs:
     steps:
       - name: Start zot
         run: |-
-          rm -rf zot/
-          git clone https://github.com/anuvu/zot.git
-          pushd zot/
-          make binary
-          popd
-          mkdir -p testbin/
-          mv zot/bin/zot testbin/zot
-          rm -rf zot/
-          testbin/zot serve ci/zot-test-config.json &
+          rm -rf zot/ && git clone https://github.com/anuvu/zot.git
+          pushd zot/ && make binary && popd
+          mkdir -p testbin/ && mv zot/bin/zot testbin/zot
+          rm -rf zot/ && testbin/zot serve &
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
         env:
