@@ -17,9 +17,8 @@ jobs:
         image: quay.io/bloodorange/zot:b5b5a69
         ports:
           - 5001:5001
-        container:
-          volumes:
-            - src-mount/ci/zot-test-config.yml:/etc/zot/config.yml
+        #volumes:
+        #  - src-mount/ci/zot-test-config.yml:/etc/zot/config.yml
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
