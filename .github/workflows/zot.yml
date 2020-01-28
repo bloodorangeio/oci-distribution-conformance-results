@@ -6,6 +6,7 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
+      - run : pwd && ls -la
   run:
     services:
       zot:
@@ -16,8 +17,6 @@ jobs:
           - ./ci/zot-test-config.json:/etc/zot/config.yml
     runs-on: ubuntu-latest
     steps:
-      - name: checkout source code
-        uses: actions/checkout@v2
       - name: Run OCI Distribution Spec conformance tests
         uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
         env:
