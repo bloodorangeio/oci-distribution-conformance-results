@@ -1,34 +1,24 @@
 name: docker-distribution
-
-on:
-  push:
-    branches:
-      - nada
-
+on: push
 jobs:
   run:
+    services:
+      distribution:
+        image: docker.io/registry:2.7.1
+        ports:
+          - 5000:5000
     runs-on: ubuntu-latest
     steps:
-      - name: checkout this repo source code
-        uses: actions/checkout@master
-      - name: setup go environment
-        uses: actions/setup-go@v1
-        with:
-          go-version: '1.13.5'
-      - name: run tests against docker/distribution
-        run: ci/ci-docker-dist.sh
-      - name: Ensure branch
-        run: git config --global user.name "$GITHUB_ACTOR" && git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com" && (git checkout -b trigger-job-03  || true ) && git fetch origin trigger-job-03 && git merge --allow-unrelated-histories -s recursive -X theirs origin/trigger-job-03 && git fetch origin trigger-job-02 && git merge --allow-unrelated-histories -s recursive -X theirs origin/trigger-job-02
-        if: always()
-      - name: Regen readme
-        run: echo -e "$(sed '$ d' README.md )\n02 $(date -u +'%Y-%m-%dT%H:%M:%SZ') ${GITHUB_SHA}" > README.md
-        if: always()
-      - name: Trigger job 03
-        uses: stefanzweifel/git-auto-commit-action@v2.5.0
-        with:
-          commit_message: Trigger job 03
-          branch: trigger-job-03
-          file_pattern: README.md
+      - name: Run OCI Distribution Spec conformance tests
+        uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OCI_ROOT_URL: http://distribution:5000
+          OCI_NAMESPACE: bloodorange/oci-conformance-test
+      - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
+        if: always()
+      - name: Upload test results zip as build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: oci-test-results-${{ github.sha }}
+          path: .out/
         if: always()

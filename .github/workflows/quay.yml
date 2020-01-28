@@ -1,8 +1,5 @@
-name: oci-test
-on:
-  push:
-    branches:
-      - nada
+name: quay
+on: push
 jobs:
   run:
     runs-on: ubuntu-latest
