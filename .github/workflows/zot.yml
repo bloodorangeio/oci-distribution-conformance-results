@@ -4,12 +4,12 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - run: docker volume rm -f src-mount && docker volume create src-mount
+      - run: docker volume rm -f etc-zot-mount && docker volume create etc-zot-mount
       - name: Checkout source code
         uses: actions/checkout@v2
-    #container:
-    #  volumes:
-    #    - src-mount:/home/runner/work/oci-distribution-conformance-results/oci-distribution-conformance-results
+    container:
+      volumes:
+        - etc-zot-mount:/home/runner/work/oci-distribution-conformance-results/oci-distribution-conformance-results/etc/zot
   run:
     needs: checkout
     services:
@@ -17,8 +17,8 @@ jobs:
         image: quay.io/bloodorange/zot:b5b5a69
         ports:
           - 5000:5000
-        #volumes:
-        #  - src-mount/ci/zot-test-config.yml:/etc/zot/config.yml
+        volumes:
+          - etc-zot-mount:/etc/zot
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
