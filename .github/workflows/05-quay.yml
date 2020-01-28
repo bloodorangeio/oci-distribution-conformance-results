@@ -1,5 +1,8 @@
 name: oci-test
-on: push
+on:
+  push:
+    branches:
+      - nada
 jobs:
   run:
     runs-on: ubuntu-latest
