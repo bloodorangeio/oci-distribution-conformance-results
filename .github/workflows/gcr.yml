@@ -11,11 +11,8 @@ jobs:
           OCI_NAMESPACE: helmsummit/myrepo
           OCI_USERNAME: oauth2accesstoken
           OCI_PASSWORD: fakepassword # TODO: fix $(gcloud auth print-access-token)
-      - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
+      - run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/gcr.html
         if: always()
-      - name: Upload test results zip as build artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: oci-test-results-${{ github.sha }}
-          path: .out/
-        if: always()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
