@@ -1,7 +1,9 @@
 name: zot
 on:
   repository_dispatch:
-    types: manual-trigger-zot
+    types:
+      - manual-trigger
+      - manual-trigger-zot
   schedule:
     - cron: '0 * * * *'
 jobs:

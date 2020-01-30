@@ -1,7 +1,9 @@
 name: gcr
 on:
   repository_dispatch:
-    types: manual-trigger-gcr
+    types:
+      - manual-trigger
+      - manual-trigger-gcr
   schedule:
     - cron: '0 * * * *'
 jobs:

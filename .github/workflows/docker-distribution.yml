@@ -1,7 +1,9 @@
 name: docker-distribution
 on:
   repository_dispatch:
-    types: manual-trigger-docker-distribution
+    types:
+      - manual-trigger
+      - manual-trigger-docker-distribution
   schedule:
     - cron: '0 * * * *'
 jobs:

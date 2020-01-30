@@ -1,7 +1,9 @@
 name: dockerhub
 on:
   repository_dispatch:
-    types: manual-trigger-dockerhub
+    types:
+      - manual-trigger
+      - manual-trigger-dockerhub
   schedule:
     - cron: '0 * * * *'
 jobs:

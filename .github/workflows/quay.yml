@@ -1,7 +1,9 @@
 name: quay
 on:
   repository_dispatch:
-    types: manual-trigger-quay
+    types:
+      - manual-trigger
+      - manual-trigger-quay
   schedule:
     - cron: '0 * * * *'
 jobs:

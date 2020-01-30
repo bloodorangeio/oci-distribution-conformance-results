@@ -1,7 +1,9 @@
 name: acr
 on:
   repository_dispatch:
-    types: manual-trigger-acr
+    types:
+      - manual-trigger
+      - manual-trigger-acr
   schedule:
     - cron: '0 * * * *'
 jobs:
