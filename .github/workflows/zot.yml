@@ -1,7 +1,7 @@
 name: zot
 on:
   repository_dispatch:
-    types: manual-trigger
+    types: manual-trigger-zot
   schedule:
     - cron: '0 * * * *'
 jobs:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
-        uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
+        uses: bloodorangeio/oci-test-action@bloodorange-fork
         env:
           OCI_ROOT_URL: http://zot:5000
           OCI_NAMESPACE: bloodorange/oci-conformance-test
