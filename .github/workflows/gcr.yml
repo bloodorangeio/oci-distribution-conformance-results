@@ -1,7 +1,7 @@
 name: gcr
 on:
   repository_dispatch:
-    types: manual-trigger
+    types: manual-trigger-gcr
   schedule:
     - cron: '0 * * * *'
 jobs:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
-        uses: bloodorangeio/oci-test-action@v1.0.0-alpha.2
+        uses: bloodorangeio/oci-test-action@bloodorange-fork
         env:
           OCI_ROOT_URL: https://gcr.io
           OCI_NAMESPACE: helmsummit/myrepo
