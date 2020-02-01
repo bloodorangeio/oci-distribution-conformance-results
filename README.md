@@ -7,17 +7,25 @@ Registry providers should submit their own conformance results to [opencontainer
 
 ## Registry Conformance Summary
 
+### Open Source
+
+| Registry | Status | Notes| Links |
+| -------- | -------- | -------- | -------- |
+| [anuvu/zot](https://github.com/anuvu/zot) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/zot/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Azot) | default settings | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/zot.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/zot.html) |
+| [containersolutions/trow](https://github.com/containersolutions/trow) | | TODO | |
+| [docker/distribution](https://github.com/docker/distribution) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/docker-distribution/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Adocker-distribution) | default settings | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/docker-distribution.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/docker-dist.html) |
+| [goharbor/harbor](https://github.com/goharbor/harbor) | | TODO | |
+| [quay/quay](https://github.com/quay/quay) | | TODO | |
+
+### Services
+
 | Registry | Status | Notes| Links |
 | -------- | -------- | -------- | -------- |
 | [ACR](https://azure.microsoft.com/en-us/services/container-registry/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/acr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Aacr) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/acr.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/acr.html) |
-| [docker/distribution](https://github.com/docker/distribution) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/docker-distribution/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Adocker-distribution) | with default settings | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/docker-distribution.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/docker-dist.html) |
 | [Docker Hub](https://hub.docker.com/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/dockerhub/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Adockerhub) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/dockerhub.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/dockerhub.html) |
 | [ECR](https://aws.amazon.com/ecr/) | | todo: add job definition | |
 | [GCR](https://cloud.google.com/container-registry/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/gcr/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Agcr) | auth not setup properly | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/gcr.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/gcr.html) |
-| [Habor](https://goharbor.io/) | | todo: add job definition  | |
 | [Quay.io](https://quay.io/repository/) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/quay/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Aquay) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/quay.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/quay.html) |
-| [Trow](https://github.com/containersolutions/trow) | | todo: add job definition  | |
-| [anuvu/zot](https://github.com/anuvu/zot) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/zot/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Azot) | | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/zot.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/zot.html) |
 
 ---
 
