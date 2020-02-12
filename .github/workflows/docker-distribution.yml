@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
-        uses: bloodorangeio/oci-test-action@bloodorange-fork
+        uses: opencontainers/distribution-spec@master
         env:
           OCI_ROOT_URL: http://distribution:5000
           OCI_NAMESPACE: bloodorange/oci-conformance-test
