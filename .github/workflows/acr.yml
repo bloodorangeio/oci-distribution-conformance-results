@@ -13,7 +13,7 @@ jobs:
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
-          OCI_ROOT_URL: https://bloodorange.azurecr.io
+          OCI_ROOT_URL: https://ocitest.azurecr.io
           OCI_NAMESPACE: bloodorange/oci-conformance-test
           OCI_USERNAME: ${{ secrets.ACR_USERNAME }}
           OCI_PASSWORD: ${{ secrets.ACR_PASSWORD }}
