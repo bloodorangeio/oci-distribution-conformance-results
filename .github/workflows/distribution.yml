@@ -10,7 +10,7 @@ jobs:
   run:
     services:
       distribution:
-        image: docker.io/registry:2.7.1
+        image: quay.io/bloodorange/distribution:242c306b
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
