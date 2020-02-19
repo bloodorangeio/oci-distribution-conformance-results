@@ -7,21 +7,25 @@ on:
   schedule:
     - cron: '0 * * * *'
 jobs:
+  trow-setup:
+    runs-on: ubuntu-latest
+    run: |
+      echo '#!/bin/sh' > ./custom-entrypoint.sh
+      echo '/start-trow.sh --no-tls' >> ./custom-entrypoint.sh
+      chmod +x ./custom-entrypoint.sh
+
   run:
+    services:
+      trow:
+        image: containersol/trow:default
+        options: -v ./custom-entrypoint:/custom-entrypoint.sh --entrypoint /custom-entrypoint.sh
     runs-on: ubuntu-latest
     steps:
-      - name: Start trow service
-        run: |
-          docker run -d --name=trow -p 8000:8000 containersol/trow:default --no-tls
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
-          OCI_ROOT_URL: http://localhost:8000
+          OCI_ROOT_URL: http://trow:8000
           OCI_NAMESPACE: bloodorange/oci-conformance-test
-      - name: Stop trow service
-        if: always()
-        run: |
-          docker rm -f trow
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/trow.html
         if: always()
