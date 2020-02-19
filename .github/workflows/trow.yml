@@ -11,7 +11,7 @@ jobs:
     services:
       trow:
         image: containersol/trow:default
-        options: --no-tls
+        command: --no-tls
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
