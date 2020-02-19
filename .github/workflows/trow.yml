@@ -6,22 +6,11 @@ on:
       - manual-trigger-trow
   schedule:
     - cron: '0 * * * *'
-
 jobs:
-  trow-image:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create custom trow image
-        run: |
-          echo 'FROM docker.io/containersol/trow:default' > Dockerfile
-          echo 'ENTRYPOINT ["/trow", "--no-tls"]' >> Dockerfile
-          docker build . -t local-trow
   run:
-    needs: trow-image
     services:
       trow:
-        image: local-trow
-        options: -v ./custom-entrypoint:/custom-entrypoint.sh --entrypoint /custom-entrypoint.sh
+        image: quay.io/bloodorange/trow:9576300
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
