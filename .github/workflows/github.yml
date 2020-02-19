@@ -14,7 +14,7 @@ jobs:
         uses: opencontainers/distribution-spec@master
         env:
           OCI_ROOT_URL: https://docker.pkg.github.com
-          OCI_NAMESPACE: bloodorangeio/oci-distribution-conformance-results
+          OCI_NAMESPACE: bloodorangeio/oci-distribution-conformance-results/ocitest
           OCI_USERNAME: bloodorangeio
           OCI_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload test report to S3
