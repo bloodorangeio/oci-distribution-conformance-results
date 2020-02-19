@@ -8,19 +8,19 @@ on:
     - cron: '0 * * * *'
 
 jobs:
-  trow-setup:
+  trow-image:
     runs-on: ubuntu-latest
     steps:
-      - name: Create custom trow entrypoint
+      - name: Create custom trow image
         run: |
-          echo '#!/bin/sh' > ./custom-entrypoint.sh
-          echo '/start-trow.sh --no-tls' >> ./custom-entrypoint.sh
-          chmod +x ./custom-entrypoint.sh
-
+          echo 'FROM docker.io/containersol/trow:default' > Dockerfile
+          echo 'ENTRYPOINT ["/trow", "--no-tls"]' >> Dockerfile
+          docker build . -t local-trow
   run:
+    needs: trow-image
     services:
       trow:
-        image: containersol/trow:default
+        image: local-trow
         options: -v ./custom-entrypoint:/custom-entrypoint.sh --entrypoint /custom-entrypoint.sh
     runs-on: ubuntu-latest
     steps:
