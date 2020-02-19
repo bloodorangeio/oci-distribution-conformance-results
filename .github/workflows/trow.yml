@@ -6,13 +6,16 @@ on:
       - manual-trigger-trow
   schedule:
     - cron: '0 * * * *'
+
 jobs:
   trow-setup:
     runs-on: ubuntu-latest
-    run: |
-      echo '#!/bin/sh' > ./custom-entrypoint.sh
-      echo '/start-trow.sh --no-tls' >> ./custom-entrypoint.sh
-      chmod +x ./custom-entrypoint.sh
+    steps:
+      - name: Create custom trow entrypoint
+        run: |
+          echo '#!/bin/sh' > ./custom-entrypoint.sh
+          echo '/start-trow.sh --no-tls' >> ./custom-entrypoint.sh
+          chmod +x ./custom-entrypoint.sh
 
   run:
     services:
