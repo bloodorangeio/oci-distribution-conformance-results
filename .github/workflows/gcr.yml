@@ -10,13 +10,21 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      - name: Generate Google access token
+        run: |
+          echo ${GCLOUD_SERVICE_KEY} | base64 -d > ./credentials.json
+          trap "rm -f ./credentials.json" EXIT
+          gcloud auth activate-service-account ociaccessb@helmsummit.iam.gserviceaccount.com --key-file="./credentials.json" --project=helmsummit
+          export GCLOUD_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+          echo "::add-mask::${GCLOUD_ACCESS_TOKEN}"
+          echo "::set-env name=GCLOUD_ACCESS_TOKEN::${GCLOUD_ACCESS_TOKEN}"
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
           OCI_ROOT_URL: https://gcr.io
           OCI_NAMESPACE: helmsummit/myrepo
           OCI_USERNAME: oauth2accesstoken
-          OCI_PASSWORD: fakepassword # TODO: fix $(gcloud auth print-access-token)
+          OCI_PASSWORD: ${{ env.GCLOUD_ACCESS_TOKEN }}
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/gcr.html
         if: always()
