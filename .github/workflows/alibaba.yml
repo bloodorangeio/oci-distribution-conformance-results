@@ -1,0 +1,25 @@
+name: alibaba
+on:
+  repository_dispatch:
+    types:
+      - manual-trigger
+      - manual-trigger-alibaba
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run OCI Distribution Spec conformance tests
+        uses: opencontainers/distribution-spec@master
+        env:
+          OCI_ROOT_URL: https://registry-intl.cn-hangzhou.aliyuncs.com
+          OCI_NAMESPACE: ocitest/ocitest
+          OCI_USERNAME: ${{ secrets.ALIBABA_USERNAME }}
+          OCI_PASSWORD: ${{ secrets.ALIBABA_PASSWORD }}
+      - name: Upload test report to S3
+        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/alibaba.html
+        if: always()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
