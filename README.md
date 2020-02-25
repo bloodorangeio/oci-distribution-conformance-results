@@ -16,6 +16,7 @@ Registry providers should submit their own conformance results to [opencontainer
 | [docker/distribution](https://github.com/docker/distribution) | [![](https://github.com/bloodorangeio/oci-distribution-conformance-results/workflows/distribution/badge.svg)](https://github.com/bloodorangeio/oci-distribution-conformance-results/actions?query=workflow%3Adistribution) | Known issues: [#1936](https://github.com/docker/distribution/issues/1936) | [job definition](https://github.com/bloodorangeio/oci-distribution-conformance-results/blob/master/.github/workflows/distribution.yml) &#x7c; [test report](https://oci-distribution-conformance-results.s3.amazonaws.com/distribution.html) |
 | [goharbor/harbor](https://github.com/goharbor/harbor) | | TODO | |
 | [quay/quay](https://github.com/quay/quay) | | TODO | |
+| [sonatype/nexus3](https://github.com/sonatype/docker-nexus3) | | TODO | |
 
 ### Services
 
