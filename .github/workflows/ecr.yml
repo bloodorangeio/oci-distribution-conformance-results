@@ -1,11 +1,8 @@
-name: ecr
+name: ecr-newsetup
 on:
-  repository_dispatch:
-    types:
-      - manual-trigger
-      - manual-trigger-ecr
-  schedule:
-    - cron: '0 6 * * *'
+  push:
+    branches:
+      - initial-setup
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -19,14 +16,14 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Run OCI Distribution Spec conformance tests
-        uses: opencontainers/distribution-spec@master
+        uses: bloodorangeio/distribution-spec@split-tests
         env:
           OCI_ROOT_URL: https://044887301101.dkr.ecr.us-east-1.amazonaws.com
           OCI_NAMESPACE: ocitest
           OCI_USERNAME: AWS
           OCI_PASSWORD: ${{ env.ECR_ACCESS_TOKEN }}
       - name: Upload test report to S3
-        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/ecr.html
+        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/ecr-newsetup.html
         if: always()
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

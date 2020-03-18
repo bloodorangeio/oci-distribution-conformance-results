@@ -1,11 +1,8 @@
-name: gcr
+name: gcr-newsetup
 on:
-  repository_dispatch:
-    types:
-      - manual-trigger
-      - manual-trigger-gcr
-  schedule:
-    - cron: '0 6 * * *'
+  push:
+    branches:
+      - initial-setup
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -21,14 +18,14 @@ jobs:
         env:
           GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
       - name: Run OCI Distribution Spec conformance tests
-        uses: opencontainers/distribution-spec@master
+        uses: bloodorangeio/distribution-spec@split-tests
         env:
           OCI_ROOT_URL: https://gcr.io
           OCI_NAMESPACE: helmsummit/myrepo
           OCI_USERNAME: oauth2accesstoken
           OCI_PASSWORD: ${{ env.GCLOUD_ACCESS_TOKEN }}
       - name: Upload test report to S3
-        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/gcr.html
+        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/gcr-newsetup.html
         if: always()
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
