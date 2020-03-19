@@ -14,6 +14,9 @@ jobs:
           OCI_NAMESPACE: bloodorangeio/oci-conformance-test
           OCI_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           OCI_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          OCI_TEST_PUSH: 1
+          OCI_TEST_DISCOVERY: 1
+          OCI_TEST_CONTENT_MANAGEMENT: 1
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/dockerhub-newsetup.html
         if: always()
