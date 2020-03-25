@@ -8,7 +8,7 @@ jobs:
   run:
     services:
       trow:
-        image: quay.io/bloodorange/trow:9576300
+        image: quay.io/bloodorange/trow:b54f366-fork
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
