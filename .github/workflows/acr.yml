@@ -14,6 +14,9 @@ jobs:
           OCI_NAMESPACE: bloodorange/oci-conformance-test
           OCI_USERNAME: ${{ secrets.ACR_USERNAME }}
           OCI_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+        	OCI_TEST_PUSH: 1
+          OCI_TEST_DISCOVERY: 1
+          OCI_TEST_CONTENT_MANAGEMENT: 1
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/acr-newsetup.html
         if: always()
