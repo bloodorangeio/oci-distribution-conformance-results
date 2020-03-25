@@ -7,7 +7,7 @@ jobs:
   run:
     services:
       zot:
-        image: quay.io/bloodorange/zot:2bbfe7c
+        image: quay.io/bloodorange/trow:b54f366-fork
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
