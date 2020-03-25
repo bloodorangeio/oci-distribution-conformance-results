@@ -2,7 +2,7 @@ name: ecr-split-tests
 on:
   push:
     branches:
-      - split-tests
+      - split-testsREMOVEMETOTRIGGER
 jobs:
   run:
     runs-on: ubuntu-latest

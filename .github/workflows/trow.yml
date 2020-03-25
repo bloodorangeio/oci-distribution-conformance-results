@@ -2,7 +2,7 @@ name: trow-split-tests
 on:
   push:
     branches:
-      - split-tests
+      - split-testsREMOVEMETOTRIGGER
 jobs:
   run:
     services:
