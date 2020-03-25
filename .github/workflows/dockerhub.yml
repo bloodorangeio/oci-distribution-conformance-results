@@ -2,7 +2,7 @@ name: dockerhub-split-tests
 on:
   push:
     branches:
-      - split-testsREMOVETOTRIGGER
+      - split-tests
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
           OCI_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
           OCI_TEST_PUSH: 1
           OCI_TEST_DISCOVERY: 1
-          # OCI_TEST_CONTENT_MANAGEMENT: 1
+          OCI_TEST_MANAGEMENT: 0
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/dockerhub-split-tests.html
         if: always()

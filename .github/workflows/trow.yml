@@ -2,7 +2,7 @@ name: trow-split-tests
 on:
   push:
     branches:
-      - split-testsREMOVETOTRIGGER
+      - split-tests
 jobs:
   run:
     services:
@@ -17,7 +17,7 @@ jobs:
           OCI_NAMESPACE: bloodorange/oci-conformance-test
           OCI_TEST_PUSH: 1
           OCI_TEST_DISCOVERY: 1
-          OCI_TEST_CONTENT_MANAGEMENT: 1
+          OCI_TEST_MANAGEMENT: 1
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/trow-split-tests.html
         if: always()
