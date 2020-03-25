@@ -14,7 +14,7 @@ jobs:
           OCI_NAMESPACE: bloodorange/oci-conformance-test
           OCI_USERNAME: ${{ secrets.ACR_USERNAME }}
           OCI_PASSWORD: ${{ secrets.ACR_PASSWORD }}
-        	OCI_TEST_PUSH: 1
+          OCI_TEST_PUSH: 1
           OCI_TEST_DISCOVERY: 1
           OCI_TEST_CONTENT_MANAGEMENT: 1
       - name: Upload test report to S3
