@@ -2,7 +2,7 @@ name: jcr-split-tests
 on:
   push:
     branches:
-      - split-tests
+      - split-testsREMOVETOTRIGGER
 jobs:
   run:
     services:

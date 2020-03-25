@@ -2,7 +2,7 @@ name: quay-split-tests
 on:
   push:
     branches:
-      - split-tests
+      - split-testsREMOVETOTRIGGER
 jobs:
   run:
     runs-on: ubuntu-latest
