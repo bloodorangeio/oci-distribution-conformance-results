@@ -1,8 +1,8 @@
-name: gcr-newsetup
+name: gcr-split-tests
 on:
   push:
     branches:
-      - initial-setup
+      - split-tests
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -24,8 +24,11 @@ jobs:
           OCI_NAMESPACE: helmsummit/myrepo
           OCI_USERNAME: oauth2accesstoken
           OCI_PASSWORD: ${{ env.GCLOUD_ACCESS_TOKEN }}
+          OCI_TEST_PUSH: 1
+          OCI_TEST_DISCOVERY: 1
+          OCI_TEST_CONTENT_MANAGEMENT: 1
       - name: Upload test report to S3
-        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/gcr-newsetup.html
+        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/gcr-split-tests.html
         if: always()
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
