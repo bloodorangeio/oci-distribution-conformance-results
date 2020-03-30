@@ -2,13 +2,13 @@ name: quay-split-tests
 on:
   push:
     branches:
-      - split-testsREMOVEMETOTRIGGER
+      - split-tests
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
-        uses: bloodorangeio/distribution-spec@split-tests
+        uses: bloodorangeio/distribution-spec@split-tests-2
         env:
           OCI_ROOT_URL: https://quay.io
           OCI_NAMESPACE: bloodorange/oci-conformance-test

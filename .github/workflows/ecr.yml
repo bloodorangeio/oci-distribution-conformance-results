@@ -2,7 +2,7 @@ name: ecr-split-tests
 on:
   push:
     branches:
-      - split-testsREMOVEMETOTRIGGER
+      - split-tests
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Run OCI Distribution Spec conformance tests
-        uses: bloodorangeio/distribution-spec@split-tests
+        uses: bloodorangeio/distribution-spec@split-tests-2
         env:
           OCI_ROOT_URL: https://044887301101.dkr.ecr.us-east-1.amazonaws.com
           OCI_NAMESPACE: ocitest

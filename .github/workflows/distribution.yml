@@ -2,7 +2,7 @@ name: distribution-split-tests
 on:
   push:
     branches:
-      - split-testsREMOVEMETOTRIGGER
+      - split-tests
 jobs:
   run:
     services:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run OCI Distribution Spec conformance tests
-        uses: bloodorangeio/distribution-spec@split-tests
+        uses: bloodorangeio/distribution-spec@split-tests-2
         env:
           OCI_ROOT_URL: http://distribution:5000
           OCI_NAMESPACE: bloodorange/oci-conformance-test

@@ -2,7 +2,7 @@ name: jcr-split-tests
 on:
   push:
     branches:
-      - split-testsREMOVEMETOTRIGGER
+      - split-tests
 jobs:
   run:
     services:
@@ -19,7 +19,7 @@ jobs:
       - name: Apply conformance config to JCR
         run: curl -u admin:password -X POST -H "Content-type:application/xml" --data-binary "@$GITHUB_WORKSPACE/config/jcr/artifactory.config.import.xml"  http://localhost:${{ job.services.jcr.ports['8081'] }}/artifactory/api/system/configuration
       - name: Run OCI Distribution Spec conformance tests
-        uses: bloodorangeio/distribution-spec@split-tests
+        uses: bloodorangeio/distribution-spec@split-tests-2
         env:
           OCI_ROOT_URL: http://jcr:8081
           OCI_NAMESPACE: conformance-local/oci-conformance-test
