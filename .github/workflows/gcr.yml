@@ -25,8 +25,8 @@ jobs:
           OCI_USERNAME: oauth2accesstoken
           OCI_PASSWORD: ${{ env.GCLOUD_ACCESS_TOKEN }}
           OCI_TEST_PUSH: 0
-          OCI_TEST_DISCOVERY: 0
-          OCI_TEST_MANAGEMENT: 0
+          OCI_TEST_CONTENT_DISCOVERY: 0
+          OCI_TEST_CONTENT_MANAGEMENT: 0
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/gcr-split-tests.html
         if: always()
