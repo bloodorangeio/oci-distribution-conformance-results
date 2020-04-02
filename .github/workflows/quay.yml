@@ -11,9 +11,12 @@ jobs:
         uses: bloodorangeio/distribution-spec@split-tests-2
         env:
           OCI_ROOT_URL: https://quay.io
-          OCI_NAMESPACE: bloodorange/oci-conformance-test
           OCI_USERNAME: ${{ secrets.QUAY_USERNAME }}
           OCI_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+          OCI_NAMESPACE: bloodorange/zot
+          OCI_TAG_NAME: 9ecb5ce
+          OCI_MANIFEST_DIGEST: sha256:0a259d48413729f4b8d94661de229820fcc3faf9f9420ef175d300350a2fcf45
+          OCI_BLOB_DIGEST: sha256:d2620f5cc0ac78296a4277542954c2e29ea71508bb9e5b6942870e887ca1fab6
           OCI_TEST_PUSH: 0
           OCI_TEST_CONTENT_DISCOVERY: 0
           OCI_TEST_CONTENT_MANAGEMENT: 0
