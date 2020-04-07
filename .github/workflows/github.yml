@@ -10,13 +10,20 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      - name: Push known Docker image to registry
+        run: docker login docker.pkg.github.com -u bloodorangeio -p ${DOCKER_PASSWORD} && docker pull ${ORIG_REPO}:${TAG} && docker tag ${ORIG_REPO}:${TAG} ${NEW_REPO}:${TAG} && docker push ${NEW_REPO}:${TAG}
+        env:
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          ORIG_REPO: quay.io/bitnami/nginx
+          NEW_REPO: docker.pkg.github.com/bloodorangeio/oci-distribution-conformance-results/ocitest
+          TAG: 1.16.1-debian-10-r77
       - name: Run OCI Distribution Spec conformance tests
         uses: opencontainers/distribution-spec@master
         env:
           OCI_ROOT_URL: https://docker.pkg.github.com
-          OCI_NAMESPACE: bloodorangeio/oci-distribution-conformance-results/ocitest
           OCI_USERNAME: bloodorangeio
           OCI_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          OCI_NAMESPACE: bloodorangeio/oci-distribution-conformance-results/ocitest
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/github.html
         if: always()
