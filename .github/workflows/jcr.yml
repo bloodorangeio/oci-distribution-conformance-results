@@ -25,10 +25,9 @@ jobs:
         uses: opencontainers/distribution-spec@master
         env:
           OCI_ROOT_URL: http://jcr:8081
-          OCI_NAMESPACE: conformance-local/oci-conformance-test
           OCI_USERNAME: admin
           OCI_PASSWORD: password
-          # OCI_DEBUG: true
+          OCI_NAMESPACE: conformance-local/oci-conformance-test
       - name: Upload test report to S3
         run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/jcr.html
         if: always()
