@@ -1,0 +1,37 @@
+name: harbor
+on:
+  repository_dispatch:
+    types:
+      - manual-trigger
+      - manual-trigger-harbor
+  schedule:
+    - cron: '0 6 * * *'
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Google access token
+        run: |
+          echo ${GCLOUD_SERVICE_KEY} | base64 -d > ./credentials.json
+          trap "rm -f ./credentials.json" EXIT
+          gcloud auth activate-service-account ociaccessb@helmsummit.iam.gserviceaccount.com --key-file="./credentials.json" --project=helmsummit
+          export GCLOUD_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+          echo "::add-mask::${GCLOUD_ACCESS_TOKEN}"
+          echo "::set-env name=GCLOUD_ACCESS_TOKEN::${GCLOUD_ACCESS_TOKEN}"
+        env:
+          GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+      - name: Run OCI Distribution Spec conformance tests
+        uses: opencontainers/distribution-spec@master
+        env:
+          OCI_ROOT_URL: https://demo.goharbor.io
+          OCI_USERNAME: ${{ secrets.Harbor_USERNAME }}
+          OCI_PASSWORD: ${{ secrets.Harbor_PASSWORD }}
+          OCI_NAMESPACE: bloodorange/oci-conformance-test
+          OCI_TEST_PUSH: 1
+          OCI_TEST_PULL: 1
+      - name: Upload test report to S3
+        run: aws s3 cp --acl public-read report.html s3://oci-distribution-conformance-results/harbor.html
+        if: always()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
