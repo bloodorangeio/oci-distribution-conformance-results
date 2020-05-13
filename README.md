@@ -3,7 +3,7 @@
 ---
 <p><strong style="color: #bfac1d">⚠️ DEPRECATED</strong></p>
 
-For latest results, please see https://conformance.opencontainers.org/distribution-spec/
+For latest results, please see [https://conformance.opencontainers.org/distribution-spec/](https://conformance.opencontainers.org/distribution-spec/)
 
 ---
 
