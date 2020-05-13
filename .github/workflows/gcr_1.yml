@@ -11,7 +11,7 @@ jobs:
         run: |
           echo ${GCLOUD_SERVICE_KEY} | base64 -d > ./credentials.json
           trap "rm -f ./credentials.json" EXIT
-          gcloud auth activate-service-account ociaccessb@helmsummit.iam.gserviceaccount.com --key-file="./credentials.json" --project=REPLACEME
+          gcloud auth activate-service-account ociaccessb@helmsummit.iam.gserviceaccount.com --key-file="./credentials.json" --project=helmsummit
           export GCLOUD_ACCESS_TOKEN="$(gcloud auth print-access-token)"
           echo "::add-mask::${GCLOUD_ACCESS_TOKEN}"
           echo "::set-env name=GCLOUD_ACCESS_TOKEN::${GCLOUD_ACCESS_TOKEN}"
