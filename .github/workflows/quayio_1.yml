@@ -1,0 +1,30 @@
+name: quayio-1
+on:
+  push:
+    branches:
+      - master
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run OCI Distribution Spec conformance tests
+        uses: bloodorangeio/distribution-spec@master
+        env:
+          OCI_ROOT_URL: https://quay.io
+          OCI_USERNAME: ${{ secrets.QUAY_USERNAME }}
+          OCI_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+          OCI_NAMESPACE: bloodorange/oci-conformance-test
+          OCI_TEST_PULL: 1
+          OCI_TEST_PUSH: 1
+          OCI_TEST_CONTENT_DISCOVERY: 1
+          OCI_TEST_CONTENT_MANAGEMENT: 1
+          OCI_HIDE_SKIPPED_WORKFLOWS: 0
+          OCI_DEBUG: 0
+      - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
+        if: always()
+      - name: Upload test results zip as build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: oci-test-results-${{ github.sha }}
+          path: .out/
+        if: always()

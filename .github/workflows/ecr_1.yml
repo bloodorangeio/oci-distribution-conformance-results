@@ -1,0 +1,38 @@
+name: ecr-1
+on:
+  push:
+    branches:
+      - master
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Amazon access token
+        run: |
+          export ECR_ACCESS_TOKEN="$(aws --region=us-east-1 ecr get-login --no-include-email | awk '{print $6}')"
+          echo "::add-mask::${ECR_ACCESS_TOKEN}"
+          echo "::set-env name=ECR_ACCESS_TOKEN::${ECR_ACCESS_TOKEN}"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ECR_ACCESS_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_ACCESS_AWS_SECRET_ACCESS_KEY }}
+      - name: Run OCI Distribution Spec conformance tests
+        uses: bloodorangeio/distribution-spec@master
+        env:
+          OCI_ROOT_URL: https://044887301101.dkr.ecr.us-east-1.amazonaws.com
+          OCI_USERNAME: AWS
+          OCI_PASSWORD: ${{ env.ECR_ACCESS_TOKEN }}
+          OCI_NAMESPACE: ocitest
+          OCI_TEST_PULL: 1
+          OCI_TEST_PUSH: 1
+          OCI_TEST_CONTENT_DISCOVERY: 1
+          OCI_TEST_CONTENT_MANAGEMENT: 1
+          OCI_HIDE_SKIPPED_WORKFLOWS: 0
+          OCI_DEBUG: 0
+      - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
+        if: always()
+      - name: Upload test results zip as build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: oci-test-results-${{ github.sha }}
+          path: .out/
+        if: always()

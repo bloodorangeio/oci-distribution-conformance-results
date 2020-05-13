@@ -1,5 +1,12 @@
 # oci-distribution-conformance-results
 
+---
+<p><strong style="color: #bfac1d">⚠️ DEPRECATED</strong></p>
+
+For latest results, please see https://conformance.opencontainers.org/distribution-spec/
+
+---
+
 Static HTML reports of [OCI Distribution Spec](https://github.com/opencontainers/distribution-spec) conformance tests run against various registries.
 
 Note: these should not be considered "official" results. This repo is just for test purposes. 

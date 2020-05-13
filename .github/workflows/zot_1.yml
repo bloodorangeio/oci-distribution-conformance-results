@@ -1,0 +1,31 @@
+name: zot-1
+on:
+  push:
+    branches:
+      - master
+jobs:
+  run:
+    services:
+      zot:
+        image: quay.io/bloodorange/zot:b2338b4-no-gc # TODO: use anuvu-provided image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run OCI Distribution Spec conformance tests
+        uses: bloodorangeio/distribution-spec@master
+        env:
+          OCI_ROOT_URL: http://zot:5000
+          OCI_NAMESPACE: oci-conformance/distribution-test
+          OCI_TEST_PULL: 1
+          OCI_TEST_PUSH: 1
+          OCI_TEST_CONTENT_DISCOVERY: 1
+          OCI_TEST_CONTENT_MANAGEMENT: 1
+          OCI_HIDE_SKIPPED_WORKFLOWS: 0
+          OCI_DEBUG: 0
+      - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
+        if: always()
+      - name: Upload test results zip as build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: oci-test-results-${{ github.sha }}
+          path: .out/
+        if: always()

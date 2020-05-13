@@ -1,0 +1,30 @@
+name: acr-1
+on:
+  push:
+    branches:
+      - master
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run OCI Distribution Spec conformance tests
+        uses: bloodorangeio/distribution-spec@master
+        env:
+          OCI_ROOT_URL: https://ocitest.azurecr.io
+          OCI_NAMESPACE: bloodorange/oci-conformance-test
+          OCI_USERNAME: ${{ secrets.ACR_USERNAME }}
+          OCI_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+          OCI_TEST_PULL: 1
+          OCI_TEST_PUSH: 1
+          OCI_TEST_CONTENT_DISCOVERY: 1
+          OCI_TEST_CONTENT_MANAGEMENT: 1
+          OCI_HIDE_SKIPPED_WORKFLOWS: 0
+          OCI_DEBUG: 0
+      - run: mkdir -p .out/ && mv {report.html,junit.xml} .out/
+        if: always()
+      - name: Upload test results zip as build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: oci-test-results-${{ github.sha }}
+          path: .out/
+        if: always()
